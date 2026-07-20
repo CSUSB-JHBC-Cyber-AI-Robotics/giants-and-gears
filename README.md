@@ -21,8 +21,9 @@ articles for attribution).
 
 | Path | What |
 |------|------|
-| `index.html` | The curriculum map — 6 stages, 26 exhibits |
-| `units/angles-that-reach.html` | **Pilot exhibit 05** — trigonometry via robot-arm inverse kinematics: 3 interactive labs, 5 portrait plaques, 8 generated diagrams |
+| `index.html` | The codex map — 6 stages, 26 folios |
+| `units/gears-and-ratios.html` | **Folio 01** — ratio, π, and gear trains: rover-race fail lab, rim-unrolling π lab, drivetrain-designer assessment |
+| `units/angles-that-reach.html` | **Folio 05** — trigonometry via robot-arm inverse kinematics: 3 interactive labs, 5 portrait plaques |
 | `curriculum.md` | The master skeleton: every unit's robotics hook, giants, artifact formula, planned lab, plus the five design invariants |
 | `assets/img/portraits/` | 22 mathematician portraits pulled from the offline Wikipedia archive |
 | `assets/img/diagrams/` | edu-style diagrams + gold formula SVGs, generated locally |
