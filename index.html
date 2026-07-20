@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giants &amp; Gears — a robotics-first mathematics curriculum</title>
+<link rel="stylesheet" href="assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<nav class="chrome">
+  <a class="wordmark" href="index.html">Giants &amp; Gears</a>
+  <span class="crumb">the curriculum map</span>
+  <span class="right">26 exhibits · middle school → graduate · fully offline</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:4rem 0 1rem;">
+    <div class="catalog reveal">CODEX I · ON THE MATHEMATICS OF MACHINES THAT MOVE</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Giants &amp; Gears</h1>
+    <p class="plaque-caption reveal" style="max-width:44rem;margin:0 auto;">
+      A mathematics curriculum where every idea is met the way humanity met it:
+      as the answer to a machine that could not yet move, sense, or decide.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <section class="exhibit wide reveal" style="margin:3rem 0;">
+    <div>
+      <div class="smallcaps">the charter</div>
+      <h2>We teach the wrong thing about numbers</h2>
+      <p class="lede">
+        School mathematics grades the <em>calculation</em> and discards the
+        <em>question</em>. Students learn that sine is a button, not that it took
+        nineteen centuries, four civilizations, and a stubborn Swiss genius to turn
+        a surveyor's ratio into a function a robot can call a thousand times a second.
+      </p>
+      <p style="margin-top:1rem;">
+        In this curriculum every unit obeys five invariants:
+        <em>the robot fails first</em> — no unit opens with a definition;
+        <em>history is load-bearing</em> — the mathematician arrives exactly when their problem matches the robot's;
+        <em>one artifact formula per unit</em>, framed like the museum piece it is;
+        <em>the lab is the assessment</em> — success means the machine works;
+        and <em>everything runs offline</em>, from the portraits to the simulators.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+  <div id="map"></div>
+
+  <div class="seal">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="compass rose seal">
+      <g fill="none" stroke="#a8842f" stroke-width="1.2">
+        <circle cx="50" cy="50" r="45"/>
+        <circle cx="50" cy="50" r="38"/>
+        <circle cx="50" cy="50" r="12"/>
+        <path d="M50 5 L54 46 L95 50 L54 54 L50 95 L46 54 L5 50 L46 46 Z"/>
+        <path d="M22 22 L50 50 M78 22 L50 50 M22 78 L50 50 M78 78 L50 50" stroke-dasharray="2 4"/>
+      </g>
+      <circle cx="50" cy="50" r="3" fill="#a8842f"/>
+    </svg>
+  </div>
+
+  <footer>
+    <div class="plaque-caption">
+      22 portraits from the offline Wikipedia archive · every plate drawn and bound
+      locally · no network required, ever.
+    </div>
+  </footer>
+</main>
+
+<script>
+// ---- the curriculum, as data ----
+const STAGES = [
+  { num: 'I', name: 'Making a Machine Move at All', band: 'middle school', units: [
+    { n: 1, t: 'Gears & Ratios', h: 'Two robots, same motor — the one with bigger wheels goes farther per turn. Why?', g: 'Archimedes · al-Jazarī · Leonardo', href: 'units/gears-and-ratios.html' },
+    { n: 2, t: "The Robot's Map", h: 'A robot told "go to (−3, 2)" — what does a negative place even mean?', g: 'Brahmagupta · Descartes' },
+    { n: 3, t: 'The Unknown (al-jabr)', h: 'How many motor turns until the wall? Solve for the missing piece.', g: 'al-Khwārizmī' },
+    { n: 4, t: 'Rigid Triangles', h: 'Drive 3 m east, 4 m north — how far are you from home?', g: 'Pythagoras · Euclid' },
+  ]},
+  { num: 'II', name: 'Sensing and Turning', band: 'early high school', units: [
+    { n: 5, t: 'Angles That Reach', h: 'A two-link robot arm must touch a target. Which two joint angles?', g: 'Hipparchus · Ptolemy · Aryabhata · Euler', href: 'units/angles-that-reach.html' },
+    { n: 6, t: 'Machines as Functions', h: 'A distance sensor turns echo-time into millimetres — every part is an input→output rule.', g: 'Euler · Dirichlet' },
+    { n: 7, t: 'Curves of Decay', h: "Your drone's battery doesn't die linearly. Neither does a signal.", g: 'Napier · Euler' },
+    { n: 8, t: 'Trusting a Noisy Sensor', h: 'Ten ultrasonic pings, ten different answers. Which is true?', g: 'Gauss · Pascal · Fermat' },
+  ]},
+  { num: 'III', name: 'Describing Motion Exactly', band: 'late high school', units: [
+    { n: 9, t: 'Arrows of Motion', h: 'Wind pushes the drone one way, its rotors another. What actually happens?', g: 'Hamilton · Grassmann' },
+    { n: 10, t: 'The Rotation Machine', h: 'The camera sees "left"; the world says "north-west." Convert.', g: 'Cayley · Gauss' },
+    { n: 11, t: 'The Speed of Speed', h: 'The encoder gives position. The controller needs velocity — right now.', g: 'Newton · Leibniz' },
+    { n: 12, t: 'Adding Up Motion', h: 'No GPS indoors: integrate wheel speed to know where you are — and watch error grow.', g: 'Leibniz · Riemann' },
+    { n: 13, t: 'Numbers That Rotate', h: 'Multiplying by i turns you 90°. Rotation is arithmetic.', g: 'Euler · Argand · Hamilton' },
+  ]},
+  { num: 'IV', name: "The Robot's Bloodstream", band: 'undergraduate core', units: [
+    { n: 14, t: 'The Language of Space', h: 'How Gauss found a lost dwarf planet with pen, paper, and least squares.', g: 'Gauss · Cayley · Sylvester' },
+    { n: 15, t: 'Many Knobs at Once', h: "Move joint 1 a hair — the hand moves how much, which way? The Jacobian is the arm's exchange rate.", g: 'Lagrange · Jacobi' },
+    { n: 16, t: 'Equations of Change', h: 'Every walking robot is an inverted pendulum obeying an equation about its own rate of change.', g: 'Newton · Euler · Kovalevskaya' },
+    { n: 17, t: 'Bridges & Routes', h: "Euler's 1736 Königsberg stroll is your robot vacuum's route problem — unchanged.", g: 'Euler · Turing' },
+    { n: 18, t: 'Where Am I, Probably', h: 'A lost robot with a map and bad sensors: belief as a probability cloud.', g: 'Bayes · Laplace' },
+  ]},
+  { num: 'V', name: 'Control and Intelligence', band: 'advanced undergrad / early graduate', units: [
+    { n: 19, t: 'Taming the Machine', h: 'Maxwell wrote "On Governors" (1868) because Victorian engines shook themselves apart.', g: 'Maxwell · Nyquist · Bode · Wiener' },
+    { n: 20, t: 'The Best Possible Move', h: "Apollo flew to the Moon on Kalman's filter and Bellman's principle.", g: 'Kalman · Bellman · Pontryagin' },
+    { n: 21, t: 'The Shape of Rotation', h: 'Hamilton carved i²=j²=k²=ijk=−1 into a Dublin bridge in 1843; it now runs inside every drone IMU.', g: 'Hamilton · Rodrigues · Chasles' },
+    { n: 22, t: 'Waves Inside Signals', h: 'Every sensor stream is a chord of frequencies; filtering is choosing which notes to keep.', g: 'Fourier · Shannon' },
+  ]},
+  { num: 'VI', name: 'The Frontier', band: 'graduate', units: [
+    { n: 23, t: 'Motion From Energy', h: "Simulators don't push objects around — they minimize action. Lagrange's mechanics book had no diagrams; it runs your physics engine.", g: 'Lagrange · Hamilton · Noether' },
+    { n: 24, t: 'Curved Configuration Space', h: "A robot's poses form a curved space; planning a motion is drawing a geodesic on it.", g: 'Riemann · Lie · Cartan' },
+    { n: 25, t: 'Learning as Descent', h: 'Backpropagation is the chain rule; Cauchy invented gradient descent in 1847.', g: 'Cauchy · Kantorovich · Bellman' },
+    { n: 26, t: 'The Mathematics of Not Knowing', h: 'SLAM: build the map and find yourself in it, simultaneously, forever uncertain.', g: 'Markov · Wiener · Itô' },
+  ]},
+];
+
+const map = document.getElementById('map');
+for (const s of STAGES) {
+  const stage = document.createElement('section');
+  stage.className = 'stage';
+  stage.innerHTML = `
+    <div class="stage-head reveal">
+      <span class="num">${s.num}</span>
+      <div>
+        <h2 style="margin:0;">${s.name}</h2>
+        <span class="band">${s.band}</span>
+      </div>
+    </div>`;
+  const grid = document.createElement('div');
+  grid.className = 'units';
+  for (const u of s.units) {
+    const a = document.createElement(u.href ? 'a' : 'div');
+    if (u.href) { a.href = u.href; a.className = 'unit open reveal'; }
+    else a.className = 'unit planned reveal';
+    a.innerHTML = `
+      <span class="catalog">FOLIO ${String(u.n).padStart(2, '0')}</span>
+      <span class="title">${u.t}</span>
+      <p class="hook">${u.h}</p>
+      <span class="giants">${u.g}</span>`;
+    grid.appendChild(a);
+  }
+  stage.appendChild(grid);
+  map.appendChild(stage);
+  const rule = document.createElement('div');
+  rule.className = 'constellation-rule';
+  map.appendChild(rule);
+}
+</script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

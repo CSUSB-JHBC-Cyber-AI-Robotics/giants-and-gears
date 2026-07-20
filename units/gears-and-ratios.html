@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 01 — Gears &amp; Ratios · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage I · Making a Machine Move at All</span>
+  <span class="right">Folio 01 · ratio &amp; proportion</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 01 · CODEX I · GIANTS: ARCHIMEDES — THE ANTIKYTHERA MAKER — AL-JAZARĪ — LEONARDO</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Gears &amp; Ratios</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which two robots receive the same instruction and arrive at different
+      places, and a fraction cast in bronze turns out to run everything
+      with wheels.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I — THE ROBOT FAILS ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">One instruction, two truths</h2>
+      <p class="lede reveal">
+        Two rovers. Identical motors, identical program: <em>"turn your wheels
+        this many times."</em> The only difference between them is the size of
+        their wheels. Your job is simple: park them <em>both</em> on the chalk
+        line.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 1.1 — the wheel is a translator</span>
+          <span class="plaque-caption">one slider commands both rovers</span>
+        </div>
+        <canvas id="race" height="330"></canvas>
+        <div class="controls">
+          <label>motor turns <input type="range" id="turns1" min="0" max="8" value="0" step="0.25"> <code id="turns1v">0.00</code></label>
+          <button class="toggle" id="raceReset">reset</button>
+        </div>
+        <div class="readout">
+          <span>rover A (small wheel): <b id="distA">0 mm</b></span>
+          <span>rover B (large wheel): <b id="distB">0 mm</b></span>
+          <span id="raceStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        It cannot be done. When the small wheel kisses the line, the large one
+        has already rolled past it — <em>every single turn, the large wheel
+        covers more ground.</em> The instruction was never "go this far." It was
+        "turn this much," and the wheel translated it into distance — each wheel
+        in its own dialect. To command <em>distance</em>, you must first know the
+        exchange rate between a turn and the ground. That exchange rate is a
+        <em>ratio</em>, and it is the oldest idea in machine mathematics.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II — THE GIANTS ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">The ratio, cast in bronze</h2>
+    <p class="lede reveal">
+      Before anyone wrote <code>gear_ratio = N1/N2</code>, people built the
+      idea out of wood and bronze — because they needed to lift ships, predict
+      eclipses, and make an elephant tell the time.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/archimedes.jpg" alt="Archimedes"></div>
+        <figcaption class="plaque">
+          <div class="name">Archimedes</div>
+          <div class="dates">c. 287 – 212 BC · SYRACUSE</div>
+          <div class="role">Pulled a loaded ship with a compound pulley and declared he could move the Earth with a long enough lever. First to treat a machine as a <em>number</em> — a ratio between what you give and what you get.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/antikythera.jpg" alt="Antikythera mechanism, Fragment A"></div>
+        <figcaption class="plaque">
+          <div class="name">The Antikythera Mechanism</div>
+          <div class="dates">c. 100 BC · RECOVERED 1901</div>
+          <div class="role">Thirty-plus bronze gears whose tooth counts encode the ratios of the heavens — moon phases, eclipse cycles. A computer with no electricity: the program <em>is</em> the gearing.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/al-jazari.jpg" alt="al-Jazari's elephant clock"></div>
+        <figcaption class="plaque">
+          <div class="name">Ismail al-Jazarī</div>
+          <div class="dates">1136 – 1206 · ARTUQID COURT</div>
+          <div class="role">His <em>Book of Ingenious Mechanical Devices</em> gave gears jobs: pumps, automata, the great elephant clock. The leap from computing with ratios to <em>doing work</em> with them — robotics' true ancestor.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/leonardo.jpg" alt="Leonardo da Vinci"></div>
+        <figcaption class="plaque">
+          <div class="name">Leonardo da Vinci</div>
+          <div class="dates">1452 – 1519 · VINCI → AMBOISE</div>
+          <div class="role">Filled notebooks — pages like this one — with worm gears, escapements, and gear trains drawn precisely enough to build. He designed a geared cart that steered itself: a programmable machine, four centuries early.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/gears-history.svg" alt="From Archimedes to your drivetrain"></div>
+      <figcaption class="plaque-caption">Twenty-two centuries, one idea: a gear pair is a fraction you can hold.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III — THE MATHEMATICS ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">A wheel is a ruler bent into a circle</h2>
+    <p class="lede reveal">
+      Roll a wheel one full turn and it lays its own rim down on the road, like
+      unwinding a ribbon. How long is the ribbon? Measure it below — then notice
+      something strange about the number you get.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 1.2 — unrolling the rim</span>
+        <span class="plaque-caption">choose a radius, roll one turn, measure the ribbon</span>
+      </div>
+      <canvas id="roll" height="300"></canvas>
+      <div class="controls">
+        <label>wheel radius <input type="range" id="rollR" min="24" max="60" value="40" step="1"> <code id="rollRv">40 mm</code></label>
+        <button class="toggle" id="rollGo">roll one turn</button>
+      </div>
+      <div class="readout">
+        <span>ribbon length: <b id="ribbon">0 mm</b></span>
+        <span>ribbon ÷ diameter = <b id="piRatio">—</b></span>
+        <span id="rollNote" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <p class="reveal">
+      Change the radius and roll again. The ribbon changes — but
+      <em>ribbon ÷ diameter</em> refuses to move. Every wheel that has ever
+      rolled, on every world, gives the same 3.14159… That stubborn ratio earned
+      its own letter, π, and it turns the wheel into an honest ruler:
+    </p>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-circumference.svg" alt="distance equals two pi r times turns" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">The wheel's exchange rate: turns in, millimetres out. This one line fixes Act I.</figcaption>
+    </figure>
+
+    <p class="reveal">
+      But robots rarely bolt the wheel straight to the motor. Between them sits
+      a <em>gear pair</em> — and gears cannot slip. Tooth passes tooth, one for
+      one, like beads on two touching necklaces. If the motor's gear has
+      N₁&nbsp;teeth and the wheel's gear has N₂, then every motor turn pushes N₁
+      teeth past the meshing point, and the wheel gear must swallow them in
+      groups of N₂:
+    </p>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-gear-ratio.svg" alt="wheel turns equals motor turns times N1 over N2" style="max-height:60px;"></div>
+      <figcaption class="plaque-caption">Counting teeth IS the ratio — no measuring tape required. The Antikythera maker knew exactly this.</figcaption>
+    </figure>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-torque-trade.svg" alt="torque trade formula" style="max-height:60px;"></div>
+      <figcaption class="plaque-caption">
+        And the fine print: whatever you divide out of speed, you multiply into
+        strength. A slow robot is a strong robot. Archimedes' lever, wearing teeth.
+      </figcaption>
+    </figure>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/gear-pipeline.svg" alt="from motor turns to distance"></div>
+      <figcaption class="plaque-caption">The whole drivetrain, read left to right.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV — THE LAB ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Design the drivetrain</h2>
+    <p class="lede reveal">
+      Now you have every piece: tooth counts, wheel radius, motor turns. The
+      chalk flag marks the target. Choose your gears, predict your distance with
+      the formula, then press <em>drive</em> — the rover will go exactly where
+      the mathematics says, and nowhere else.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 1.3 — the drivetrain designer</span>
+        <span class="plaque-caption">stop the rover on the flag — by arithmetic, not luck</span>
+      </div>
+      <canvas id="train" height="380"></canvas>
+      <div class="controls">
+        <label>motor gear N₁ <input type="range" id="n1" min="8" max="24" value="12" step="1"> <code id="n1v">12</code></label>
+        <label>wheel gear N₂ <input type="range" id="n2" min="8" max="40" value="24" step="1"> <code id="n2v">24</code></label>
+        <label>wheel radius <input type="range" id="wr" min="20" max="60" value="35" step="1"> <code id="wrv">35 mm</code></label>
+        <label>motor turns <input type="range" id="mt" min="1" max="20" value="8" step="0.5"> <code id="mtv">8.0</code></label>
+      </div>
+      <div class="controls">
+        <button class="toggle" id="drive">drive</button>
+        <button class="toggle" id="newFlag">new target</button>
+      </div>
+      <div class="readout">
+        <span>gear ratio N₁/N₂: <b id="ratio">0.500</b></span>
+        <span>predicted distance: <b id="pred">— mm</b></span>
+        <span>target: <b id="targetD">— mm</b></span>
+        <span id="trainStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <p class="reveal">
+      Notice what "correct" means here. Nobody marks your ratio with a red pen —
+      you watch your prediction and the rover's wheels agree, or you watch them
+      disagree and know <em>exactly which number to interrogate</em>. When the
+      flag moves, you don't start over; you re-solve. That is the entire
+      difference between computing an answer and <em>owning a relationship
+      between quantities</em>.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V — PAYOFF ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Every bicycle you have ever shifted, every drill that trades scream for
+        strength, every robot gearbox choosing between fast-and-weak and
+        slow-and-mighty — all of it is the one fraction you just designed with.
+        And this folio hides a promise: in Folio&nbsp;12, the rover will count its
+        own wheel turns to figure out <em>where it is</em> — odometry, the
+        mathematics of dead reckoning — and the exchange rate you learned today
+        becomes a robot's only sense of place.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> flip your bicycle over. Count the teeth on the
+        front chainring and the rear sprocket, measure the wheel radius, and
+        predict how far one pedal revolution carries you. Then mark the floor
+        with chalk and pedal exactly once. The floor will grade you — and unlike
+        a worksheet, it is never wrong.
+      </p>
+      <a class="next-exhibit reveal" href="angles-that-reach.html">continue to folio 05 — angles that reach</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+/* ============================================================
+   Folio 01 labs. Ink-on-parchment palette; y-down canvas.
+   ============================================================ */
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d',
+            mount:'#cbb98e', gearFill:'#e6d9ba' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke();
+  ctx.restore();
+}
+
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+
+function ground(ctx, w, y) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(14 + ox, y + oy); ctx.lineTo(w - 14 + ox, y + oy); }, C.ink, 1.8);
+}
+
+function chalkFlag(ctx, x, groundY, label) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x + ox, groundY + oy); ctx.lineTo(x + ox, groundY - 52 + oy); }, C.chalk, 1.8);
+  ctx.save();
+  ctx.fillStyle = C.chalk; ctx.globalAlpha = .85;
+  ctx.beginPath(); ctx.moveTo(x, groundY - 52); ctx.lineTo(x + 26, groundY - 45); ctx.lineTo(x, groundY - 38); ctx.closePath(); ctx.fill();
+  ctx.globalAlpha = 1; ctx.font = '14px ' + HAND;
+  if (label) ctx.fillText(label, x + 6, groundY - 58);
+  ctx.restore();
+}
+
+function drawWheel(ctx, x, y, r, angle, color) {
+  inkStroke(ctx, (ox, oy) => { ctx.arc(x + ox, y + oy, r, 0, TAU); }, color, 2.2);
+  // spokes show rotation
+  for (let k = 0; k < 3; k++) {
+    const a = angle + k * TAU / 3;
+    inkStroke(ctx, (ox, oy) => {
+      ctx.moveTo(x + ox, y + oy);
+      ctx.lineTo(x + r * 0.86 * Math.cos(a) + ox, y + r * 0.86 * Math.sin(a) + oy);
+    }, C.ghost, 1.3);
+  }
+  // rim mark: where the wheel touches at angle 0
+  const mx = x + r * Math.cos(angle + Math.PI / 2), my = y + r * Math.sin(angle + Math.PI / 2);
+  ctx.fillStyle = C.chalk;
+  ctx.beginPath(); ctx.arc(mx, my, 3, 0, TAU); ctx.fill();
+}
+
+function drawRover(ctx, x, groundY, r, angle, color, name) {
+  const y = groundY - r;
+  drawWheel(ctx, x, y, r, angle, color);
+  // body: a little sketched cart above the wheel
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x - r * 0.9 + ox, y - r - 8 + oy);
+    ctx.lineTo(x + r * 0.9 + ox, y - r - 8 + oy);
+    ctx.lineTo(x + r * 0.7 + ox, y - r * 0.55 + oy);
+    ctx.lineTo(x - r * 0.7 + ox, y - r * 0.55 + oy);
+    ctx.closePath();
+  }, C.ink, 1.6);
+  ctx.fillStyle = C.ghost; ctx.font = '15px ' + HAND;
+  ctx.fillText(name, x - 10, y - r - 14);
+}
+
+function drawGear(ctx, x, y, r, teeth, angle, color) {
+  const inner = r * 0.8;
+  inkStroke(ctx, (ox, oy) => {
+    for (let i = 0; i <= teeth * 4; i++) {
+      const seg = Math.floor(i / 4), phase = i % 4;
+      const a0 = angle + (seg + phase / 4) * TAU / teeth;
+      const rad = (phase === 1 || phase === 2) ? r : inner;
+      const px = x + rad * Math.cos(a0) + ox, py = y + rad * Math.sin(a0) + oy;
+      i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+  }, color, 1.8);
+  inkStroke(ctx, (ox, oy) => { ctx.arc(x + ox, y + oy, r * 0.18, 0, TAU); }, C.ink, 1.5);
+  for (let k = 0; k < 4; k++) {
+    const a = angle + k * TAU / 4;
+    inkStroke(ctx, (ox, oy) => {
+      ctx.moveTo(x + r * 0.2 * Math.cos(a) + ox, y + r * 0.2 * Math.sin(a) + oy);
+      ctx.lineTo(x + inner * 0.82 * Math.cos(a) + ox, y + inner * 0.82 * Math.sin(a) + oy);
+    }, C.ghost, 1.2);
+  }
+}
+
+/* ---------------- LAB 1.1 — one slider, two rovers ---------------- */
+(function () {
+  const cv = document.getElementById('race'), S = setupCanvas(cv);
+  let ctx = S.resize();
+  const RA = 26, RB = 42;                    // wheel radii, px (1 px = 1 mm here)
+  const slider = document.getElementById('turns1');
+  let peak = 0;
+
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const g1 = h * 0.42, g2 = h * 0.86;
+    const startX = 70;
+    const turns = +slider.value;
+    const target = startX + RA * TAU * 6;    // rover A arrives at exactly 6 turns
+    ground(ctx, w, g1); ground(ctx, w, g2);
+    chalkFlag(ctx, target, g1, '');
+    chalkFlag(ctx, target, g2, 'the line');
+    const dA = RA * TAU * turns, dB = RB * TAU * turns;
+    drawRover(ctx, startX + dA, g1, RA, dA / RA, C.slate, 'A');
+    drawRover(ctx, startX + dB, g2, RB, dB / RB, C.chalk, 'B');
+    document.getElementById('distA').textContent = dA.toFixed(0) + ' mm';
+    document.getElementById('distB').textContent = dB.toFixed(0) + ' mm';
+    const status = document.getElementById('raceStatus');
+    if (Math.abs((startX + dA) - target) < 4 && turns > 0)
+      status.textContent = 'A is on the line — and B overshot it by ' + (dB - dA).toFixed(0) + ' mm. Same turns, different truths.';
+    else if (startX + dB > target + 4 && startX + dA < target - 4)
+      status.textContent = 'B has already passed the line; A is still short. One slider cannot serve two wheels.';
+    else status.textContent = '';
+  }
+  slider.addEventListener('input', draw);
+  document.getElementById('raceReset').addEventListener('click', () => { slider.value = 0; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 1.2 — unrolling the rim ---------------- */
+(function () {
+  const cv = document.getElementById('roll'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, t = 0;
+  const rSlider = document.getElementById('rollR');
+
+  function draw(prog) {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const g = h * 0.7, startX = 90, r = +rSlider.value;
+    ground(ctx, w, g);
+    const rolled = r * TAU * prog;
+    // the unrolled ribbon, in red chalk along the ground
+    if (rolled > 1) {
+      inkStroke(ctx, (ox, oy) => { ctx.moveTo(startX + ox, g + 10 + oy); ctx.lineTo(startX + rolled + ox, g + 10 + oy); }, C.chalk, 2.6);
+      ctx.fillStyle = C.chalk; ctx.font = '15px ' + HAND;
+      ctx.fillText(rolled.toFixed(0) + ' mm', startX + rolled / 2 - 20, g + 30);
+    }
+    drawWheel(ctx, startX + rolled, g - r, r, rolled / r, C.ink);
+    ctx.fillStyle = C.ghost; ctx.font = '15px ' + HAND;
+    ctx.fillText('r = ' + r + ' mm', startX + rolled + r + 10, g - r);
+    document.getElementById('ribbon').textContent = rolled.toFixed(0) + ' mm';
+    document.getElementById('piRatio').textContent = prog > 0.99 ? (rolled / (2 * r)).toFixed(5) : '—';
+    document.getElementById('rollNote').textContent = prog > 0.99 ? 'π, again. It is always π.' : '';
+  }
+  function go() {
+    if (anim) cancelAnimationFrame(anim);
+    t = 0;
+    const step = () => {
+      t = Math.min(1, t + 0.012);
+      draw(t);
+      if (t < 1) anim = requestAnimationFrame(step); else anim = null;
+    };
+    anim = requestAnimationFrame(step);
+  }
+  rSlider.addEventListener('input', () => {
+    document.getElementById('rollRv').textContent = rSlider.value + ' mm';
+    if (!anim) draw(0);
+  });
+  document.getElementById('rollGo').addEventListener('click', go);
+  addEventListener('resize', () => { ctx = S.resize(); draw(t); });
+  draw(0);
+})();
+
+/* ---------------- LAB 1.3 — the drivetrain designer ---------------- */
+(function () {
+  const cv = document.getElementById('train'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0, target = 900;
+  const el = (id) => document.getElementById(id);
+  const SCALE = 0.55;                        // mm -> px on the road
+
+  function params() {
+    return { n1: +el('n1').value, n2: +el('n2').value,
+             r: +el('wr').value, turns: +el('mt').value };
+  }
+  function predicted(p) { return p.turns * (p.n1 / p.n2) * TAU * p.r; }
+
+  function draw() {
+    const w = S.w, h = S.h, p = params();
+    paper(ctx, w, h);
+    // --- left: the gear pair, meshed vertically ---
+    const gx = 110, gy = h * 0.34;
+    const r1 = 12 + p.n1 * 1.6, r2 = 12 + p.n2 * 1.6;
+    const motorAngle = p.turns * prog * TAU;
+    const wheelAngle = -motorAngle * p.n1 / p.n2;
+    drawGear(ctx, gx, gy - r1 - 4, r1, p.n1, motorAngle, C.chalk);
+    drawGear(ctx, gx, gy + r2 - 2, r2, p.n2, wheelAngle + TAU / (2 * p.n2), C.slate);
+    ctx.fillStyle = C.ghost; ctx.font = '15px ' + HAND;
+    ctx.fillText('motor · N₁ = ' + p.n1, gx + r1 + 12, gy - r1 - 4);
+    ctx.fillText('wheel · N₂ = ' + p.n2, gx + r2 + 12, gy + r2 + 4);
+    // --- right: the rover on its road ---
+    const g = h * 0.82, startX = 260;
+    ground(ctx, w, g);
+    chalkFlag(ctx, startX + target * SCALE, g, target + ' mm');
+    const dist = predicted(p) * prog;
+    drawRover(ctx, startX + dist * SCALE, g, Math.max(16, p.r * 0.55), dist / p.r, C.ink, '');
+    // axle hint: dashed line from wheel gear to rover
+    ctx.save(); ctx.setLineDash([3, 7]); ctx.strokeStyle = C.grid; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(gx + r2 + 60, gy + r2); ctx.lineTo(startX + dist * SCALE - 20, g - p.r * 0.55); ctx.stroke();
+    ctx.restore();
+    // readouts
+    el('ratio').textContent = (p.n1 / p.n2).toFixed(3);
+    el('pred').textContent = predicted(p).toFixed(0) + ' mm';
+    el('targetD').textContent = target + ' mm';
+    const err = predicted(p) - target;
+    if (prog >= 1) {
+      el('trainStatus').textContent = Math.abs(err) <= 10
+        ? '✦ stopped on the flag — the arithmetic drove.'
+        : (err > 0 ? 'overshot by ' + err.toFixed(0) + ' mm — gear down or shed turns.'
+                   : 'short by ' + (-err).toFixed(0) + ' mm — gear up or add turns.');
+    } else el('trainStatus').textContent = '';
+  }
+
+  function drive() {
+    if (anim) cancelAnimationFrame(anim);
+    prog = 0;
+    const step = () => {
+      prog = Math.min(1, prog + 0.008);
+      draw();
+      if (prog < 1) anim = requestAnimationFrame(step); else anim = null;
+    };
+    anim = requestAnimationFrame(step);
+  }
+  function newFlag() {
+    target = 500 + Math.floor(Math.random() * 9) * 100;   // 500..1300
+    prog = 0; draw();
+  }
+  for (const id of ['n1', 'n2', 'wr', 'mt']) {
+    el(id).addEventListener('input', () => {
+      el('n1v').textContent = el('n1').value;
+      el('n2v').textContent = el('n2').value;
+      el('wrv').textContent = el('wr').value + ' mm';
+      el('mtv').textContent = (+el('mt').value).toFixed(1);
+      prog = 0; draw();
+    });
+  }
+  el('drive').addEventListener('click', drive);
+  el('newFlag').addEventListener('click', newFlag);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

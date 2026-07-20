@@ -1,0 +1,230 @@
+/* ============================================================
+   Giants & Gears — "da Vinci codex" styling
+   Parchment field, iron-gall ink, red-chalk annotations, and a
+   faint hint of gold leaf. Interactive labs remain dark navy
+   "technical plates" bound into the notebook.
+   Performance notes: no fixed blend-mode overlays, no rAF loops —
+   texture and vignette are static backgrounds.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('../fonts/cinzel-600.woff2') format('woff2');
+  font-weight: 600; font-display: swap;
+}
+@font-face {
+  font-family: 'Lora';
+  src: url('../fonts/lora-400.woff2') format('woff2');
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: 'Caveat';
+  src: url('../fonts/caveat-400.woff2') format('woff2');
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../fonts/jetbrains-mono-400.woff2') format('woff2');
+  font-weight: 400; font-display: swap;
+}
+
+:root {
+  /* codex palette — grown from the vault's dark-academia set */
+  --paper: #e9dcbc;
+  --paper-deep: #ddcda6;
+  --mat: #f2e9d2;          /* lighter mat inside frames */
+  --ink: #372a1b;
+  --ink-strong: #241a0e;
+  --sepia: #6d5940;        /* muted labels, metadata */
+  --chalk: #96412e;        /* red chalk / sanguine accents */
+  --gold: #a8842f;         /* faint gold leaf — used sparingly */
+  --gold-hi: #c2a04a;
+  --rule: rgba(55, 42, 27, .45);
+  --plate: #0d1b2a;        /* the dark technical plates (labs, diagrams) */
+
+  --display: 'Cinzel', 'Georgia', serif;
+  --hand: 'Caveat', cursive;
+  --font: 'Lora', Georgia, serif;
+  --mono: 'JetBrains Mono', Consolas, monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background-color: var(--paper);
+  /* static paper grain + gentle age vignette — painted once, never composited */
+  background-image:
+    radial-gradient(ellipse 120% 90% at 50% 0%, rgba(255, 250, 235, .5), transparent 55%),
+    radial-gradient(ellipse 140% 100% at 50% 100%, rgba(120, 90, 45, .14), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.48 0 0 0 0 0.38 0 0 0 0 0.22 0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23p)'/%3E%3C/svg%3E");
+  line-height: 1.65;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---- chrome: a codex header rule ---- */
+.chrome {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: baseline; gap: 1.2rem;
+  padding: .7rem 1.6rem;
+  background: linear-gradient(rgba(233, 220, 188, .97), rgba(233, 220, 188, .88));
+  border-bottom: 1px solid var(--rule);
+  box-shadow: 0 1px 0 rgba(168, 132, 47, .35);   /* the gold hairline */
+  font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+}
+.chrome .wordmark { font-family: var(--display); color: var(--ink-strong); font-weight: 600; text-decoration: none; letter-spacing: .18em; }
+.chrome .crumb { color: var(--sepia); font-style: italic; text-transform: none; letter-spacing: .04em; }
+.chrome .right { margin-left: auto; color: var(--sepia); font-style: italic; text-transform: none; letter-spacing: .04em; }
+
+main { max-width: 1060px; margin: 0 auto; padding: 7rem 1.5rem 6rem; }
+
+/* ---- typography: inscription capitals, ink body, chalk notes ---- */
+h1, h2, h3 { font-family: var(--display); font-weight: 600; color: var(--ink-strong); }
+h1 { font-size: clamp(2.2rem, 5.6vw, 3.8rem); line-height: 1.12; letter-spacing: .04em; }
+h2 { font-size: clamp(1.4rem, 3.2vw, 2rem); margin-bottom: .8rem; letter-spacing: .03em; }
+h3 { font-size: 1.1rem; }
+.smallcaps {
+  font-variant: small-caps; letter-spacing: .24em; font-size: .82rem;
+  color: var(--chalk); text-transform: lowercase;
+}
+.catalog { font-family: var(--mono); font-size: .7rem; color: var(--sepia); letter-spacing: .18em; }
+.plaque-caption { font-family: var(--hand); color: var(--sepia); font-size: 1.18rem; line-height: 1.35; }
+p.lede { font-size: 1.14rem; color: var(--ink); max-width: 46rem; }
+p { color: var(--ink); max-width: 46rem; }
+em { color: var(--chalk); }
+code, .mono { font-family: var(--mono); color: var(--ink-strong); background: rgba(168, 132, 47, .12); padding: 0 .25em; border-radius: 3px; font-size: .88em; }
+
+/* ---- the plate frame: ink line, paper mat, whisper of gold ---- */
+.frame {
+  border: 1px solid var(--gold);
+  box-shadow: inset 0 0 0 1px var(--rule), 2px 3px 10px rgba(58, 44, 26, .18);
+  background: var(--mat);
+  padding: 10px;
+}
+.frame img, .frame svg { display: block; width: 100%; height: auto; }
+
+/* ---- folio sections ---- */
+.exhibit {
+  margin: 6rem 0; display: grid; gap: 2.4rem;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+}
+.exhibit.flip { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+.exhibit.flip .art { order: -1; }
+.exhibit.wide { grid-template-columns: 1fr; }
+@media (max-width: 760px) {
+  .exhibit, .exhibit.flip { grid-template-columns: 1fr; }
+  .exhibit.flip .art { order: 0; }
+}
+
+/* reveal: pages settle into place (kept light) */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.lit { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ---- portraits: sketches pinned into the notebook ---- */
+.gallery { display: flex; flex-wrap: wrap; gap: 2.2rem; justify-content: center; margin: 2.5rem 0; }
+.portrait { width: 200px; text-align: center; }
+.portrait .frame { padding: 7px; }
+.portrait:nth-child(odd) .frame { transform: rotate(-1.1deg); }
+.portrait:nth-child(even) .frame { transform: rotate(.8deg); }
+.portrait .frame img { filter: sepia(.32) contrast(1.02) saturate(.9); aspect-ratio: 3/4; object-fit: cover; }
+.portrait .plaque { margin-top: .8rem; }
+.portrait .plaque .name { font-family: var(--display); font-size: .92rem; color: var(--ink-strong); letter-spacing: .08em; }
+.portrait .plaque .dates { font-family: var(--mono); font-size: .66rem; color: var(--chalk); letter-spacing: .14em; margin: .2rem 0; }
+.portrait .plaque .role { font-family: var(--hand); color: var(--sepia); font-size: 1.02rem; line-height: 1.3; }
+
+/* ---- construction rule: compass points and a dashed ink line ---- */
+.constellation-rule {
+  height: 1px; margin: 4.5rem auto; max-width: 420px; position: relative;
+  background: repeating-linear-gradient(90deg, var(--rule) 0 6px, transparent 6px 14px);
+}
+.constellation-rule::before, .constellation-rule::after {
+  content: ''; position: absolute; top: -3.5px; width: 8px; height: 8px;
+  border-radius: 50%; border: 1.5px solid var(--gold); background: var(--paper);
+}
+.constellation-rule::before { left: -4px; }
+.constellation-rule::after { right: -4px; }
+
+/* ---- artifact formulas: ink on the mat, gold hairline ---- */
+.formula-artifact { text-align: center; margin: 3rem auto; max-width: 720px; }
+.formula-artifact .frame { padding: 2rem 1.8rem; }
+.formula-artifact .frame img { width: auto; max-width: 100%; margin: 0 auto; }
+.formula-artifact .plaque-caption { margin-top: .9rem; }
+
+/* ---- interactive labs: dark technical plates bound into the page ---- */
+.lab {
+  border: 1px solid var(--gold);
+  box-shadow: inset 0 0 0 1px var(--rule), 2px 4px 12px rgba(58, 44, 26, .2);
+  background: var(--mat);
+  padding: 1.2rem 1.3rem; margin: 2.5rem 0;
+}
+.lab-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: .9rem; }
+.lab-head .smallcaps { color: var(--chalk); }
+.lab-head .plaque-caption { font-size: 1.08rem; }
+.lab canvas { display: block; width: 100%; border: 1px solid var(--rule); background: var(--mat); cursor: crosshair; }
+.lab .readout { font-family: var(--mono); font-size: .8rem; color: var(--sepia); margin-top: .9rem; display: flex; flex-wrap: wrap; gap: 1.4rem; }
+.lab .readout b { color: var(--ink-strong); font-weight: 400; }
+.controls { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: center; margin-top: 1rem; }
+.controls label { color: var(--sepia); font-size: .95rem; font-style: italic; display: flex; align-items: center; gap: .6rem; }
+input[type='range'] { accent-color: var(--chalk); width: 170px; }
+.toggle {
+  font-family: var(--mono); font-size: .74rem; letter-spacing: .1em;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
+  border-radius: 3px; padding: .45rem .9rem; cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.toggle:hover { border-color: var(--chalk); color: var(--chalk); }
+.toggle:active { transform: translateY(1px); }
+.toggle.on { background: var(--chalk); border-color: var(--chalk); color: var(--mat); }
+
+/* ---- curriculum map (index) ---- */
+.stage { margin: 5.5rem 0; }
+.stage-head { display: flex; align-items: baseline; gap: 1.2rem; margin-bottom: 1.8rem; }
+.stage-head .num { font-family: var(--display); font-size: 2.4rem; color: var(--gold); }
+.stage-head .band { font-family: var(--hand); color: var(--sepia); font-size: 1.15rem; }
+.units { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.3rem; }
+.unit {
+  position: relative; display: block; text-decoration: none;
+  border: 1px solid var(--rule);
+  background: var(--mat);
+  box-shadow: 1px 2px 6px rgba(58, 44, 26, .12);
+  padding: 1.1rem 1.2rem;
+}
+.unit .catalog { display: block; margin-bottom: .45rem; }
+.unit .title { font-family: var(--display); font-size: 1.08rem; color: var(--ink-strong); }
+.unit .hook { font-style: italic; color: var(--sepia); font-size: .88rem; line-height: 1.5; margin: .5rem 0 .65rem; }
+.unit .giants { font-family: var(--mono); font-size: .66rem; color: var(--chalk); letter-spacing: .08em; }
+
+/* only OPEN folios behave like links */
+.unit.open { border-color: var(--gold); cursor: pointer; transition: box-shadow .2s, transform .2s; }
+.unit.open:hover { box-shadow: 0 0 0 1px var(--gold), 2px 5px 14px rgba(58, 44, 26, .25); transform: translateY(-2px); }
+.unit.open::after {
+  content: 'OPEN FOLIO →'; position: absolute; top: 1rem; right: 1.1rem;
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .18em; color: var(--chalk);
+}
+/* planned folios read as sketched, not broken */
+.unit.planned { border-style: dashed; background: transparent; box-shadow: none; cursor: default; }
+.unit.planned::after {
+  content: 'in preparation'; position: absolute; top: .95rem; right: 1.1rem;
+  font-family: var(--hand); font-size: .95rem; color: var(--sepia); opacity: .75;
+}
+
+/* the seal: a compass rose in gold ink, static */
+.seal { display: flex; justify-content: center; margin: 5rem 0 2rem; }
+.seal svg { width: 86px; height: 86px; opacity: .8; }
+
+footer { text-align: center; padding: 2rem 0 3.5rem; }
+footer .plaque-caption { max-width: none; }
+
+a { color: var(--chalk); }
+.next-exhibit {
+  display: inline-block; margin-top: 1.4rem; padding: .8rem 1.6rem;
+  border: 1px solid var(--gold); background: var(--mat); text-decoration: none;
+  font-variant: small-caps; letter-spacing: .2em; color: var(--ink-strong);
+  box-shadow: inset 0 0 0 1px var(--rule);
+  transition: box-shadow .2s;
+}
+.next-exhibit:hover { box-shadow: inset 0 0 0 1px var(--rule), 2px 4px 12px rgba(58, 44, 26, .25); }

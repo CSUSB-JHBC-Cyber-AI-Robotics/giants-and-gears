@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exhibit 05 — Angles That Reach · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage II · Sensing and Turning</span>
+  <span class="right">Exhibit 05 · trigonometry</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 05 · CODEX II · GIANTS: HIPPARCHUS — PTOLEMY — ARYABHATA — AL-KHWĀRIZMĪ — EULER</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Angles That Reach</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a robot arm cannot touch a mark two hand-spans away,
+      and nineteen centuries of astronomy turn out to be the reason it finally can.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I — THE ROBOT FAILS ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">Try it yourself. Guess the angles.</h2>
+      <p class="lede reveal">
+        This arm has two motors and you have two sliders. The gold mark is the
+        target. Nothing here is difficult — there are only two numbers to choose.
+        Touch the mark.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 5.1 — manual control</span>
+          <span class="plaque-caption">two joints, zero mathematics</span>
+        </div>
+        <canvas id="manual" height="360"></canvas>
+        <div class="controls">
+          <label>shoulder θ₁ <input type="range" id="s1" min="-180" max="180" value="40" step="0.5"> <code id="s1v">40.0°</code></label>
+          <label>elbow θ₂ <input type="range" id="s2" min="-160" max="160" value="60" step="0.5"> <code id="s2v">60.0°</code></label>
+          <button class="toggle" id="newTarget">new target</button>
+        </div>
+        <div class="readout">
+          <span>distance to target: <b id="mdist">—</b></span>
+          <span>adjustments made: <b id="tries">0</b></span>
+          <span id="mstatus" style="color:var(--gold-hi)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Frustrating, isn't it? Both sliders change <em>both</em> directions of the
+        hand at once. You are hunting a two-dimensional answer with two coupled
+        knobs — and a real welding robot doing this by trial and error would gouge
+        the car door. What you just felt is the exact problem statement:
+        <em>given where I want the hand, what are the angles?</em>
+        Hold that feeling. It took humanity about 1,900 years.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II — THE GIANTS ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">Nineteen centuries to name a ratio</h2>
+    <p class="lede reveal">
+      Nobody invented trigonometry to pass a test. It was invented, four times
+      over, by people who needed to <em>reach</em> something they could not
+      touch — a star, a shoreline, an inheritance share. The robot arm is only
+      the newest thing that is far away.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/hipparchus.jpg" alt="Hipparchus"></div>
+        <figcaption class="plaque">
+          <div class="name">Hipparchus of Nicaea</div>
+          <div class="dates">c. 190 – 120 BC · RHODES</div>
+          <div class="role">Wanted the distance to the Moon. Built the first table of chords — the lengths a given angle "reaches" across a circle. Trigonometry begins as astronomy's ruler.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/ptolemy.jpg" alt="Ptolemy"></div>
+        <figcaption class="plaque">
+          <div class="name">Claudius Ptolemy</div>
+          <div class="dates">c. 100 – 170 AD · ALEXANDRIA</div>
+          <div class="role">Tabulated chords every half-degree in the <em>Almagest</em> — a lookup table that navigators, and later machines, would consult for 1,400 years.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/aryabhata.jpg" alt="Aryabhata"></div>
+        <figcaption class="plaque">
+          <div class="name">Aryabhata</div>
+          <div class="dates">476 – 550 AD · KUSUMAPURA</div>
+          <div class="role">Realized the useful number is the <em>half</em>-chord — the height above the axis. His <em>ardha-jyā</em> ("half bowstring") is the function your calculator spells <code>sin</code>.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/al-khwarizmi.jpg" alt="al-Khwarizmi"></div>
+        <figcaption class="plaque">
+          <div class="name">al-Khwārizmī</div>
+          <div class="dates">c. 780 – 850 · HOUSE OF WISDOM, BAGHDAD</div>
+          <div class="role">Refined the sine tables and gave us the two words this whole site runs on: <em>al-jabr</em> → algebra, and his own name, mispronounced by Latin scribes → <em>algorithm</em>.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/euler.jpg" alt="Leonhard Euler"></div>
+        <figcaption class="plaque">
+          <div class="name">Leonhard Euler</div>
+          <div class="dates">1707 – 1783 · BASEL → ST PETERSBURG</div>
+          <div class="role">Freed sine from the table: not a list of numbers but a <em>function</em>, sin θ, defined for every angle at once. The form your robot calls a thousand times a second is his, unchanged since 1748.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/trig-history.svg" alt="The relay race from Hipparchus to your robot arm"></div>
+      <figcaption class="plaque-caption">Generated offline from a six-line spec — the same tooling a student can drive.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III — THE MATHEMATICS ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">A circle, seen sideways</h2>
+    <p class="lede reveal">
+      Here is Aryabhata's move. Take one link of the robot arm and pin it at the
+      center of a circle — the link <em>is</em> the radius. Then ask the only
+      question that matters: at angle θ, <em>how far over</em> and
+      <em>how far up</em> is the tip? Those two shadows have names.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 5.2 — the unit circle</span>
+        <span class="plaque-caption">drag the tip; the shadows are the whole story</span>
+      </div>
+      <canvas id="circle" height="380"></canvas>
+      <div class="readout">
+        <span>θ = <b id="cang">45.0°</b></span>
+        <span style="color:#46617a">cos θ (how far over) = <b id="ccos">0.707</b></span>
+        <span style="color:#5b6b3a">sin θ (how far up) = <b id="csin">0.707</b></span>
+        <span>check: sin²+cos² = <b id="cpyth">1.000</b></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-unit-circle.svg" alt="sin squared plus cos squared equals one" style="max-height:56px;"></div>
+      <figcaption class="plaque-caption">
+        Pythagoras, hiding inside every angle: the two shadows of a radius always
+        square-and-sum to the radius itself. This is why the readout above never leaves 1.000.
+      </figcaption>
+    </figure>
+
+    <p class="reveal">
+      Now the arm. The hand's position is just <em>two radii chained together</em> —
+      link one casts its shadows, link two (tilted by the elbow) adds its own.
+      Read this aloud as geography, not symbols: <em>x is everyone's "how far
+      over," added up. y is everyone's "how far up."</em>
+    </p>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-forward-kinematics.svg" alt="forward kinematics equations" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">
+        <b>Forward kinematics</b> — angles in, position out. The easy direction.
+        Euler's function notation, doing exactly what it was built for.
+      </figcaption>
+    </figure>
+
+    <p class="reveal">
+      But Act I asked the <em>hard</em> direction: position in, angles out. Enter a
+      2,300-year-old tool. The base, the elbow, and the target form a triangle
+      whose three sides we already know — the two link lengths, and the straight-line
+      distance to the target. The law of cosines is a bolt cutter for exactly
+      this lock: three sides in, any angle out.
+    </p>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-law-of-cosines.svg" alt="law of cosines" style="max-height:48px;"></div>
+      <figcaption class="plaque-caption">Euclid knew the geometry; the algebraic dress is al-Khwārizmī's legacy.</figcaption>
+    </figure>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-ik-elbow.svg" alt="inverse kinematics elbow equation" style="max-height:74px;"></div>
+      <figcaption class="plaque-caption">
+        The law of cosines rearranged for our triangle: the <b>elbow angle</b>, θ₂,
+        straight from the target's coordinates. If the right side leaves [−1, 1],
+        the mathematics is telling you the target is out of reach — before the motors ever move.
+      </figcaption>
+    </figure>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-atan2.svg" alt="atan2 shoulder equation" style="max-height:56px;"></div>
+      <figcaption class="plaque-caption">
+        And the <b>shoulder</b>: aim at the target, then subtract the little angle the
+        bent elbow steals. <code>atan2</code> is the programmer's whole-circle arctangent —
+        Ptolemy's table, compiled to silicon.
+      </figcaption>
+    </figure>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/ik-pipeline.svg" alt="inverse kinematics pipeline"></div>
+      <figcaption class="plaque-caption">The full loop, as the robot runs it.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV — THE LAB ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Now let the mathematics drive</h2>
+    <p class="lede reveal">
+      Same arm, same two motors. But now <em>you point, and the triangle solves
+      itself</em> — drag the target anywhere. Turn on the construction lines to
+      watch the law of cosines work; flip the elbow to see both of the triangle's
+      two honest answers.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 5.3 — inverse kinematics</span>
+        <span class="plaque-caption">drag anywhere on the canvas</span>
+      </div>
+      <canvas id="ik" height="420"></canvas>
+      <div class="controls">
+        <button class="toggle on" id="showMath">construction: on</button>
+        <button class="toggle" id="elbowFlip">elbow: down</button>
+        <button class="toggle" id="showTrail">trail: off</button>
+      </div>
+      <div class="readout">
+        <span>target: <b id="ikT">—</b></span>
+        <span>cos θ₂ = <b id="ikCos">—</b></span>
+        <span>θ₂ (elbow) = <b id="ikT2">—</b></span>
+        <span>θ₁ (shoulder) = <b id="ikT1">—</b></span>
+        <span>FK re-check: <b id="ikFK">—</b></span>
+      </div>
+    </div>
+
+    <p class="reveal">
+      Watch the <code>FK re-check</code> readout: after solving for the angles, the
+      simulator pushes them back through the forward-kinematics formula and
+      compares with your target. <em>That</em> is what correctness means here —
+      not a red pen, but the machine agreeing with itself. When you drag beyond
+      the arm's reach, the readout shows cos θ₂ escaping [−1, 1]: the
+      formula refusing gracefully, which is exactly what a well-built robot does.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V — PAYOFF ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Pick-and-place arms, surgical manipulators, 3-D printer gantries, the
+        excavator bucket that stops exactly at the pipe — every one of them runs
+        the two formulas you just watched solve a triangle. And the same unit
+        circle is about to become the language of <em>rotation itself</em>: in
+        Exhibit 13, multiplying by a complex number will spin this arm, and by
+        Exhibit 21, Hamilton's quaternions will fly a drone with it.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> measure your own forearm and upper arm. Compute
+        cos θ₂ for touching a point 10 cm beyond your fingertip's reach. The
+        number that comes back is the mathematics telling you what you already
+        know in your shoulder — some targets need you to step closer. Formulas
+        are not answers; they are honest reports about the world.
+      </p>
+      <a class="next-exhibit reveal" href="../index.html">return to the curriculum map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits: offline Wikipedia archive · diagrams: generated locally ·
+      simulations: 60 lines of the mathematics on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+/* ============================================================
+   The three labs. Math convention: y UP, angles counter-clockwise;
+   canvas y is down, so every draw flips sign once, in world().
+   ============================================================ */
+const TAU = Math.PI * 2, D2R = Math.PI / 180, R2D = 180 / Math.PI;
+/* DaVinci Ink lab palette: parchment ground, red-chalk and ink strokes */
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', link1:'#96412e', link2:'#46617a',
+            joint:'#3a2c1a', tip:'#5b6b3a', target:'#96412e', ghost:'#8a795d',
+            construct:'#6b4a6e', mount:'#cbb98e' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+
+function drawBase(ctx, w, h, ox, oy) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = ox % 40; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = oy % 40; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+  // mount
+  ctx.fillStyle = C.mount; ctx.strokeStyle = C.joint; ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.moveTo(ox - 26, oy + 30); ctx.lineTo(ox + 26, oy + 30); ctx.lineTo(ox + 10, oy); ctx.lineTo(ox - 10, oy); ctx.closePath(); ctx.fill(); ctx.stroke();
+}
+
+/* ink stroke: main line plus a fainter offset pass — reads as hand-drawn */
+function glowLine(ctx, x1, y1, x2, y2, color, width) {
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); ctx.moveTo(x1 + 1.2, y1 + 0.9); ctx.lineTo(x2 + 1.2, y2 + 0.9); ctx.stroke();
+  ctx.restore();
+}
+function glowDot(ctx, x, y, r, color) {
+  ctx.save();
+  ctx.fillStyle = C.bg; ctx.strokeStyle = color; ctx.lineWidth = 2.4;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill(); ctx.stroke();
+  ctx.globalAlpha = 0.4; ctx.lineWidth = 1.1;
+  ctx.beginPath(); ctx.arc(x + 0.8, y + 0.6, r * 0.92, 0, TAU); ctx.stroke();
+  ctx.restore();
+}
+function drawTarget(ctx, x, y) {
+  ctx.save();
+  ctx.strokeStyle = C.target; ctx.lineWidth = 1.8;
+  ctx.beginPath(); ctx.arc(x, y, 9, 0, TAU); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x - 15, y); ctx.lineTo(x - 4, y); ctx.moveTo(x + 4, y); ctx.lineTo(x + 15, y);
+  ctx.moveTo(x, y - 15); ctx.lineTo(x, y - 4); ctx.moveTo(x, y + 4); ctx.lineTo(x, y + 15);
+  ctx.stroke(); ctx.restore();
+}
+
+function drawArm(ctx, ox, oy, t1, t2, L1, L2) {
+  const ex = ox + L1 * Math.cos(t1), ey = oy - L1 * Math.sin(t1);
+  const hx = ex + L2 * Math.cos(t1 + t2), hy = ey - L2 * Math.sin(t1 + t2);
+  glowLine(ctx, ox, oy, ex, ey, C.link1, 7);
+  glowLine(ctx, ex, ey, hx, hy, C.link2, 6);
+  glowDot(ctx, ox, oy, 9, C.joint);
+  glowDot(ctx, ex, ey, 7, C.joint);
+  glowDot(ctx, hx, hy, 6, C.tip);
+  return { ex, ey, hx, hy };
+}
+
+/* ---------------- LAB 5.1 — manual ---------------- */
+(function () {
+  const cv = document.getElementById('manual'), S = setupCanvas(cv);
+  const L1 = 130, L2 = 95;
+  let ctx = S.resize(), tries = 0, touched = false, target = null;
+  const s1 = document.getElementById('s1'), s2 = document.getElementById('s2');
+
+  function pickTarget() {
+    const r = (L1 - L2) + 20 + Math.random() * (L1 + L2 - (L1 - L2) - 50);
+    const a = Math.random() * Math.PI * 0.85 + 0.08;   // upper half-plane
+    target = { x: r * Math.cos(a), y: r * Math.sin(a) };
+    touched = false; tries = 0;
+    document.getElementById('tries').textContent = '0';
+    document.getElementById('mstatus').textContent = '';
+    draw();
+  }
+  function draw() {
+    const w = S.w, h = S.h, ox = w / 2, oy = h - 60;
+    drawBase(ctx, w, h, ox, oy);
+    const t1 = +s1.value * D2R, t2 = +s2.value * D2R;
+    drawTarget(ctx, ox + target.x, oy - target.y);
+    const p = drawArm(ctx, ox, oy, t1, t2, L1, L2);
+    const dx = (ox + target.x) - p.hx, dy = (oy - target.y) - p.hy;
+    const d = Math.hypot(dx, dy);
+    document.getElementById('mdist').textContent = d.toFixed(1) + ' px';
+    document.getElementById('s1v').textContent = (+s1.value).toFixed(1) + '°';
+    document.getElementById('s2v').textContent = (+s2.value).toFixed(1) + '°';
+    if (d < 9 && !touched) {
+      touched = true;
+      document.getElementById('mstatus').textContent = '✦ touched — after ' + tries + ' adjustments. A robot gets one.';
+    }
+  }
+  function bump() { tries++; document.getElementById('tries').textContent = tries; draw(); }
+  s1.addEventListener('input', bump); s2.addEventListener('input', bump);
+  document.getElementById('newTarget').addEventListener('click', pickTarget);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  pickTarget();
+})();
+
+/* ---------------- LAB 5.2 — unit circle ---------------- */
+(function () {
+  const cv = document.getElementById('circle'), S = setupCanvas(cv);
+  let ctx = S.resize(), theta = 45 * D2R, dragging = false;
+
+  function draw() {
+    const w = S.w, h = S.h, ox = w / 2, oy = h / 2 + 10, R = Math.min(h / 2 - 46, 150);
+    ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = C.grid;
+    ctx.beginPath(); ctx.moveTo(ox - R - 34, oy); ctx.lineTo(ox + R + 34, oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox, oy - R - 30); ctx.lineTo(ox, oy + R + 30); ctx.stroke();
+    ctx.strokeStyle = '#2b405a'; ctx.setLineDash([4, 6]);
+    ctx.beginPath(); ctx.arc(ox, oy, R, 0, TAU); ctx.stroke(); ctx.setLineDash([]);
+
+    const px = ox + R * Math.cos(theta), py = oy - R * Math.sin(theta);
+    // shadows
+    glowLine(ctx, ox, oy + 0.5, px, oy + 0.5, C.link2, 5);              // cos on x-axis
+    glowLine(ctx, px, oy, px, py, C.tip, 5);                            // sin vertical
+    glowLine(ctx, ox, oy, px, py, C.link1, 5);                          // the radius = the link
+    glowDot(ctx, px, py, 7, C.joint);
+    // arc for theta
+    ctx.strokeStyle = C.construct; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(ox, oy, 30, 0, -theta, theta > 0); ctx.stroke();
+    ctx.fillStyle = C.ghost; ctx.font = 'italic 15px Georgia';
+    ctx.fillText('θ', ox + 38 * Math.cos(theta / 2), oy - 38 * Math.sin(theta / 2));
+    ctx.fillStyle = C.link2; ctx.font = '15px ' + HAND;
+    ctx.fillText('cos θ', (ox + px) / 2 - 18, oy + 18);
+    ctx.fillStyle = C.tip;
+    ctx.fillText('sin θ', px + 12, (oy + py) / 2 + 4);
+    ctx.fillStyle = C.link1;
+    // link label: perpendicular offset from the midpoint, away from the sin label
+    const mx = ox + R * 0.5 * Math.cos(theta), my = oy - R * 0.5 * Math.sin(theta);
+    const nx = -Math.sin(theta), ny = -Math.cos(theta);   // normal, screen coords
+    ctx.textAlign = 'right';
+    ctx.fillText('the link (r = 1)', mx + nx * 22 - 6, my + ny * 22);
+    ctx.textAlign = 'left';
+
+    document.getElementById('cang').textContent = (theta * R2D).toFixed(1) + '°';
+    document.getElementById('ccos').textContent = Math.cos(theta).toFixed(3);
+    document.getElementById('csin').textContent = Math.sin(theta).toFixed(3);
+    document.getElementById('cpyth').textContent = (Math.cos(theta) ** 2 + Math.sin(theta) ** 2).toFixed(3);
+  }
+  function setFromEvent(e) {
+    const r = cv.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left - S.w / 2;
+    const y = -((e.touches ? e.touches[0].clientY : e.clientY) - r.top - (S.h / 2 + 10));
+    theta = Math.atan2(y, x);
+    draw();
+  }
+  cv.addEventListener('pointerdown', (e) => { dragging = true; setFromEvent(e); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', (e) => dragging && setFromEvent(e));
+  cv.addEventListener('pointerup', () => dragging = false);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 5.3 — inverse kinematics ---------------- */
+(function () {
+  const cv = document.getElementById('ik'), S = setupCanvas(cv);
+  const L1 = 150, L2 = 110;
+  let ctx = S.resize(), showMath = true, elbowUp = false, showTrail = false;
+  let target = { x: 150, y: 130 }, trail = [], dragging = false;
+
+  function solve(tx, ty) {
+    const r2 = tx * tx + ty * ty, r = Math.sqrt(r2);
+    const c2 = (r2 - L1 * L1 - L2 * L2) / (2 * L1 * L2);
+    const reachable = c2 >= -1 && c2 <= 1;
+    const cc = Math.max(-1, Math.min(1, c2));
+    let t2 = Math.acos(cc); if (!elbowUp) t2 = -t2;
+    const t1 = Math.atan2(ty, tx) - Math.atan2(L2 * Math.sin(t2), L1 + L2 * Math.cos(t2));
+    return { t1, t2, c2, r, reachable };
+  }
+
+  function draw() {
+    const w = S.w, h = S.h, ox = w / 2, oy = h - 70;
+    drawBase(ctx, w, h, ox, oy);
+
+    // reach annulus
+    ctx.save(); ctx.setLineDash([3, 8]); ctx.strokeStyle = 'rgba(58,44,26,.3)'; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(ox, oy, L1 + L2, 0, TAU); ctx.stroke();
+    ctx.beginPath(); ctx.arc(ox, oy, Math.abs(L1 - L2), 0, TAU); ctx.stroke();
+    ctx.restore();
+
+    const s = solve(target.x, target.y);
+    const tx = ox + target.x, ty = oy - target.y;
+
+    if (showTrail) {
+      ctx.strokeStyle = 'rgba(91,107,58,.45)'; ctx.lineWidth = 2;
+      ctx.beginPath();
+      trail.forEach((p, i) => i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]));
+      ctx.stroke();
+    }
+
+    if (showMath) {
+      // the construction triangle: base -> elbow -> target, plus r
+      const ex = ox + L1 * Math.cos(s.t1), ey = oy - L1 * Math.sin(s.t1);
+      ctx.save(); ctx.setLineDash([6, 6]); ctx.strokeStyle = C.construct; ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(tx, ty); ctx.stroke();   // r
+      ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(tx, ty); ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = C.construct; ctx.font = '15px ' + HAND;
+      ctx.fillText('r = ' + s.r.toFixed(0), (ox + tx) / 2 + 8, (oy + ty) / 2 + 16);
+    }
+
+    drawTarget(ctx, tx, ty);
+    const p = drawArm(ctx, ox, oy, s.t1, s.t2, L1, L2);
+
+    if (showTrail) {
+      trail.push([p.hx, p.hy]);
+      if (trail.length > 400) trail.shift();
+    }
+
+    document.getElementById('ikT').textContent = '(' + target.x.toFixed(0) + ', ' + target.y.toFixed(0) + ')';
+    const cosEl = document.getElementById('ikCos');
+    cosEl.textContent = s.c2.toFixed(3) + (s.reachable ? '' : '  — OUT OF REACH');
+    cosEl.style.color = s.reachable ? '' : '#f85149';
+    document.getElementById('ikT2').textContent = (s.t2 * R2D).toFixed(1) + '°';
+    document.getElementById('ikT1').textContent = (s.t1 * R2D).toFixed(1) + '°';
+    // FK re-check: push angles back through forward kinematics
+    const fx = L1 * Math.cos(s.t1) + L2 * Math.cos(s.t1 + s.t2);
+    const fy = L1 * Math.sin(s.t1) + L2 * Math.sin(s.t1 + s.t2);
+    const err = Math.hypot(fx - target.x, fy - target.y);
+    document.getElementById('ikFK').textContent = s.reachable
+      ? '(' + fx.toFixed(1) + ', ' + fy.toFixed(1) + ')  ✓ agrees to ' + err.toFixed(4) + ' px'
+      : 'solver clamped — target beyond the outer circle';
+  }
+
+  function setFromEvent(e) {
+    const r = cv.getBoundingClientRect();
+    target.x = (e.clientX - r.left) - S.w / 2;
+    target.y = -((e.clientY - r.top) - (S.h - 70));
+    draw();
+  }
+  cv.addEventListener('pointerdown', (e) => { dragging = true; setFromEvent(e); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', (e) => dragging && setFromEvent(e));
+  cv.addEventListener('pointerup', () => dragging = false);
+
+  document.getElementById('showMath').addEventListener('click', function () {
+    showMath = !showMath; this.classList.toggle('on', showMath);
+    this.textContent = 'construction: ' + (showMath ? 'on' : 'off'); draw();
+  });
+  document.getElementById('elbowFlip').addEventListener('click', function () {
+    elbowUp = !elbowUp; this.classList.toggle('on', elbowUp);
+    this.textContent = 'elbow: ' + (elbowUp ? 'up' : 'down'); draw();
+  });
+  document.getElementById('showTrail').addEventListener('click', function () {
+    showTrail = !showTrail; this.classList.toggle('on', showTrail);
+    this.textContent = 'trail: ' + (showTrail ? 'on' : 'off');
+    trail = []; draw();
+  });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
