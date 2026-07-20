@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 02 — The Robot's Map · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage I · Making a Machine Move at All</span>
+  <span class="right">Folio 02 · signed numbers &amp; coordinates</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 02 · CODEX I · GIANTS: BRAHMAGUPTA — DESCARTES</div>
+    <h1 class="reveal" style="margin:.6rem 0;">The Robot's Map</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a delivery rover cannot reach a dock that sits behind it,
+      and an Indian astronomer's rules for debts turn out to be directions.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">The dock behind you</h2>
+      <p class="lede reveal">
+        Your rover starts at the warehouse door. The dock needs a delivery —
+        it's marked on the grid. You command the rover with steps east and steps
+        north, and steps are <em>counts</em>: 0, 1, 2, 3… Numbers don't come
+        smaller than nothing. Deliver the parcel.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 2.1 — counting-numbers dispatcher</span>
+          <span class="plaque-caption">steps can only be counted, surely</span>
+        </div>
+        <canvas id="posOnly" height="360"></canvas>
+        <div class="controls">
+          <label>steps east <input type="range" id="pe" min="0" max="6" value="0" step="1"> <code id="pev">0</code></label>
+          <label>steps north <input type="range" id="pn" min="0" max="6" value="0" step="1"> <code id="pnv">0</code></label>
+          <button class="toggle" id="poReset">reset</button>
+        </div>
+        <div class="readout">
+          <span>rover at: <b id="poPos">(0, 0)</b></span>
+          <span>dock at: <b>(−3, 2)</b></span>
+          <span id="poStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Every east step walks <em>away</em> from a west dock. You can reach the
+        north just fine — but the entire western half of the world is simply
+        <em>unaddressable</em> in counting numbers. The rover isn't broken; its
+        <em>number system</em> is. What's missing is a number that means
+        "one step the other way."
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">Debts, fortunes, and a fly on the ceiling</h2>
+    <p class="lede reveal">
+      Negative numbers were not discovered by mathematicians looking at number
+      lines. They were invented by people balancing <em>books</em> — and made
+      into geography by a man watching a fly.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/brahmagupta.jpg" alt="Brahmagupta's cyclic quadrilateral" style="object-fit:contain; background:#f6efdd;"></div>
+        <figcaption class="plaque">
+          <div class="name">Brahmagupta</div>
+          <div class="dates">598 – 668 · UJJAIN</div>
+          <div class="role">No likeness of him survives — only his mathematics, so his geometry stands in. In 628 he wrote the first rules for numbers below zero: <em>"a debt minus zero is a debt; a debt subtracted from zero is a fortune."</em> Directions, disguised as accounting.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/descartes.jpg" alt="René Descartes"></div>
+        <figcaption class="plaque">
+          <div class="name">René Descartes</div>
+          <div class="dates">1596 – 1650 · LA HAYE → STOCKHOLM</div>
+          <div class="role">Lying ill in bed, he watched a fly wander the ceiling and realized its position was fully told by two numbers — distances from two walls. Place had become arithmetic.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/la-geometrie.jpg" alt="La Géométrie, 1637"></div>
+        <figcaption class="plaque">
+          <div class="name">La Géométrie</div>
+          <div class="dates">1637 · APPENDIX TO THE DISCOURSE</div>
+          <div class="role">The little appendix where algebra and geometry were married. Every graph you have ever seen, every game world, every robot map descends from this book.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/coords-history.svg" alt="How places became pairs of numbers"></div>
+      <figcaption class="plaque-caption">A thousand years from ledger to map.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">A number with a direction inside it</h2>
+    <p class="lede reveal">
+      Brahmagupta's move: stop treating "less than nothing" as nonsense and
+      treat it as <em>the other way</em>. The road below runs through zero —
+      home. East of home is fortune; west of home is debt. Drag the rover
+      anywhere and read its position.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 2.2 — the number line is a road</span>
+        <span class="plaque-caption">drag the rover; the sign is the direction</span>
+      </div>
+      <canvas id="numline" height="220"></canvas>
+      <div class="readout">
+        <span>position: <b id="nlPos">+2</b></span>
+        <span id="nlWord" style="color:var(--chalk)">two steps of fortune (east)</span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-ordered-pair.svg" alt="P equals x comma y" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">
+        Descartes' fly: cross two of Brahmagupta's roads at home, and every place
+        in the world becomes a pair of signed numbers. That is the entire invention.
+      </figcaption>
+    </figure>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-displacement.svg" alt="delta x equals x2 minus x1" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">
+        And the payoff: subtraction now computes <em>journeys</em>. Δx is how far —
+        and, by its sign, <em>which way</em>. The dock behind you is just Δx&nbsp;=&nbsp;−3.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Now dispatch anywhere</h2>
+    <p class="lede reveal">
+      Same rover, same two sliders — but now they run through zero. West is
+      merely negative east; south is negative north. Docks appear in every
+      quadrant. Set the signed pair, dispatch, deliver.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 2.3 — the signed dispatcher</span>
+        <span class="plaque-caption">all four quadrants are yours now</span>
+      </div>
+      <canvas id="dispatch" height="400"></canvas>
+      <div class="controls">
+        <label>x (east +, west −) <input type="range" id="dx" min="-6" max="6" value="0" step="1"> <code id="dxv">0</code></label>
+        <label>y (north +, south −) <input type="range" id="dy" min="-6" max="6" value="0" step="1"> <code id="dyv">0</code></label>
+        <button class="toggle" id="go">dispatch</button>
+        <button class="toggle" id="newDock">new dock</button>
+      </div>
+      <div class="readout">
+        <span>dock at: <b id="dockPos">—</b></span>
+        <span>your command: <b id="cmdPos">(0, 0)</b></span>
+        <span>delivered: <b id="delCount">0</b></span>
+        <span id="dStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <p class="reveal">
+      Watch the rover's path: it walks the x-leg first, then the y-leg — and
+      when x is negative the arrow simply points the other way. No new machinery
+      was added to the robot. The <em>numbers</em> grew a direction, and the
+      unaddressable half of the world quietly joined the map.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Every waypoint a drone has ever flown, every pixel on this screen, every
+        "go to (x, y)" in every robot program on Earth is Descartes' fly with
+        Brahmagupta's signs. And a question is now pending: the dispatcher walks
+        two legs of a triangle to reach the dock — <em>how long would the
+        straight flight be?</em> Folio 04 has been waiting two and a half
+        thousand years to answer.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> pick a corner of your room as home. Every object
+        becomes a signed pair — the chair at (+3, −2) paces, the door at (−4, +1).
+        Notice you never needed the words "left" or "behind": the signs carried
+        them. That is why robots don't get confused; language turns, numbers don't.
+      </p>
+      <a class="next-exhibit reveal" href="the-unknown.html">continue to folio 03 — the unknown</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d',
+            mount:'#cbb98e' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke();
+  ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function inkArrow(ctx, x1, y1, x2, y2, color, width) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy); }, color, width);
+  const a = Math.atan2(y2 - y1, x2 - x1);
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 9 * Math.cos(a - 0.5) + ox, y2 - 9 * Math.sin(a - 0.5) + oy);
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 9 * Math.cos(a + 0.5) + ox, y2 - 9 * Math.sin(a + 0.5) + oy);
+  }, color, width * 0.85);
+}
+function roverDot(ctx, x, y, color) {
+  ctx.save();
+  ctx.fillStyle = C.bg; ctx.strokeStyle = color; ctx.lineWidth = 2.4;
+  ctx.beginPath(); ctx.arc(x, y, 9, 0, TAU); ctx.fill(); ctx.stroke();
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x - 7 + ox, y - 11 + oy); ctx.lineTo(x + 7 + ox, y - 11 + oy);
+    ctx.lineTo(x + 4 + ox, y - 5 + oy); ctx.lineTo(x - 4 + ox, y - 5 + oy); ctx.closePath();
+  }, color, 1.4);
+  ctx.restore();
+}
+function dockMark(ctx, x, y) {
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x - 10 + ox, y - 10 + oy); ctx.lineTo(x + 10 + ox, y + 10 + oy);
+    ctx.moveTo(x + 10 + ox, y - 10 + oy); ctx.lineTo(x - 10 + ox, y + 10 + oy);
+  }, C.chalk, 2.2);
+  inkStroke(ctx, (ox, oy) => { ctx.arc(x + ox, y + oy, 14, 0, TAU); }, C.chalk, 1.6);
+}
+
+/* ---------------- LAB 2.1 — counting numbers only ---------------- */
+(function () {
+  const cv = document.getElementById('posOnly'), S = setupCanvas(cv);
+  let ctx = S.resize();
+  const CELL = 44, DOCK = { x: -3, y: 2 };
+  const pe = document.getElementById('pe'), pn = document.getElementById('pn');
+
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const ox = w / 2, oy = h - 60;
+    // axes from home: only the counting directions are "real" here
+    inkArrow(ctx, ox, oy, w - 30, oy, C.ink, 1.8);
+    inkArrow(ctx, ox, oy, ox, 26, C.ink, 1.8);
+    ctx.fillStyle = C.ghost; ctx.font = '15px ' + HAND;
+    ctx.fillText('east →', w - 80, oy + 22);
+    ctx.fillText('north ↑', ox + 10, 30);
+    ctx.fillText('home', ox - 46, oy + 20);
+    // the west, greyed and unreachable
+    ctx.save(); ctx.globalAlpha = 0.5; ctx.setLineDash([4, 7]);
+    ctx.strokeStyle = C.ghost; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(30, oy); ctx.stroke();
+    ctx.restore();
+    ctx.fillStyle = C.ghost; ctx.font = 'italic 14px Georgia';
+    ctx.fillText('here be… nothing?', 46, oy - 10);
+    dockMark(ctx, ox + DOCK.x * CELL, oy - DOCK.y * CELL);
+    ctx.fillStyle = C.chalk; ctx.font = '15px ' + HAND;
+    ctx.fillText('the dock (−3, 2)', ox + DOCK.x * CELL - 48, oy - DOCK.y * CELL - 22);
+    const x = +pe.value, y = +pn.value;
+    roverDot(ctx, ox + x * CELL, oy - y * CELL, C.slate);
+    document.getElementById('pev').textContent = pe.value;
+    document.getElementById('pnv').textContent = pn.value;
+    document.getElementById('poPos').textContent = '(' + x + ', ' + y + ')';
+    const st = document.getElementById('poStatus');
+    if (x > 0) st.textContent = 'every east step walks AWAY from a west dock.';
+    else if (y >= 2 && x === 0) st.textContent = 'right latitude — but the dock stays stubbornly west.';
+    else st.textContent = '';
+  }
+  pe.addEventListener('input', draw); pn.addEventListener('input', draw);
+  document.getElementById('poReset').addEventListener('click', () => { pe.value = 0; pn.value = 0; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 2.2 — the number line ---------------- */
+(function () {
+  const cv = document.getElementById('numline'), S = setupCanvas(cv);
+  let ctx = S.resize(), pos = 2, dragging = false;
+  const CELL = 56;
+
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const oy = h / 2 + 16, ox = w / 2;
+    inkArrow(ctx, 30, oy, w - 26, oy, C.ink, 2);
+    inkArrow(ctx, w - 60, oy, 34, oy, C.ink, 0.1);   // west head
+    for (let k = -6; k <= 6; k++) {
+      const x = ox + k * CELL;
+      if (x < 40 || x > w - 40) continue;
+      inkStroke(ctx, (o1, o2) => { ctx.moveTo(x + o1, oy - 7 + o2); ctx.lineTo(x + o1, oy + 7 + o2); }, C.ink, 1.4);
+      ctx.fillStyle = k === 0 ? C.chalk : C.ghost;
+      ctx.font = (k === 0 ? '16px ' : '14px ') + HAND;
+      ctx.fillText(k === 0 ? 'home' : (k > 0 ? '+' + k : '−' + (-k)), x - 10, oy + 28);
+    }
+    ctx.fillStyle = C.ghost; ctx.font = 'italic 14px Georgia';
+    ctx.fillText('← debt (west)', 44, oy - 46);
+    ctx.fillText('fortune (east) →', w - 150, oy - 46);
+    roverDot(ctx, ox + pos * CELL, oy - 16, C.slate);
+    document.getElementById('nlPos').textContent = pos > 0 ? '+' + pos : '' + pos;
+    const wd = document.getElementById('nlWord');
+    if (pos > 0) wd.textContent = pos + (pos === 1 ? ' step' : ' steps') + ' of fortune (east)';
+    else if (pos < 0) wd.textContent = (-pos) + ((-pos) === 1 ? ' step' : ' steps') + ' of debt (west)';
+    else wd.textContent = 'home — zero, the hinge of the road';
+  }
+  function setFromEvent(e) {
+    const r = cv.getBoundingClientRect();
+    pos = Math.max(-6, Math.min(6, Math.round(((e.clientX - r.left) - S.w / 2) / CELL)));
+    draw();
+  }
+  cv.addEventListener('pointerdown', (e) => { dragging = true; setFromEvent(e); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', (e) => dragging && setFromEvent(e));
+  cv.addEventListener('pointerup', () => dragging = false);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 2.3 — the signed dispatcher ---------------- */
+(function () {
+  const cv = document.getElementById('dispatch'), S = setupCanvas(cv);
+  let ctx = S.resize(), dock = null, delivered = 0, anim = null, prog = 0, driving = false;
+  const CELL = 28;
+  const el = (id) => document.getElementById(id);
+
+  function newDock() {
+    do {
+      dock = { x: Math.floor(Math.random() * 13) - 6, y: Math.floor(Math.random() * 13) - 6 };
+    } while (dock.x === 0 && dock.y === 0);
+    prog = 0; driving = false;
+    el('dockPos').textContent = '(' + dock.x + ', ' + dock.y + ')';
+    el('dStatus').textContent = '';
+    draw();
+  }
+
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const ox = w / 2, oy = h / 2;
+    inkArrow(ctx, 26, oy, w - 26, oy, C.ink, 1.6);
+    inkArrow(ctx, ox, h - 24, ox, 24, C.ink, 1.6);
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('+x', w - 44, oy - 10); ctx.fillText('−x', 30, oy - 10);
+    ctx.fillText('+y', ox + 8, 36); ctx.fillText('−y', ox + 8, h - 30);
+    dockMark(ctx, ox + dock.x * CELL, oy - dock.y * CELL);
+    const cx = +el('dx').value, cy = +el('dy').value;
+    // the two signed legs, walked x-first
+    const legX = Math.min(1, prog * 2), legY = Math.max(0, Math.min(1, prog * 2 - 1));
+    const px = cx * CELL * legX, py = cy * CELL * legY;
+    if (driving || prog > 0) {
+      if (Math.abs(px) > 2) inkArrow(ctx, ox, oy, ox + px, oy, C.slate, 2);
+      if (legY > 0.02 && Math.abs(py) > 2) inkArrow(ctx, ox + px, oy, ox + px, oy - py, C.olive, 2);
+      if (prog >= 1) {
+        ctx.fillStyle = C.slate; ctx.font = '14px ' + HAND;
+        ctx.fillText('Δx = ' + (cx > 0 ? '+' + cx : cx), ox + px / 2 - 20, oy + 22);
+        ctx.fillStyle = C.olive;
+        ctx.fillText('Δy = ' + (cy > 0 ? '+' + cy : cy), ox + px + 8, oy - py / 2);
+      }
+    }
+    roverDot(ctx, ox + px, oy - py, C.slate);
+    el('cmdPos').textContent = '(' + cx + ', ' + cy + ')';
+    el('delCount').textContent = delivered;
+  }
+
+  function dispatch() {
+    if (anim) cancelAnimationFrame(anim);
+    prog = 0; driving = true;
+    const step = () => {
+      prog = Math.min(1, prog + 0.012);
+      draw();
+      if (prog < 1) { anim = requestAnimationFrame(step); return; }
+      anim = null; driving = false;
+      const cx = +el('dx').value, cy = +el('dy').value;
+      if (cx === dock.x && cy === dock.y) {
+        delivered++;
+        el('dStatus').textContent = '✦ delivered — quadrant ' + (dock.x >= 0 ? (dock.y >= 0 ? 'I' : 'IV') : (dock.y >= 0 ? 'II' : 'III')) + ' holds no fear now.';
+        draw();
+      } else {
+        el('dStatus').textContent = 'missed — the dock is at (' + dock.x + ', ' + dock.y + '), you sent (' + cx + ', ' + cy + ').';
+      }
+    };
+    anim = requestAnimationFrame(step);
+  }
+
+  for (const id of ['dx', 'dy']) el(id).addEventListener('input', () => {
+    el('dxv').textContent = el('dx').value; el('dyv').textContent = el('dy').value;
+    prog = 0; draw();
+  });
+  el('go').addEventListener('click', dispatch);
+  el('newDock').addEventListener('click', newDock);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newDock();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

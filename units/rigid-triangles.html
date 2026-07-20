@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 04 — Rigid Triangles · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage I · Making a Machine Move at All</span>
+  <span class="right">Folio 04 · the Pythagorean theorem</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 04 · CODEX I · GIANTS: THE ROPE-STRETCHERS — PYTHAGORAS — EUCLID</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Rigid Triangles</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a drone must fly home on the battery it has left,
+      and a rope with twelve knots — older than every empire — decides
+      whether it lands or falls.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">The flight home is a diagonal</h2>
+      <p class="lede reveal">
+        Your survey drone drove its mission the way rovers do: 3&nbsp;m east,
+        then 4&nbsp;m north, mapping as it went. Now the battery light is amber.
+        It will fly straight home — the diagonal — and you must set its reserve:
+        too little and it drops in the field; extra reserve is weight it hauls
+        for nothing. Eyeball the diagonal. How far is home?
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 4.1 — the eyeball estimate</span>
+          <span class="plaque-caption">set the reserve by gut, then fly</span>
+        </div>
+        <canvas id="battery" height="360"></canvas>
+        <div class="controls">
+          <label>battery reserve <input type="range" id="reserve" min="1" max="10" value="3.5" step="0.1"> <code id="reservev">3.5 m</code></label>
+          <button class="toggle" id="fly">fly home</button>
+          <button class="toggle" id="newLeg">new mission</button>
+        </div>
+        <div class="readout">
+          <span>mission legs: <b id="legsRead">3 m east, 4 m north</b></span>
+          <span>attempts: <b id="batAttempts">0</b></span>
+          <span id="batStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Short by half a metre: the drone is in the dirt. A metre over: it made
+        it, hauling dead battery the whole way — payload you could have spent on
+        a better camera. The diagonal is <em>some</em> exact number sitting
+        between "3 and 4-ish" and "7, surely" — and your eye cannot find it.
+        Four thousand years ago, people who measured fields for a living had
+        the same problem, and solved it with a rope.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">A recipe, a question, a proof</h2>
+    <p class="lede reveal">
+      Egyptian surveyors — the <em>harpedonaptai</em>, rope-stretchers — knotted
+      a loop into 3+4+5 parts and pulled it taut: a perfect right angle, every
+      time, for laying out fields after the Nile flood. They knew <em>that</em>
+      it worked. The Greeks demanded to know <em>why</em> — and the why is what
+      your drone runs.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/pythagoras.jpg" alt="Pythagoras"></div>
+        <figcaption class="plaque">
+          <div class="name">Pythagoras</div>
+          <div class="dates">c. 570 – 495 BC · SAMOS → CROTON</div>
+          <div class="role">Took the rope-stretchers' recipe and asked the dangerous question: does it <em>have</em> to work? His school's answer — squares on the sides, made equal — turned a surveying trick into eternal law.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/euclid.jpg" alt="Euclid"></div>
+        <figcaption class="plaque">
+          <div class="name">Euclid</div>
+          <div class="dates">c. 300 BC · ALEXANDRIA</div>
+          <div class="role">Proposition I.47 of the <em>Elements</em>: the theorem proved so tightly that twenty-three centuries of readers — Newton, Lincoln, Einstein among them — checked the logic and found no gap.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/elements-papyrus.jpg" alt="Papyrus fragment of Euclid's Elements" style="object-fit:contain; background:#f6efdd;"></div>
+        <figcaption class="plaque">
+          <div class="name">The Elements, in papyrus</div>
+          <div class="dates">c. 100 AD · OXYRHYNCHUS, EGYPT</div>
+          <div class="role">A surviving scrap of the <em>Elements</em> with a diagram in the margin — the oldest mathematics textbook page you will ever see, teaching the same theorem this folio does.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/triangle-history.svg" alt="four thousand years of the same triangle"></div>
+      <figcaption class="plaque-caption">Recipe → question → proof → code.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">Squares that balance</h2>
+    <p class="lede reveal">
+      Here is what Pythagoras actually claimed — not a formula, a <em>picture</em>.
+      Build a literal square on each side of a right triangle. The two smaller
+      squares, cut up and rearranged, exactly fill the big one. Slide the legs
+      and watch the ledger: it never goes out of balance.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 4.2 — the squares, drawn honestly</span>
+        <span class="plaque-caption">areas, not algebra — the algebra comes free</span>
+      </div>
+      <canvas id="squares" height="420"></canvas>
+      <div class="controls">
+        <label>leg a <input type="range" id="legA" min="1" max="6" value="3" step="1"> <code id="legAv">3</code></label>
+        <label>leg b <input type="range" id="legB" min="1" max="6" value="4" step="1"> <code id="legBv">4</code></label>
+      </div>
+      <div class="readout">
+        <span style="color:#46617a">a² = <b id="a2">9</b></span>
+        <span style="color:#5b6b3a">b² = <b id="b2">16</b></span>
+        <span>a² + b² = <b id="ab2">25</b></span>
+        <span style="color:var(--chalk)">c² = <b id="c2">25</b></span>
+        <span id="sqNote" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-pythagoras.svg" alt="a squared plus b squared equals c squared" style="max-height:48px;"></div>
+      <figcaption class="plaque-caption">Twenty-three centuries of scrutiny, zero exceptions. The most load-tested sentence in mathematics.</figcaption>
+    </figure>
+
+    <p class="reveal">
+      Now marry it to Folio&nbsp;02. The drone's legs east and north are exactly
+      Δx and Δy — signed journeys on Descartes' map. Put the theorem on top and
+      the map learns to measure <em>straight-line distance between any two
+      points</em>:
+    </p>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-distance.svg" alt="distance formula" style="max-height:60px;"></div>
+      <figcaption class="plaque-caption">
+        The distance formula is not a new fact to memorize — it is Pythagoras
+        wearing Folio 02's coordinates. Two folios, one theorem.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Set the reserve by theorem</h2>
+    <p class="lede reveal">
+      Same amber battery light — but now the reserve slider moves in centimetres,
+      and twiddling would take all day. Compute √(a²&nbsp;+&nbsp;b²), set it,
+      fly. The field below is littered with the drones of estimators.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 4.3 — will it make it home?</span>
+        <span class="plaque-caption">±5 cm of the true diagonal lands it</span>
+      </div>
+      <canvas id="flyhome" height="360"></canvas>
+      <div class="controls">
+        <label>battery reserve <input type="range" id="res2" min="0" max="12" value="5" step="0.05"> <code id="res2v">5.00 m</code></label>
+        <button class="toggle" id="fly2">fly home</button>
+        <button class="toggle" id="newLeg2">new mission</button>
+      </div>
+      <div class="readout">
+        <span>mission legs: <b id="legs2">—</b></span>
+        <span>landings: <b id="landings">0</b></span>
+        <span id="fhStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <p class="reveal">
+      The tolerance is honest engineering: five centimetres of slack on a
+      multi-metre flight. Guessing cannot hit it; the theorem cannot miss it.
+      When the mission changes, nothing about your method changes — that is
+      what it means for mathematics to be <em>rigid</em>: the triangle holds
+      its shape, and so does the truth about it.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Every "distance to obstacle," every vision system judging how far the
+        ball is, every path planner scoring routes, every physics engine
+        deciding whether two things touch — under all of it, √(Δx²&nbsp;+&nbsp;Δy²),
+        computed millions of times a second. Stage&nbsp;I is complete: your robot
+        can gear its motion, address the whole map, un-hide exact answers, and
+        measure the world. In Stage&nbsp;II it learns to <em>sense and turn</em> —
+        beginning with the arm that must reach, in Folio&nbsp;05.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> take string and twelve equal knots. Pull it into
+        a 3-4-5 triangle between three chairs, and check the corner against a
+        book. You have reproduced the oldest engineering instrument on Earth —
+        then verify it with the newest: your phone's map, and two street corners.
+      </p>
+      <a class="next-exhibit reveal" href="angles-that-reach.html">continue to folio 05 — angles that reach</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke();
+  ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function droneMark(ctx, x, y, color) {
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x - 10 + ox, y - 8 + oy); ctx.lineTo(x + 10 + ox, y + 8 + oy);
+    ctx.moveTo(x + 10 + ox, y - 8 + oy); ctx.lineTo(x - 10 + ox, y + 8 + oy);
+  }, color, 2);
+  for (const [sx, sy] of [[-10, -8], [10, -8], [-10, 8], [10, 8]])
+    inkStroke(ctx, (ox, oy) => { ctx.arc(x + sx + ox, y + sy + oy, 5, 0, TAU); }, color, 1.4);
+}
+function homeMark(ctx, x, y) {
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x - 11 + ox, y + 8 + oy); ctx.lineTo(x - 11 + ox, y - 4 + oy);
+    ctx.lineTo(x + ox, y - 13 + oy); ctx.lineTo(x + 11 + ox, y - 4 + oy);
+    ctx.lineTo(x + 11 + ox, y + 8 + oy); ctx.closePath();
+  }, C.ink, 1.8);
+}
+
+/* shared: the mission scene — legs, diagonal flight, crash/landing */
+function missionLab(canvasId, sliderId, sliderLabelId, flyId, newId, attemptsId, legsId, statusId, opts) {
+  const cv = document.getElementById(canvasId), S = setupCanvas(cv);
+  let ctx = S.resize(), M = null, anim = null, prog = 0, flown = false, count = 0;
+  const el = (id) => document.getElementById(id);
+  const tol = opts.tolerance, over = opts.overPenalty;
+
+  function newMission() {
+    if (opts.integerLegs) {
+      const sets = [[3, 4], [6, 8], [5, 12], [8, 6], [9, 12], [12, 5]];
+      const [a, b] = sets[Math.floor(Math.random() * sets.length)];
+      M = { a, b };
+    } else {
+      M = { a: +(1.5 + Math.random() * 5).toFixed(1), b: +(1.5 + Math.random() * 5).toFixed(1) };
+    }
+    M.c = Math.hypot(M.a, M.b);
+    prog = 0; flown = false;
+    el(legsId).textContent = M.a + ' m east, ' + M.b + ' m north';
+    el(statusId).textContent = '';
+    draw();
+  }
+  function geom() {
+    const w = S.w, h = S.h;
+    const maxLeg = 13;
+    const sc = Math.min((w - 200) / maxLeg, (h - 120) / maxLeg);
+    return { hx: 90, hy: h - 60, sc };
+  }
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const { hx, hy, sc } = geom();
+    const px = hx + M.a * sc, py = hy - M.b * sc;
+    homeMark(ctx, hx, hy);
+    ctx.fillStyle = C.ghost; ctx.font = '15px ' + HAND;
+    ctx.fillText('home', hx - 20, hy + 26);
+    // mission legs
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(hx + ox, hy + oy); ctx.lineTo(px + ox, hy + oy); }, C.slate, 2);
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(px + ox, hy + oy); ctx.lineTo(px + ox, py + oy); }, C.olive, 2);
+    ctx.fillStyle = C.slate; ctx.font = '15px ' + HAND;
+    ctx.fillText(M.a + ' m', (hx + px) / 2 - 12, hy + 22);
+    ctx.fillStyle = C.olive;
+    ctx.fillText(M.b + ' m', px + 10, (hy + py) / 2);
+    // the diagonal: dashed until flown
+    ctx.save(); ctx.setLineDash([5, 7]); ctx.strokeStyle = C.ghost; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(hx, hy); ctx.stroke(); ctx.restore();
+    ctx.fillStyle = C.chalk; ctx.font = 'italic 15px Georgia';
+    ctx.fillText('?', (hx + px) / 2 - 14, (hy + py) / 2 - 8);
+    // flight progress
+    const reserve = +el(sliderId).value;
+    const flyDist = Math.min(reserve, M.c);
+    const t = prog * (flyDist / M.c);
+    const fx = px + (hx - px) * t, fy = py + (hy - py) * t;
+    if (prog > 0) inkStroke(ctx, (ox, oy) => { ctx.moveTo(px + ox, py + oy); ctx.lineTo(fx + ox, fy + oy); }, C.chalk, 2);
+    droneMark(ctx, prog > 0 ? fx : px, prog > 0 ? fy : py, flown && reserve < M.c - tol ? C.chalk : C.ink);
+    if (flown && reserve < M.c - tol && prog >= 1) {
+      ctx.fillStyle = C.chalk; ctx.font = '20px ' + HAND;
+      ctx.fillText('down in the field', fx - 50, fy - 18);
+    }
+  }
+  function fly() {
+    if (anim) cancelAnimationFrame(anim);
+    prog = 0; flown = true; count++;
+    el(attemptsId).textContent = count;
+    const step = () => {
+      prog = Math.min(1, prog + 0.014);
+      draw();
+      if (prog < 1) { anim = requestAnimationFrame(step); return; }
+      anim = null;
+      const reserve = +el(sliderId).value, need = M.c;
+      const st = el(statusId);
+      if (reserve < need - tol) st.textContent = 'down ' + (need - reserve).toFixed(2) + ' m short of home. The true diagonal was ' + need.toFixed(2) + ' m.';
+      else if (reserve > need + over) st.textContent = 'landed — but hauled ' + (reserve - need).toFixed(2) + ' m of dead battery. The exact diagonal was ' + need.toFixed(2) + ' m.';
+      else { st.textContent = '✦ landed with ' + (reserve - need).toFixed(2) + ' m to spare — the theorem flew that.'; }
+      draw();
+    };
+    anim = requestAnimationFrame(step);
+  }
+  el(sliderId).addEventListener('input', () => {
+    el(sliderLabelId).textContent = (+el(sliderId).value).toFixed(2) + ' m';
+    prog = 0; flown = false; draw();
+  });
+  el(flyId).addEventListener('click', fly);
+  el(newId).addEventListener('click', newMission);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newMission();
+  return { newMission };
+}
+
+/* LAB 4.1 — eyeball (coarse slider, generous-but-punishing) */
+missionLab('battery', 'reserve', 'reservev', 'fly', 'newLeg', 'batAttempts', 'legsRead', 'batStatus',
+           { tolerance: 0.05, overPenalty: 0.5, integerLegs: false });
+
+/* LAB 4.3 — by theorem (fine slider, honest tolerance) */
+missionLab('flyhome', 'res2', 'res2v', 'fly2', 'newLeg2', 'landings', 'legs2', 'fhStatus',
+           { tolerance: 0.05, overPenalty: 0.3, integerLegs: false });
+
+/* ---------------- LAB 4.2 — the literal squares ---------------- */
+(function () {
+  const cv = document.getElementById('squares'), S = setupCanvas(cv);
+  let ctx = S.resize();
+  const el = (id) => document.getElementById(id);
+
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const a = +el('legA').value, b = +el('legB').value;
+    const sc = Math.min((w - 320) / (a + b + 2), (h - 140) / (a + b + 2), 34);
+    const ox = w / 2 - (b - a) * sc / 2, oy = h / 2 + (a + 2) * sc / 2 - 20;
+    // triangle: right angle at origin; a along -x (west), b up
+    const Ax = ox - a * sc, Ay = oy;         // end of leg a
+    const Bx = ox, By = oy - b * sc;         // end of leg b
+    // square on a (below leg a)
+    ctx.save(); ctx.globalAlpha = 0.25; ctx.fillStyle = C.slate;
+    ctx.fillRect(Ax, oy, a * sc, a * sc); ctx.restore();
+    for (let i = 0; i <= a; i++) {
+      inkStroke(ctx, (o1, o2) => { ctx.moveTo(Ax + i * sc + o1, oy + o2); ctx.lineTo(Ax + i * sc + o1, oy + a * sc + o2); }, C.slate, 1);
+      inkStroke(ctx, (o1, o2) => { ctx.moveTo(Ax + o1, oy + i * sc + o2); ctx.lineTo(Ax + a * sc + o1, oy + i * sc + o2); }, C.slate, 1);
+    }
+    // square on b (right of leg b)
+    ctx.save(); ctx.globalAlpha = 0.25; ctx.fillStyle = C.olive;
+    ctx.fillRect(ox, By - 0, b * sc, b * sc); ctx.restore();
+    for (let i = 0; i <= b; i++) {
+      inkStroke(ctx, (o1, o2) => { ctx.moveTo(ox + i * sc + o1, By + o2); ctx.lineTo(ox + i * sc + o1, By + b * sc + o2); }, C.olive, 1);
+      inkStroke(ctx, (o1, o2) => { ctx.moveTo(ox + o1, By + i * sc + o2); ctx.lineTo(ox + b * sc + o1, By + i * sc + o2); }, C.olive, 1);
+    }
+    // square on c (on the hypotenuse, outward)
+    const hxv = (Bx - Ax), hyv = (By - Ay);
+    const nx = -hyv, ny = hxv;   // outward normal (left of A->B)
+    const n = Math.hypot(nx, ny), ux = nx / n, uy = ny / n;
+    const cLen = Math.hypot(hxv, hyv);
+    const C1 = [Ax + ux * cLen, Ay + uy * cLen], C2 = [Bx + ux * cLen, By + uy * cLen];
+    ctx.save(); ctx.globalAlpha = 0.14; ctx.fillStyle = C.chalk;
+    ctx.beginPath(); ctx.moveTo(Ax, Ay); ctx.lineTo(Bx, By); ctx.lineTo(C2[0], C2[1]); ctx.lineTo(C1[0], C1[1]); ctx.closePath(); ctx.fill();
+    ctx.restore();
+    inkStroke(ctx, (o1, o2) => {
+      ctx.moveTo(Ax + o1, Ay + o2); ctx.lineTo(Bx + o1, By + o2);
+      ctx.lineTo(C2[0] + o1, C2[1] + o2); ctx.lineTo(C1[0] + o1, C1[1] + o2); ctx.closePath();
+    }, C.chalk, 1.8);
+    // the triangle on top
+    inkStroke(ctx, (o1, o2) => {
+      ctx.moveTo(ox + o1, oy + o2); ctx.lineTo(Ax + o1, Ay + o2);
+      ctx.lineTo(Bx + o1, By + o2); ctx.closePath();
+    }, C.ink, 2.4);
+    // right-angle mark
+    inkStroke(ctx, (o1, o2) => { ctx.moveTo(ox - 12 + o1, oy + o2); ctx.lineTo(ox - 12 + o1, oy - 12 + o2); ctx.lineTo(ox + o1, oy - 12 + o2); }, C.ink, 1.3);
+    // labels
+    ctx.font = '16px ' + HAND;
+    ctx.fillStyle = C.slate; ctx.fillText('a² = ' + (a * a), Ax + a * sc / 2 - 22, oy + a * sc / 2 + 6);
+    ctx.fillStyle = C.olive; ctx.fillText('b² = ' + (b * b), ox + b * sc / 2 - 22, By + b * sc / 2 + 6);
+    ctx.fillStyle = C.chalk;
+    ctx.fillText('c² = ' + (a * a + b * b), (C1[0] + C2[0]) / 2 - 24, (C1[1] + C2[1]) / 2 + 6);
+    el('a2').textContent = a * a; el('b2').textContent = b * b;
+    el('ab2').textContent = a * a + b * b; el('c2').textContent = a * a + b * b;
+    const c = Math.sqrt(a * a + b * b);
+    el('sqNote').textContent = Number.isInteger(c) ? 'a rope-stretcher triple: c = ' + c + ', whole and holy.' : 'c = √' + (a * a + b * b) + ' ≈ ' + c.toFixed(3);
+    el('legAv').textContent = a; el('legBv').textContent = b;
+  }
+  el('legA').addEventListener('input', draw);
+  el('legB').addEventListener('input', draw);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

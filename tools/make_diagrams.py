@@ -76,6 +76,45 @@ save("gears-history", diagrams.ink_network(
     title="The ratio, cast in bronze",
     caption="A gear pair is a fraction you can hold."))
 
+# ============ FOLIO 02 — The Robot's Map ============
+
+save("coords-history", diagrams.ink_network(
+    [("bra", "Brahmagupta\n628 · debts BELOW zero", "orange"),
+     ("kwa", "House of Wisdom\n~820 · negatives travel west", "purple"),
+     ("des", "Descartes\n1637 · the fly on the ceiling", "yellow"),
+     ("rob", "Your rover\ntoday · goto(x, y)", "blue")],
+    [("bra", "kwa", "trade + translation"), ("kwa", "des", "algebra meets geometry"),
+     ("des", "rob", "every map since")],
+    pos={"bra": (0, 0.7), "kwa": (1, -0.6), "des": (2, 0.7), "rob": (3, -0.6)},
+    directed=True,
+    title="How places became pairs of numbers",
+    caption="A negative number is not less than nothing — it is the other direction."))
+
+# ============ FOLIO 03 — The Unknown (al-jabr) ============
+
+save("aljabr-pipeline", diagrams.ink_flow(
+    [("The unknown t", "hidden inside the machine", "orange"),
+     ("al-jabr", "restore: undo + and −", "yellow"),
+     ("al-muqābala", "balance: undo ×", "purple"),
+     ("t, known", "exact — no guessing", "green")],
+    arrows=["− b from both sides", "÷ s on both sides", ""],
+    title="The two moves that solve everything linear",
+    caption="Whatever you do to one side of the balance, you owe the other."))
+
+# ============ FOLIO 04 — Rigid Triangles ============
+
+save("triangle-history", diagrams.ink_network(
+    [("rope", "Egyptian rope-stretchers\n~2000 BC · 3-4-5 knots", "orange"),
+     ("pyt", "Pythagoras\n~530 BC · WHY it works", "yellow"),
+     ("euc", "Euclid\n~300 BC · Elements I.47, proved forever", "purple"),
+     ("rob", "Your rover\ntoday · hypot(a, b)", "blue")],
+    [("rope", "pyt", "recipe becomes question"), ("pyt", "euc", "question becomes proof"),
+     ("euc", "rob", "proof becomes code")],
+    pos={"rope": (0, 0.7), "pyt": (1, -0.6), "euc": (2, 0.7), "rob": (3, -0.6)},
+    directed=True,
+    title="Four thousand years of the same triangle",
+    caption="The rope-stretchers knew THAT it works; Pythagoras asked WHY; Euclid closed the case."))
+
 # ============ Artifact formulas (matplotlib mathtext -> transparent SVG) ====
 
 import matplotlib
@@ -120,5 +159,23 @@ formula("f-torque-trade",
         r"\tau_{\mathrm{wheel}} \;=\; \tau_{\mathrm{motor}}\times\frac{N_2}{N_1}")
 formula("f-drive-distance",
         r"D \;=\; \mathrm{turns}\times\frac{N_1}{N_2}\times 2\pi r")
+
+# Folio 02
+formula("f-ordered-pair",
+        r"P = (x,\; y)")
+formula("f-displacement",
+        r"\Delta x = x_2 - x_1 \qquad \Delta y = y_2 - y_1")
+
+# Folio 03
+formula("f-linear",
+        r"s\,t + b \;=\; D")
+formula("f-solve-t",
+        r"t \;=\; \frac{D - b}{s}")
+
+# Folio 04
+formula("f-pythagoras",
+        r"a^2 + b^2 = c^2")
+formula("f-distance",
+        r"d \;=\; \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}")
 
 print("\nall diagrams written ->", OUT)

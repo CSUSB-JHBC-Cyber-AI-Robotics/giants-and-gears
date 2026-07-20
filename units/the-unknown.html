@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 03 — The Unknown (al-jabr) · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage I · Making a Machine Move at All</span>
+  <span class="right">Folio 03 · linear equations</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 03 · CODEX I · GIANT: AL-KHWĀRIZMĪ</div>
+    <h1 class="reveal" style="margin:.6rem 0;">The Unknown <span style="font-size:.6em;">(al-jabr)</span></h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a rover keeps crashing into a wall it can see perfectly well,
+      and a Baghdad scholar's book about inheritance law stops it — exactly —
+      twelve hundred years later.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">Guess the turns, hit the wall</h2>
+      <p class="lede reveal">
+        The wall is 487&nbsp;mm away. Every motor turn moves the rover exactly
+        62&nbsp;mm. You get one number: how many turns? Whole turns, obviously —
+        who has ever heard of part of a guess?
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 3.1 — the guessing game</span>
+          <span class="plaque-caption">pick turns, press drive, pray</span>
+        </div>
+        <canvas id="crash" height="280"></canvas>
+        <div class="controls">
+          <label>motor turns <input type="range" id="guess" min="0" max="10" value="0" step="1"> <code id="guessv">0</code></label>
+          <button class="toggle" id="tryIt">drive</button>
+          <button class="toggle" id="crashReset">reset</button>
+        </div>
+        <div class="readout">
+          <span>wall at: <b>487 mm</b></span>
+          <span>each turn: <b>62 mm</b></span>
+          <span>attempts: <b id="attempts">0</b></span>
+          <span id="crashStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Seven turns leaves you 53&nbsp;mm short. Eight turns is a crash. The
+        true answer — 487&nbsp;÷&nbsp;62&nbsp;=&nbsp;7.855&nbsp;turns — was never
+        on your slider, and no amount of guessing puts it there. The number you
+        need is <em>hiding inside the situation</em>, wearing the wall and the
+        wheel as a disguise. Mathematics has a name for a number in hiding:
+        <em>the unknown</em>. And there is a machine for un-hiding it.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">The restoration</h2>
+    <p class="lede reveal">
+      Al-jabr means <em>"the restoration"</em> — the setting of a broken thing.
+      Its author wasn't chasing robots; he was settling inheritances, where the
+      unknown was someone's rightful share and getting it wrong wronged a family.
+      Exactness was an ethical duty before it was an engineering one.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/al-khwarizmi.jpg" alt="al-Khwarizmi"></div>
+        <figcaption class="plaque">
+          <div class="name">al-Khwārizmī</div>
+          <div class="dates">c. 780 – 850 · HOUSE OF WISDOM, BAGHDAD</div>
+          <div class="role">Reduced every linear puzzle to two lawful moves — restore (al-jabr) and balance (al-muqābala) — and proved the moves always work. A method that runs the same every time has a name: it is his, Latinized — an <em>algorithm</em>.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/al-jabr-manuscript.jpg" alt="Al-Jabr manuscript page"></div>
+        <figcaption class="plaque">
+          <div class="name">The Compendious Book</div>
+          <div class="dates">c. 820 · AL-KITĀB AL-MUḪTAṢAR FĪ ḤISĀB AL-ĞABR</div>
+          <div class="role">A surviving page. No symbols at all — every equation written out in prose sentences. The x's and =' s came centuries later; the <em>moves</em> are all here.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/aljabr-pipeline.svg" alt="the two moves that solve everything linear"></div>
+      <figcaption class="plaque-caption">The whole method, twelve centuries on: two moves, applied in the open.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">An equation is a balance scale</h2>
+    <p class="lede reveal">
+      Write the crash problem honestly. The rover's nose starts 13&nbsp;mm out
+      from the start line; each of t turns adds 62&nbsp;mm; the wall stands at
+      500&nbsp;mm. On the left pan, the journey; on the right pan, the wall:
+    </p>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-linear.svg" alt="s t plus b equals D" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">The unknown t sits on the scale with weights piled around it. Un-hide it with the two lawful moves — below, live.</figcaption>
+    </figure>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 3.2 — the balance</span>
+        <span class="plaque-caption">whatever you do to one side, you owe the other</span>
+      </div>
+      <canvas id="balance" height="300"></canvas>
+      <div class="controls">
+        <button class="toggle" id="restore">al-jabr: − 13 from both sides</button>
+        <button class="toggle" id="divide">al-muqābala: ÷ 62 on both sides</button>
+        <button class="toggle" id="balReset">reset</button>
+      </div>
+      <div class="readout">
+        <span id="balState" style="color:var(--ink)">62·t + 13 = 500</span>
+        <span id="balNote" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-solve-t.svg" alt="t equals D minus b over s" style="max-height:74px;"></div>
+      <figcaption class="plaque-caption">
+        Both moves, written once and forever: subtract what was added, divide by
+        what multiplied. The unknown steps out of hiding — exact to as many
+        decimals as the wall demands.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Solve, then drive</h2>
+    <p class="lede reveal">
+      New wall, new wheel, new starting offset — the numbers change every round,
+      the method never does. Work the two moves; the panel writes each line as
+      you go. When t is alone, press drive: the rover executes <em>your</em>
+      solution, fractional turns and all.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 3.3 — the exact stop</span>
+        <span class="plaque-caption">no slider guessing — the equation drives</span>
+      </div>
+      <canvas id="solve" height="300"></canvas>
+      <div class="controls">
+        <button class="toggle" id="mv1">− b from both sides</button>
+        <button class="toggle" id="mv2">÷ s on both sides</button>
+        <button class="toggle" id="driveExact">drive t turns</button>
+        <button class="toggle" id="newWall">new wall</button>
+      </div>
+      <div class="readout">
+        <span>equation: <b id="eqLine">—</b></span>
+        <span>solved runs: <b id="solvedCount">0</b></span>
+        <span id="solveStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <p class="reveal">
+      The rover stops with its nose a coat of paint from the brick — every
+      time, any wall. Notice what you did <em>not</em> do: you never guessed,
+      never nudged, never "tried again." Al-Khwārizmī's promise is that the two
+      moves <em>always finish</em>. That promise — a method guaranteed to end
+      with the answer — is the ancestor of every program you will ever write.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        "How many turns until the wall" is the toy version of a question robots
+        answer thousands of times a second: how much command produces the state
+        I want? Motor controllers solve for voltages, flight computers for burn
+        times, your 3-D printer for extruder steps — all of them un-hiding
+        unknowns with al-jabr's two moves. And when the unknown hides inside
+        <em>two</em> directions at once, you'll need the triangle waiting in
+        Folio&nbsp;04.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> time your walk to school at a steady pace, then
+        solve for the pace: distance = pace × time, so pace = distance ÷ time.
+        Now predict tomorrow's time to a place you have never walked, from its
+        map distance alone. You have just done model-based control — with your feet.
+      </p>
+      <a class="next-exhibit reveal" href="rigid-triangles.html">continue to folio 04 — rigid triangles</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d',
+            mount:'#cbb98e' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke();
+  ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function drawWallScene(ctx, S, noseMM, wallMM, scale, crashed) {
+  const w = S.w, h = S.h, g = h * 0.72, x0 = 50;
+  paper(ctx, w, h);
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(20 + ox, g + oy); ctx.lineTo(w - 20 + ox, g + oy); }, C.ink, 1.8);
+  const wallX = x0 + wallMM * scale;
+  // the wall: hatched brick line
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(wallX + ox, g + oy); ctx.lineTo(wallX + ox, g - 90 + oy); }, C.ink, 3);
+  for (let k = 0; k < 6; k++)
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(wallX + ox, g - k * 15 + oy); ctx.lineTo(wallX + 12 + ox, g - k * 15 - 9 + oy); }, C.ghost, 1.2);
+  ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+  ctx.fillText('the wall', wallX - 8, g - 100);
+  // the rover: nose at noseMM
+  const nx = x0 + noseMM * scale;
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(nx + ox, g - 8 + oy); ctx.lineTo(nx - 46 + ox, g - 8 + oy);
+    ctx.lineTo(nx - 46 + ox, g - 34 + oy); ctx.lineTo(nx - 8 + ox, g - 34 + oy);
+    ctx.lineTo(nx + ox, g - 20 + oy); ctx.closePath();
+  }, crashed ? C.chalk : C.slate, 1.8);
+  inkStroke(ctx, (ox, oy) => { ctx.arc(nx - 34 + ox, g - 7 + oy, 8, 0, TAU); }, C.ink, 1.6);
+  inkStroke(ctx, (ox, oy) => { ctx.arc(nx - 12 + ox, g - 7 + oy, 8, 0, TAU); }, C.ink, 1.6);
+  if (crashed) {
+    ctx.fillStyle = C.chalk; ctx.font = '22px ' + HAND;
+    ctx.fillText('CRUNCH', wallX - 96, g - 64);
+  }
+  return { g, x0, wallX };
+}
+
+/* ---------------- LAB 3.1 — the guessing game ---------------- */
+(function () {
+  const cv = document.getElementById('crash'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0, attempts = 0, lastGuess = 0;
+  const WALL = 487, STEP = 62;
+  const el = (id) => document.getElementById(id);
+
+  function scale() { return (S.w - 140) / WALL; }
+  function draw() {
+    const nose = Math.min(WALL + 8, STEP * lastGuess * prog);
+    const crashed = STEP * lastGuess * prog >= WALL - 1 && STEP * lastGuess > WALL;
+    drawWallScene(ctx, S, nose, WALL, scale(), crashed && prog >= 0.99);
+  }
+  function drive() {
+    if (anim) cancelAnimationFrame(anim);
+    lastGuess = +el('guess').value;
+    attempts++; el('attempts').textContent = attempts;
+    prog = 0;
+    const step = () => {
+      prog = Math.min(1, prog + 0.02);
+      draw();
+      if (prog < 1) { anim = requestAnimationFrame(step); return; }
+      anim = null;
+      const d = STEP * lastGuess;
+      const st = el('crashStatus');
+      if (d > WALL) st.textContent = 'CRASH — ' + (d - WALL) + ' mm past the bricks.';
+      else if (WALL - d <= 2) st.textContent = 'a miracle of luck.';
+      else st.textContent = 'stopped ' + (WALL - d) + ' mm short. The parcel does not reach the wall.';
+    };
+    anim = requestAnimationFrame(step);
+  }
+  el('guess').addEventListener('input', () => { el('guessv').textContent = el('guess').value; });
+  el('tryIt').addEventListener('click', drive);
+  el('crashReset').addEventListener('click', () => { prog = 0; lastGuess = 0; attempts = 0; el('attempts').textContent = 0; el('crashStatus').textContent = ''; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 3.2 — the balance ---------------- */
+(function () {
+  const cv = document.getElementById('balance'), S = setupCanvas(cv);
+  let ctx = S.resize(), stage = 0;    // 0: 62t+13=500 · 1: 62t=487 · 2: t=7.855
+  const el = (id) => document.getElementById(id);
+  const LINES = ['62·t + 13 = 500', '62·t = 487', 't = 7.855…'];
+  const NOTES = ['', 'the +13 is restored away — the scale never tipped.',
+                 'the unknown, un-hidden. This is the number the slider never had.'];
+
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const cx = w / 2, beamY = h * 0.42, beamW = Math.min(w * 0.62, 460);
+    // pillar + beam + pans
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(cx + ox, beamY + oy); ctx.lineTo(cx + ox, h - 40 + oy); }, C.ink, 2.4);
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(cx - 30 + ox, h - 40 + oy); ctx.lineTo(cx + 30 + ox, h - 40 + oy); }, C.ink, 2.4);
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(cx - beamW / 2 + ox, beamY + oy); ctx.lineTo(cx + beamW / 2 + ox, beamY + oy); }, C.ink, 2.6);
+    for (const s of [-1, 1]) {
+      const px = cx + s * beamW / 2;
+      inkStroke(ctx, (ox, oy) => { ctx.moveTo(px + ox, beamY + oy); ctx.lineTo(px - 26 + ox, beamY + 48 + oy); ctx.moveTo(px + ox, beamY + oy); ctx.lineTo(px + 26 + ox, beamY + 48 + oy); }, C.ghost, 1.4);
+      inkStroke(ctx, (ox, oy) => { ctx.arc(px + ox, beamY + 56 + oy, 30, 0.15 * Math.PI, 0.85 * Math.PI); }, C.ink, 2);
+    }
+    // pan contents
+    const [lhs, rhs] = LINES[stage].split('=');
+    ctx.fillStyle = C.ink; ctx.font = '20px ' + HAND; ctx.textAlign = 'center';
+    ctx.fillText(lhs.trim(), cx - beamW / 2, beamY + 100);
+    ctx.fillText(rhs.trim(), cx + beamW / 2, beamY + 100);
+    ctx.font = '26px ' + HAND; ctx.fillStyle = C.chalk;
+    ctx.fillText('=', cx, beamY - 14);
+    ctx.textAlign = 'start';
+    el('balState').textContent = LINES[stage];
+    el('balNote').textContent = NOTES[stage];
+    el('restore').classList.toggle('on', stage === 0);
+    el('divide').classList.toggle('on', stage === 1);
+  }
+  el('restore').addEventListener('click', () => { if (stage === 0) { stage = 1; draw(); } });
+  el('divide').addEventListener('click', () => { if (stage === 1) { stage = 2; draw(); } });
+  el('balReset').addEventListener('click', () => { stage = 0; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 3.3 — solve, then drive ---------------- */
+(function () {
+  const cv = document.getElementById('solve'), S = setupCanvas(cv);
+  let ctx = S.resize(), P = null, stage = 0, anim = null, prog = 0, solved = 0;
+  const el = (id) => document.getElementById(id);
+
+  function newWall() {
+    const s = 28 + Math.floor(Math.random() * 53);          // 28..80
+    const b = Math.floor(Math.random() * 41);               // 0..40
+    const D = 300 + Math.floor(Math.random() * 601);        // 300..900
+    P = { s, b, D, t: (D - b) / s };
+    stage = 0; prog = 0;
+    el('solveStatus').textContent = '';
+    draw();
+  }
+  function eqText() {
+    if (stage === 0) return P.s + '·t + ' + P.b + ' = ' + P.D;
+    if (stage === 1) return P.s + '·t = ' + (P.D - P.b);
+    return 't = ' + P.t.toFixed(3);
+  }
+  function draw() {
+    const scale = (S.w - 140) / P.D;
+    const nose = (P.b + P.s * P.t * prog);
+    drawWallScene(ctx, S, Math.min(P.D, nose), P.D, scale, false);
+    ctx.fillStyle = C.ink; ctx.font = '19px ' + HAND;
+    ctx.fillText(eqText(), 50, 46);
+    if (stage === 2 && prog >= 1) {
+      ctx.fillStyle = C.olive; ctx.font = '15px ' + HAND;
+      ctx.fillText('gap to wall: ' + (P.D - nose).toFixed(1) + ' mm', 50, 72);
+    }
+    el('eqLine').textContent = eqText();
+    el('mv1').classList.toggle('on', stage === 0);
+    el('mv2').classList.toggle('on', stage === 1);
+    el('solvedCount').textContent = solved;
+  }
+  el('mv1').addEventListener('click', () => { if (stage === 0) { stage = 1; draw(); } });
+  el('mv2').addEventListener('click', () => { if (stage === 1) { stage = 2; draw(); } });
+  el('driveExact').addEventListener('click', () => {
+    if (stage !== 2) { el('solveStatus').textContent = 'un-hide t first — the two moves, in order.'; return; }
+    if (anim) cancelAnimationFrame(anim);
+    prog = 0;
+    const step = () => {
+      prog = Math.min(1, prog + 0.014);
+      draw();
+      if (prog < 1) { anim = requestAnimationFrame(step); return; }
+      anim = null; solved++;
+      el('solveStatus').textContent = '✦ nose at the wall, zero crash — t = ' + P.t.toFixed(3) + ' turns, executed exactly.';
+      draw();
+    };
+    anim = requestAnimationFrame(step);
+  });
+  el('newWall').addEventListener('click', newWall);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newWall();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
