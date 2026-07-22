@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 08 — Trusting a Noisy Sensor · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage II · Sensing and Turning</span>
+  <span class="right">Folio 08 · mean, variance &amp; the bell</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 08 · CODEX I · GIANTS: PASCAL &amp; FERMAT — GAUSS</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Trusting a Noisy Sensor</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which the same wall reports ten different distances,
+      and a gambler's letter and a lost planet teach the robot to find the one
+      truth hiding inside the scatter.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">Ask once, get a different answer</h2>
+      <p class="lede reveal">
+        The wall is exactly where it is — it does not move. Yet each ultrasonic
+        ping comes back with a slightly different distance: dust, echoes, warm
+        air, the sensor's own jitter. Fire a ping and stop the rover on that
+        reading. Then fire again.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 8.1 — one ping</span>
+          <span class="plaque-caption">act on a single reading, if you dare</span>
+        </div>
+        <canvas id="oneping" height="300"></canvas>
+        <div class="controls">
+          <button class="toggle" id="ping1">ping once</button>
+          <button class="toggle" id="reset1">reset</button>
+        </div>
+        <div class="readout">
+          <span>true distance: <b>60.0 cm</b></span>
+          <span>this ping: <b id="thisPing">—</b></span>
+          <span>error: <b id="pingErr">—</b></span>
+          <span id="oneStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Every ping lands somewhere near the truth and almost never <em>on</em> it.
+        Trust one and you are trusting its private error. But look closer and the
+        scatter is not lawless — the readings crowd around the true value and thin
+        out to the sides. Noise has a <em>shape</em>, and the shape is the way out.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">A wager, a letter, a lost planet</h2>
+    <p class="lede reveal">
+      The mathematics of not-knowing began with a gambler's dispute and matured
+      when an astronomer needed to find a speck of light he had only glimpsed. Both
+      turned uncertainty from an enemy into a measurable thing.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/pascal.jpg" alt="Blaise Pascal"></div>
+        <figcaption class="plaque">
+          <div class="name">Blaise Pascal</div>
+          <div class="dates">1623 – 1662 · CLERMONT → PARIS</div>
+          <div class="role">Half of the 1654 letters that founded probability — over a question about how to split the stakes of an unfinished game. The first time chance was <em>computed</em> rather than merely feared.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/fermat.jpg" alt="Pierre de Fermat"></div>
+        <figcaption class="plaque">
+          <div class="name">Pierre de Fermat</div>
+          <div class="dates">1607 – 1665 · BEAUMONT → TOULOUSE</div>
+          <div class="role">The other half of that correspondence. Between them, two friends by post built the idea that the future's odds obey exact laws — the ground every estimator stands on.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/gauss.jpg" alt="Carl Friedrich Gauss"></div>
+        <figcaption class="plaque">
+          <div class="name">Carl Friedrich Gauss</div>
+          <div class="dates">1777 – 1855 · BRUNSWICK → GÖTTINGEN</div>
+          <div class="role">To recover the lost dwarf planet Ceres from a handful of noisy sightings (1801), he leaned on the bell-shaped <em>normal distribution</em> and least squares — the exact tools your robot uses to average its pings.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/stats-history.svg" alt="noise is not chaos, it has a shape"></div>
+      <figcaption class="plaque-caption">From the gaming table to the guidance computer.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">The truth rises out of the scatter</h2>
+    <p class="lede reveal">
+      Here is the trick that beats noise: don't ask once, ask <em>many</em> times
+      and take the <em>average</em>. Fire pings and watch two things happen — the
+      readings pile into Gauss's bell, and the running mean walks straight to the
+      true distance the more you gather.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 8.2 — the bell builds itself</span>
+        <span class="plaque-caption">keep pinging; watch the shape appear</span>
+      </div>
+      <canvas id="bell" height="380"></canvas>
+      <div class="controls">
+        <button class="toggle" id="ping10">ping ×10</button>
+        <button class="toggle" id="ping100">ping ×100</button>
+        <button class="toggle" id="bellReset">clear</button>
+      </div>
+      <div class="readout">
+        <span>pings: <b id="bellN">0</b></span>
+        <span>mean μ: <b id="bellMean">—</b></span>
+        <span>spread σ: <b id="bellSig">—</b></span>
+        <span id="bellStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-mean.svg" alt="mu equals one over n sum of x i" style="max-height:66px;"></div>
+      <figcaption class="plaque-caption">The mean: add every reading, divide by how many. The bell's peak.</figcaption>
+    </figure>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-variance.svg" alt="sigma squared equals average squared deviation" style="max-height:66px;"></div>
+      <figcaption class="plaque-caption">
+        The variance: the average squared distance from the mean — the bell's
+        <em>width</em>, a single number for how jittery the sensor is.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">How many pings buy how much certainty?</h2>
+    <p class="lede reveal">
+      Averaging works, but readings cost time. So the real engineering question is
+      <em>how many</em>. The averaged estimate's own spread shrinks with the square
+      root of n — quadruple the pings to halve the uncertainty. Choose n so the
+      estimate lands inside the tolerance band, and no larger.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 8.3 — enough, but not too many</span>
+        <span class="plaque-caption">the standard error falls as √n</span>
+      </div>
+      <canvas id="confidence" height="340"></canvas>
+      <div class="controls">
+        <label>pings averaged n <input type="range" id="nAvg" min="1" max="200" value="1" step="1"> <code id="nAvgv">1</code></label>
+        <button class="toggle" id="takeN">take n readings</button>
+        <button class="toggle" id="confNew">new wall</button>
+      </div>
+      <div class="readout">
+        <span>estimate: <b id="estVal">—</b></span>
+        <span>standard error σ/√n: <b id="stdErr">—</b></span>
+        <span>tolerance: <b>±1.0 cm</b></span>
+        <span id="confStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-gaussian.svg" alt="the gaussian probability density" style="max-height:64px;"></div>
+      <figcaption class="plaque-caption">
+        Gauss's bell in full: μ says where the truth sits, σ says how far the
+        readings wander, and averaging n of them narrows the peak by √n. Certainty,
+        priced in pings.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build — and the road ahead</h2>
+      <p class="lede reveal">
+        Sensor fusion, GPS averaging, the confidence bars on a self-driving car's
+        obstacle map, the noise models inside a Kalman filter — every one begins
+        with mean, variance, and Gauss's bell. With Folio&nbsp;08, <em>Stage&nbsp;II —
+        Sensing and Turning</em> is complete: your robot can reach with angles
+        (Folio&nbsp;05), treat every part as a function (06), read the curves of
+        decay (07), and now trust a jittery world by measuring its scatter. Stage&nbsp;III
+        will teach it to describe motion exactly — vectors, rotations, and the
+        calculus of change.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> weigh the same object on a kitchen scale ten
+        times, recording each reading. Average them, then compute the spread. You
+        have just done what Gauss did for Ceres and what your robot does every
+        time it pings a wall — pulled a single trustworthy number out of a crowd
+        of imperfect ones.
+      </p>
+      <a class="next-exhibit reveal" href="../index.html">return to the codex map</a>
+      <a class="next-exhibit reveal" href="angles-that-reach.html" style="margin-left:1rem;">revisit folio 05</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+const TRUE_D = 60, SIGMA = 6;                 // cm; sensor noise
+const XMIN = 30, XMAX = 90;                   // distance axis (cm)
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke(); ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+// standard normal via Box–Muller
+function gauss() { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(TAU * v); }
+function ping(mu) { return (mu == null ? TRUE_D : mu) + SIGMA * gauss(); }
+
+function axisX(S, ctx, y0) {
+  const w = S.w, pad = 50;
+  const x0 = pad, plotW = w - 2 * pad;
+  const sx = (d) => x0 + (d - XMIN) / (XMAX - XMIN) * plotW;
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x0 + ox, y0 + oy); ctx.lineTo(x0 + plotW + ox, y0 + oy); }, C.ink, 1.8);
+  ctx.fillStyle = C.ghost; ctx.font = '13px ' + HAND;
+  for (let d = XMIN; d <= XMAX; d += 10) { const x = sx(d); inkStroke(ctx, (ox, oy) => { ctx.moveTo(x + ox, y0 + oy); ctx.lineTo(x + ox, y0 + 6 + oy); }, C.ink, 1.2); ctx.fillText(d + '', x - 8, y0 + 22); }
+  ctx.fillText('distance (cm) →', x0 + plotW - 90, y0 + 40);
+  return { x0, plotW, sx };
+}
+function trueLine(ctx, sx, yTop, yBot) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(sx(TRUE_D) + ox, yTop + oy); ctx.lineTo(sx(TRUE_D) + ox, yBot + oy); }, C.olive, 1.8);
+  ctx.fillStyle = C.olive; ctx.font = '14px ' + HAND; ctx.fillText('true 60', sx(TRUE_D) - 20, yTop - 6);
+}
+
+/* ---------------- LAB 8.1 — one ping ---------------- */
+(function () {
+  const cv = document.getElementById('oneping'), S = setupCanvas(cv);
+  let ctx = S.resize(); const shots = [];
+  const el = (id) => document.getElementById(id);
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const y0 = h - 60, A = axisX(S, ctx, y0);
+    trueLine(ctx, A.sx, 40, y0);
+    // past shots faint
+    shots.slice(0, -1).forEach(d => { ctx.save(); ctx.globalAlpha = .4; ctx.fillStyle = C.ghost; ctx.beginPath(); ctx.arc(A.sx(d), y0 - 26, 5, 0, TAU); ctx.fill(); ctx.restore(); });
+    const last = shots[shots.length - 1];
+    if (last != null) {
+      ctx.save(); ctx.fillStyle = C.chalk; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.arc(A.sx(last), y0 - 26, 8, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+      // "your stop" marker on the axis
+      inkStroke(ctx, (ox, oy) => { ctx.moveTo(A.sx(last) + ox, y0 + oy); ctx.lineTo(A.sx(last) + ox, y0 - 90 + oy); }, C.chalk, 1.4);
+      ctx.fillStyle = C.chalk; ctx.font = '15px ' + HAND; ctx.fillText('you stop here', A.sx(last) + 6, 40);
+    }
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('each ping: a fresh scatter around the truth', A.x0, 28);
+  }
+  el('ping1').addEventListener('click', () => {
+    const d = ping(); shots.push(d);
+    el('thisPing').textContent = d.toFixed(1) + ' cm';
+    el('pingErr').textContent = (d - TRUE_D >= 0 ? '+' : '') + (d - TRUE_D).toFixed(1) + ' cm';
+    el('oneStatus').textContent = Math.abs(d - TRUE_D) > 4 ? 'act on this and you are ' + Math.abs(d - TRUE_D).toFixed(1) + ' cm wrong.' : 'lucky this time — but you cannot count on luck.';
+    draw();
+  });
+  el('reset1').addEventListener('click', () => { shots.length = 0; el('thisPing').textContent = '—'; el('pingErr').textContent = '—'; el('oneStatus').textContent = ''; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 8.2 — the bell builds ---------------- */
+(function () {
+  const cv = document.getElementById('bell'), S = setupCanvas(cv);
+  let ctx = S.resize(); const data = [];
+  const BINW = 2, el = (id) => document.getElementById(id);   // 2 cm bins
+
+  function stats() {
+    const n = data.length; if (!n) return { n: 0, mean: 0, sig: 0 };
+    const mean = data.reduce((a, b) => a + b, 0) / n;
+    const varr = data.reduce((a, b) => a + (b - mean) ** 2, 0) / n;
+    return { n, mean, sig: Math.sqrt(varr) };
+  }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const y0 = h - 56, A = axisX(S, ctx, y0);
+    // histogram
+    const bins = {};
+    for (const d of data) { const b = Math.round(d / BINW) * BINW; bins[b] = (bins[b] || 0) + 1; }
+    const maxCount = Math.max(1, ...Object.values(bins));
+    const barTop = 70, barMaxH = y0 - barTop;
+    for (const b in bins) {
+      const x = A.sx(+b), bh = bins[b] / maxCount * barMaxH;
+      ctx.save(); ctx.globalAlpha = .5; ctx.fillStyle = C.slate;
+      ctx.fillRect(x - (A.plotW / (XMAX - XMIN)) * BINW / 2, y0 - bh, (A.plotW / (XMAX - XMIN)) * BINW - 2, bh); ctx.restore();
+    }
+    const st = stats();
+    // gaussian overlay scaled to peak
+    if (st.n > 4 && st.sig > 0.5) {
+      inkStroke(ctx, (ox, oy) => {
+        for (let i = 0; i <= 120; i++) {
+          const d = XMIN + i / 120 * (XMAX - XMIN);
+          const g = Math.exp(-((d - st.mean) ** 2) / (2 * st.sig * st.sig));
+          const px = A.sx(d) + ox, py = y0 - g * barMaxH + oy; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+        }
+      }, C.chalk, 2);
+    }
+    trueLine(ctx, A.sx, barTop - 30, y0);
+    // running mean marker
+    if (st.n) { inkStroke(ctx, (ox, oy) => { ctx.moveTo(A.sx(st.mean) + ox, barTop - 30 + oy); ctx.lineTo(A.sx(st.mean) + ox, y0 + oy); }, C.chalk, 1.6);
+      ctx.fillStyle = C.chalk; ctx.font = '14px ' + HAND; ctx.fillText('mean ' + st.mean.toFixed(1), A.sx(st.mean) + 6, barTop - 34); }
+    el('bellN').textContent = st.n; el('bellMean').textContent = st.n ? st.mean.toFixed(2) + ' cm' : '—';
+    el('bellSig').textContent = st.n ? '±' + st.sig.toFixed(2) + ' cm' : '—';
+    el('bellStatus').textContent = st.n >= 60 ? 'the mean sits on the truth; the bell is Gauss’s, exactly.' : (st.n >= 10 ? 'the shape is emerging — keep pinging.' : '');
+  }
+  function add(k) { for (let i = 0; i < k; i++) data.push(ping()); draw(); }
+  el('ping10').addEventListener('click', () => add(10));
+  el('ping100').addEventListener('click', () => add(100));
+  el('bellReset').addEventListener('click', () => { data.length = 0; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 8.3 — enough, but not too many ---------------- */
+(function () {
+  const cv = document.getElementById('confidence'), S = setupCanvas(cv);
+  let ctx = S.resize(), estimate = null, se = null, trueD = TRUE_D;
+  const TOL = 1.0, el = (id) => document.getElementById(id);
+
+  function newWall() { trueD = 50 + Math.random() * 20; estimate = null; se = null; el('confStatus').textContent = ''; draw(); }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const y0 = h - 70, A = axisX(S, ctx, y0);
+    // true + tolerance band
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(A.sx(trueD) + ox, 40 + oy); ctx.lineTo(A.sx(trueD) + ox, y0 + oy); }, C.olive, 1.8);
+    ctx.fillStyle = C.olive; ctx.font = '14px ' + HAND; ctx.fillText('true ' + trueD.toFixed(1), A.sx(trueD) - 24, 34);
+    ctx.save(); ctx.globalAlpha = .16; ctx.fillStyle = C.olive;
+    ctx.fillRect(A.sx(trueD - TOL), 40, A.sx(trueD + TOL) - A.sx(trueD - TOL), y0 - 40); ctx.restore();
+    ctx.fillStyle = C.ghost; ctx.font = '13px ' + HAND; ctx.fillText('±1 cm tolerance', A.sx(trueD + TOL) + 6, 60);
+    // estimate + standard-error whiskers
+    if (estimate != null) {
+      const y = y0 - 60;
+      inkStroke(ctx, (ox, oy) => { ctx.moveTo(A.sx(estimate - se) + ox, y + oy); ctx.lineTo(A.sx(estimate + se) + ox, y + oy); }, C.chalk, 2);
+      for (const s of [-1, 1]) inkStroke(ctx, (ox, oy) => { ctx.moveTo(A.sx(estimate + s * se) + ox, y - 7 + oy); ctx.lineTo(A.sx(estimate + s * se) + ox, y + 7 + oy); }, C.chalk, 1.6);
+      ctx.save(); ctx.fillStyle = C.chalk; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.arc(A.sx(estimate), y, 7, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+      ctx.fillStyle = C.chalk; ctx.font = '15px ' + HAND; ctx.fillText('estimate ' + estimate.toFixed(2), A.sx(estimate) - 30, y - 16);
+    }
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('averaging n pings: the whisker (σ/√n) shrinks as n grows', A.x0, 28);
+    el('nAvgv').textContent = el('nAvg').value;
+    el('stdErr').textContent = (SIGMA / Math.sqrt(+el('nAvg').value)).toFixed(2) + ' cm';
+  }
+  function take() {
+    const n = +el('nAvg').value; let sum = 0;
+    for (let i = 0; i < n; i++) sum += ping(trueD);
+    estimate = sum / n; se = SIGMA / Math.sqrt(n);
+    el('estVal').textContent = estimate.toFixed(2) + ' cm';
+    const within = Math.abs(estimate - trueD) <= TOL;
+    el('confStatus').textContent = within
+      ? '✦ inside tolerance with n = ' + n + ' (σ/√n = ' + se.toFixed(2) + ' cm).'
+      : 'still ' + Math.abs(estimate - trueD).toFixed(2) + ' cm off — raise n; quadruple it to halve the error.';
+    draw();
+  }
+  el('nAvg').addEventListener('input', draw);
+  el('takeN').addEventListener('click', take);
+  el('confNew').addEventListener('click', newWall);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newWall();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

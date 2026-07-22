@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 07 — Curves of Decay · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage II · Sensing and Turning</span>
+  <span class="right">Folio 07 · exponentials &amp; logarithms</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 07 · CODEX I · GIANTS: NAPIER — EULER</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Curves of Decay</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a drone trusts its fuel gauge and falls out of the sky anyway,
+      and a Scottish laird's twenty-year obsession explains exactly why.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">The gauge that lies near the end</h2>
+      <p class="lede reveal">
+        Your drone's battery reads half-full. Common sense says: half the charge,
+        half the flight left. So you plan the return trip on a straight line —
+        charge falling evenly with time. Set your planned flight and launch.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 7.1 — the optimistic fuel gauge</span>
+          <span class="plaque-caption">plan on a straight line; fly the real curve</span>
+        </div>
+        <canvas id="gauge" height="360"></canvas>
+        <div class="controls">
+          <label>planned flight (s) <input type="range" id="plan" min="5" max="60" value="40" step="1"> <code id="planv">40</code></label>
+          <button class="toggle" id="launch">launch</button>
+          <button class="toggle" id="gaugeReset">reset</button>
+        </div>
+        <div class="readout">
+          <span>straight-line guess: <b id="lin">—</b></span>
+          <span>real charge at cutoff: <b id="realv">—</b></span>
+          <span id="gaugeStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        The straight line and the truth agree at the start and betray you at the
+        end. Real charge doesn't fall by a fixed amount each second — it falls by a
+        fixed <em>fraction</em>, so the last stretch drains far faster than the
+        line promised. Anything that loses a set percentage per tick — batteries,
+        radio signals, cooling coffee, capacitors — bends the same way. To fly
+        safely you must know the shape of the bend.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">Twenty years to tame multiplication</h2>
+    <p class="lede reveal">
+      The curve of decay and the tool that measures it were born from the opposite
+      problem: not death, but the sheer <em>labour</em> of multiplying big numbers
+      by hand — for astronomy, navigation, and the tides.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/napier.jpg" alt="John Napier"></div>
+        <figcaption class="plaque">
+          <div class="name">John Napier</div>
+          <div class="dates">1550 – 1617 · MERCHISTON, SCOTLAND</div>
+          <div class="role">Spent twenty years building the first tables of <em>logarithms</em> (1614) so that multiplying became adding. The logarithm is the exact inverse of decay — the tool that reads a curve's clock and answers "how long until it reaches here?"</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/euler.jpg" alt="Leonhard Euler"></div>
+        <figcaption class="plaque">
+          <div class="name">Leonhard Euler</div>
+          <div class="dates">1707 – 1783 · BASEL → ST PETERSBURG</div>
+          <div class="role">Found the one number, <em>e</em> ≈ 2.71828, whose growth rate equals itself — the natural pulse of anything that changes in proportion to how much is left. Every decay curve in nature is written with his <em>e</em>.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/decay-history.svg" alt="how nothing dies in a straight line"></div>
+      <figcaption class="plaque-caption">From a laird's log tables to the cell in your drone.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">One number sets the whole curve</h2>
+    <p class="lede reveal">
+      Every decay has a single fingerprint: <em>τ</em> (tau), the time it takes to
+      fall to about 37% — one <em>e</em>-th — of where it started. Give me τ and I
+      can draw the entire future. Below are real discharge readings from the
+      battery; slide τ until Euler's curve lies right on top of them.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 7.2 — fit the decay</span>
+        <span class="plaque-caption">find the one τ that matches the readings</span>
+      </div>
+      <canvas id="fit" height="380"></canvas>
+      <div class="controls">
+        <label>τ (seconds) <input type="range" id="tau" min="4" max="30" value="18" step="0.2"> <code id="tauv">18.0</code></label>
+        <button class="toggle" id="showHalf">mark the half-life</button>
+      </div>
+      <div class="readout">
+        <span>fit error: <b id="fitErr">—</b></span>
+        <span>half-life t½ = τ·ln2 = <b id="halfLife">—</b></span>
+        <span id="fitStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-decay.svg" alt="V of t equals V naught e to the minus t over tau" style="max-height:56px;"></div>
+      <figcaption class="plaque-caption">
+        Read it as a sentence: start at V₀, and every τ seconds keep only
+        1/<em>e</em> of what remains. The whole future, folded into one letter.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">When will it hit the floor?</h2>
+    <p class="lede reveal">
+      Now the real question a flight computer asks a hundred times a second: given
+      the curve, <em>when</em> does the charge cross the safe-landing line? Reading
+      it off the bent curve is guesswork — so invert it with Napier's logarithm,
+      which turns the curve into an exact clock. Set the cutoff; the log gives the
+      time; then flip to a log scale and watch the curve become a straight line.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 7.3 — the logarithm as a clock</span>
+        <span class="plaque-caption">solve for the time; straighten the curve</span>
+      </div>
+      <canvas id="clock" height="380"></canvas>
+      <div class="controls">
+        <label>safe-landing cutoff (%) <input type="range" id="cutoff" min="10" max="90" value="37" step="1"> <code id="cutoffv">37</code></label>
+        <button class="toggle" id="logScale">log scale: off</button>
+        <button class="toggle" id="clockNew">new battery</button>
+      </div>
+      <div class="readout">
+        <span>cutoff voltage: <b id="cutV">—</b></span>
+        <span>t = −τ·ln(V/V₀) = <b id="solveTime">—</b></span>
+        <span id="clockStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-log.svg" alt="t equals minus tau ln V over V naught" style="max-height:68px;"></div>
+      <figcaption class="plaque-caption">
+        The logarithm undoes the exponential exactly — it reads a charge and hands
+        back the moment the battery will reach it. On a log scale, decay stops
+        curving and stands up straight: proof the bend was <em>e</em> all along.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Battery-life estimators, signal filters that fade old readings, the
+        charge-and-discharge of every capacitor in the robot, sensor smoothing,
+        even the "temperature" that cools a learning algorithm into its answer —
+        all of them are V₀e<sup>−t/τ</sup> and its inverse, the logarithm. Once you
+        can read τ and invert with a log, decay stops being a surprise and becomes
+        a schedule. Next, in Folio&nbsp;08, we face the last enemy of Stage&nbsp;II:
+        a sensor that gives a <em>different</em> answer every time you ask.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> pour a hot drink and log its temperature every
+        minute against room temperature. Plot the gap. You will find the same τ
+        and the same curve that lives in your drone — Newton's law of cooling is
+        the identical exponential, and your kitchen just measured <em>e</em>.
+      </p>
+      <a class="next-exhibit reveal" href="trusting-a-noisy-sensor.html">continue to folio 08 — trusting a noisy sensor</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2, E = Math.E;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke(); ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function inkArrow(ctx, x1, y1, x2, y2, color, width) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy); }, color, width);
+  const a = Math.atan2(y2 - y1, x2 - x1);
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 10 * Math.cos(a - 0.5) + ox, y2 - 10 * Math.sin(a - 0.5) + oy);
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 10 * Math.cos(a + 0.5) + ox, y2 - 10 * Math.sin(a + 0.5) + oy);
+  }, color, width * 0.85);
+}
+// a plot frame: returns scale helpers over [0,XMAX]x[0,1] (fraction of full)
+function frame(S, ctx) {
+  const w = S.w, h = S.h, pad = 52, x0 = pad + 18, y0 = h - pad;
+  const plotW = w - x0 - pad, plotH = h - 2 * pad;
+  inkArrow(ctx, x0, y0, x0 + plotW + 16, y0, C.ink, 1.8);
+  inkArrow(ctx, x0, y0, x0, y0 - plotH - 16, C.ink, 1.8);
+  return { x0, y0, plotW, plotH };
+}
+
+/* ---------------- LAB 7.1 — the optimistic gauge ---------------- */
+(function () {
+  const cv = document.getElementById('gauge'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0;
+  const el = (id) => document.getElementById(id);
+  const TAU_S = 22, CUT = 0.30, XMAX = 60;    // cutoff at 30% charge
+  const real = (t) => Math.exp(-t / TAU_S);
+  const cutoffTime = -TAU_S * Math.log(CUT);   // when real hits 30%
+
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const F = frame(S, ctx);
+    const sx = (t) => F.x0 + (t / XMAX) * F.plotW;
+    const sy = (v) => F.y0 - v * F.plotH;
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('time (s) →', F.x0 + F.plotW - 40, F.y0 + 24);
+    ctx.save(); ctx.translate(F.x0 - 20, F.y0 - F.plotH / 2 + 30); ctx.rotate(-Math.PI / 2); ctx.fillText('charge →', 0, 0); ctx.restore();
+    // cutoff line
+    ctx.save(); ctx.setLineDash([4, 6]); ctx.strokeStyle = C.chalk; ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(F.x0, sy(CUT)); ctx.lineTo(F.x0 + F.plotW, sy(CUT)); ctx.stroke(); ctx.restore();
+    ctx.fillStyle = C.chalk; ctx.fillText('cut-out (30%)', F.x0 + F.plotW - 110, sy(CUT) - 8);
+    // straight-line guess (full at 0 -> empty at planned time)
+    const plan = +el('plan').value;
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(sx(0) + ox, sy(1) + oy); ctx.lineTo(sx(plan) + ox, sy(0) + oy); }, C.slate, 1.8);
+    ctx.fillStyle = C.slate; ctx.fillText('your straight-line plan', sx(plan * 0.4), sy(1) - 6);
+    // real curve
+    inkStroke(ctx, (ox, oy) => {
+      for (let i = 0; i <= 120; i++) { const t = i / 120 * XMAX; const px = sx(t) + ox, py = sy(real(t)) + oy; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+    }, C.chalk, 2);
+    // drone marker travels along real curve during flight
+    const t = plan * prog, v = real(t);
+    const dead = t >= cutoffTime;
+    ctx.save(); ctx.fillStyle = dead ? C.chalk : C.slate; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(sx(Math.min(t, cutoffTime)), sy(Math.max(v, CUT)), 8, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    if (dead && prog > 0) { ctx.fillStyle = C.chalk; ctx.font = '18px ' + HAND; ctx.fillText('cut out here', sx(cutoffTime) + 8, sy(CUT) - 20); }
+    // readouts
+    el('planv').textContent = plan;
+    el('lin').textContent = (100 * Math.max(0, 1 - prog)).toFixed(0) + '% (line)';
+    el('realv').textContent = (100 * real(Math.min(plan, cutoffTime))).toFixed(0) + '%';
+  }
+  function launch() {
+    if (anim) cancelAnimationFrame(anim);
+    prog = 0; const plan = +el('plan').value;
+    const step = () => {
+      prog = Math.min(1, prog + 0.02); draw();
+      if (prog < 1) { anim = requestAnimationFrame(step); return; }
+      anim = null;
+      el('gaugeStatus').textContent = plan > cutoffTime
+        ? 'the drone cut out at ' + cutoffTime.toFixed(0) + ' s — your line promised ' + plan + ' s. It fell.'
+        : 'landed with margin — but you planned short to be safe. The curve, not the line, sets the limit (' + cutoffTime.toFixed(0) + ' s).';
+    };
+    anim = requestAnimationFrame(step);
+  }
+  el('plan').addEventListener('input', () => { prog = 0; el('gaugeStatus').textContent = ''; draw(); });
+  el('launch').addEventListener('click', launch);
+  el('gaugeReset').addEventListener('click', () => { prog = 0; el('gaugeStatus').textContent = ''; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 7.2 — fit the decay ---------------- */
+(function () {
+  const cv = document.getElementById('fit'), S = setupCanvas(cv);
+  let ctx = S.resize(), showHalf = false;
+  const el = (id) => document.getElementById(id);
+  const TRUE_TAU = 16, XMAX = 40;
+  // sampled readings (fixed jitter, deterministic)
+  const data = [];
+  for (let i = 0; i <= 10; i++) { const t = i * 4; const j = (Math.sin(i * 12.9) * 0.5) * 0.02; data.push([t, Math.exp(-t / TRUE_TAU) + j]); }
+
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const F = frame(S, ctx);
+    const sx = (t) => F.x0 + (t / XMAX) * F.plotW;
+    const sy = (v) => F.y0 - v * F.plotH;
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('time (s) →', F.x0 + F.plotW - 40, F.y0 + 24);
+    ctx.save(); ctx.translate(F.x0 - 20, F.y0 - F.plotH / 2 + 34); ctx.rotate(-Math.PI / 2); ctx.fillText('charge  V/V₀ →', 0, 0); ctx.restore();
+    const tau = +el('tau').value;
+    // candidate curve
+    inkStroke(ctx, (ox, oy) => {
+      for (let i = 0; i <= 120; i++) { const t = i / 120 * XMAX; const px = sx(t) + ox, py = sy(Math.exp(-t / tau)) + oy; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+    }, C.slate, 2);
+    // data points
+    let err = 0;
+    for (const [t, v] of data) {
+      err += Math.abs(v - Math.exp(-t / tau));
+      ctx.save(); ctx.fillStyle = C.chalk; ctx.beginPath(); ctx.arc(sx(t), sy(v), 4.5, 0, TAU); ctx.fill(); ctx.restore();
+    }
+    // e-th line and half-life
+    if (showHalf) {
+      const th = tau * Math.LN2;
+      ctx.save(); ctx.setLineDash([4, 6]); ctx.strokeStyle = C.olive; ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.moveTo(F.x0, sy(0.5)); ctx.lineTo(sx(th), sy(0.5)); ctx.lineTo(sx(th), F.y0); ctx.stroke(); ctx.restore();
+      ctx.fillStyle = C.olive; ctx.fillText('half-life ' + th.toFixed(1) + ' s', sx(th) + 6, sy(0.5) - 8);
+    }
+    el('tauv').textContent = tau.toFixed(1);
+    el('fitErr').textContent = err.toFixed(3);
+    el('halfLife').textContent = (tau * Math.LN2).toFixed(1) + ' s';
+    el('fitStatus').textContent = err < 0.06 ? '✦ locked on — that is the battery’s τ.' : (Math.abs(tau - TRUE_TAU) < 4 ? 'close — nudge τ.' : '');
+  }
+  el('tau').addEventListener('input', draw);
+  el('showHalf').addEventListener('click', function () { showHalf = !showHalf; this.classList.toggle('on', showHalf); draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 7.3 — the logarithm as a clock ---------------- */
+(function () {
+  const cv = document.getElementById('clock'), S = setupCanvas(cv);
+  let ctx = S.resize(), logScale = false, tau = 14;
+  const el = (id) => document.getElementById(id);
+  const XMAX = 50, V0 = 4.2;                  // volts
+
+  function newBattery() { tau = 9 + Math.random() * 12; el('clockStatus').textContent = ''; draw(); }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const F = frame(S, ctx);
+    const sx = (t) => F.x0 + (t / XMAX) * F.plotW;
+    // y maps fraction [0..1]; in log mode map ln
+    const frac = (t) => Math.exp(-t / tau);
+    const sy = (f) => logScale
+      ? F.y0 - ((Math.log(Math.max(f, 0.02)) - Math.log(0.02)) / (0 - Math.log(0.02))) * F.plotH
+      : F.y0 - f * F.plotH;
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('time (s) →', F.x0 + F.plotW - 40, F.y0 + 24);
+    ctx.save(); ctx.translate(F.x0 - 20, F.y0 - F.plotH / 2 + 40); ctx.rotate(-Math.PI / 2);
+    ctx.fillText(logScale ? 'ln(charge) →' : 'charge →', 0, 0); ctx.restore();
+    // curve
+    inkStroke(ctx, (ox, oy) => {
+      for (let i = 0; i <= 140; i++) { const t = i / 140 * XMAX; const px = sx(t) + ox, py = sy(frac(t)) + oy; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+    }, C.chalk, 2);
+    // cutoff
+    const cut = +el('cutoff').value / 100;
+    const tCross = -tau * Math.log(cut);
+    ctx.save(); ctx.setLineDash([4, 6]); ctx.strokeStyle = C.slate; ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(F.x0, sy(cut)); ctx.lineTo(sx(tCross), sy(cut)); ctx.lineTo(sx(tCross), F.y0); ctx.stroke(); ctx.restore();
+    ctx.save(); ctx.fillStyle = C.olive; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(sx(tCross), sy(cut), 7, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.fillStyle = C.slate; ctx.font = '15px ' + HAND;
+    ctx.fillText('t = ' + tCross.toFixed(1) + ' s', sx(tCross) + 8, sy(cut) + 4);
+    el('cutoffv').textContent = el('cutoff').value;
+    el('cutV').textContent = (V0 * cut).toFixed(2) + ' V (' + el('cutoff').value + '%)';
+    el('solveTime').textContent = tCross.toFixed(1) + ' s';
+    if (logScale && !el('clockStatus').textContent)
+      el('clockStatus').textContent = 'on a log scale the decay is a straight line — the bend was e all along.';
+  }
+  el('cutoff').addEventListener('input', draw);
+  el('logScale').addEventListener('click', function () { logScale = !logScale; this.classList.toggle('on', logScale); this.textContent = 'log scale: ' + (logScale ? 'on' : 'off'); el('clockStatus').textContent = ''; draw(); });
+  el('clockNew').addEventListener('click', newBattery);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

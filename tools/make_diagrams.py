@@ -178,4 +178,52 @@ formula("f-pythagoras",
 formula("f-distance",
         r"d \;=\; \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}")
 
+# ============ FOLIO 06 — Machines as Functions ============
+save("function-machine", diagrams.ink_flow(
+    [("Echo time  t", "the sensor's raw number", "blue"),
+     ("f( t )", "halve it, times the speed of sound", "yellow"),
+     ("Distance  d", "millimetres, at last", "green")],
+    arrows=["the rule f", "read it off"],
+    title="A sensor is a function",
+    caption="Same input, same output — every time. That is what makes it a machine you can trust."))
+
+formula("f-function", r"y \;=\; f(x)")
+formula("f-sonar", r"d \;=\; \frac{v \cdot t}{2}")
+formula("f-compose", r"(g \circ f)(x) \;=\; g(\,f(x)\,)")
+
+# ============ FOLIO 07 — Curves of Decay ============
+save("decay-history", diagrams.ink_network(
+    [("nap", "Napier\n1614 · logarithms", "purple"),
+     ("eul", "Euler\n1748 · the number e", "blue"),
+     ("rc", "The RC circuit\nvoltage bleeds away", "green"),
+     ("bat", "Your drone battery\ntoday · V₀e^(−t/τ)", "red")],
+    [("nap", "eul", "e is log's natural base"),
+     ("eul", "rc", "continuous decay"),
+     ("rc", "bat", "the same curve")],
+    pos={"nap": (0, 0.7), "eul": (1, -0.6), "rc": (2, 0.7), "bat": (3, -0.6)},
+    directed=True,
+    title="How nothing dies in a straight line",
+    caption="Halving, and halving again — the signature of decay."))
+
+formula("f-decay", r"V(t) \;=\; V_0\, e^{-t/\tau}")
+formula("f-log", r"t \;=\; -\,\tau \ln\!\left(\frac{V}{V_0}\right)")
+formula("f-halflife", r"t_{1/2} \;=\; \tau \ln 2")
+
+# ============ FOLIO 08 — Trusting a Noisy Sensor ============
+save("stats-history", diagrams.ink_network(
+    [("pf", "Pascal & Fermat\n1654 · letters on chance", "purple"),
+     ("gauss", "Gauss\n~1809 · the bell & least squares", "blue"),
+     ("sensor", "Your ultrasonic sensor\ntoday · average of n pings", "red")],
+    [("pf", "gauss", "chance becomes a curve"),
+     ("gauss", "sensor", "noise has a shape")],
+    pos={"pf": (0, 0.6), "gauss": (1, -0.5), "sensor": (2, 0.6)},
+    directed=True,
+    title="Noise is not chaos — it has a shape",
+    caption="Average enough pings and the truth rises out of the scatter."))
+
+formula("f-mean", r"\mu \;=\; \frac{1}{n}\sum_{i=1}^{n} x_i")
+formula("f-variance", r"\sigma^2 \;=\; \frac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2")
+formula("f-gaussian",
+        r"p(x) \;=\; \frac{1}{\sigma\sqrt{2\pi}}\; e^{-(x-\mu)^2 / 2\sigma^2}")
+
 print("\nall diagrams written ->", OUT)

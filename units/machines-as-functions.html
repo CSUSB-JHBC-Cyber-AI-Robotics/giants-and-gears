@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 06 — Machines as Functions · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage II · Sensing and Turning</span>
+  <span class="right">Folio 06 · functions</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 06 · CODEX I · GIANTS: EULER — DIRICHLET</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Machines as Functions</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a sensor hands the robot a number it cannot use,
+      and a piece of notation Euler scribbled in 1734 turns every part of the
+      machine into something you can trust.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT I ================= -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">The box that won't explain itself</h2>
+      <p class="lede reveal">
+        Here is the robot's distance sensor, sealed in a black box. You feed it a
+        number — how long the ultrasonic echo took to return — and it hands one
+        back. But the box won't tell you its <em>rule</em>. Probe it. Then predict
+        what it will say to a number you haven't tried.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 6.1 — the black box</span>
+          <span class="plaque-caption">feed it, watch it, find the rule</span>
+        </div>
+        <canvas id="blackbox" height="340"></canvas>
+        <div class="controls">
+          <label>input  <input type="range" id="bbIn" min="0" max="9" value="2" step="1"> <code id="bbInv">2</code></label>
+          <button class="toggle" id="bbProbe">drop it in</button>
+          <button class="toggle" id="bbReveal">reveal the rule</button>
+        </div>
+        <div class="readout">
+          <span>last output: <b id="bbOut">—</b></span>
+          <span>probes logged: <b id="bbCount">0</b></span>
+          <span id="bbStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Notice the one thing that makes the box <em>usable</em>: feed it a 4 today
+        or a 4 tomorrow, you get the same answer. One input, one output, no
+        surprises. That reliability has a name — the box is a <em>function</em> —
+        and without it, no sensor reading could ever be acted on. A part you
+        cannot predict is a part you cannot build on.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT II ================= -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">The little notation that ate mathematics</h2>
+    <p class="lede reveal">
+      For most of history a "function" meant a formula you could write down.
+      Then two men widened it until it could hold <em>any</em> lawful rule at all —
+      including the ones a machine computes.
+    </p>
+
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/euler.jpg" alt="Leonhard Euler"></div>
+        <figcaption class="plaque">
+          <div class="name">Leonhard Euler</div>
+          <div class="dates">1707 – 1783 · BASEL → ST PETERSBURG</div>
+          <div class="role">In 1734 he wrote <em>f(x)</em> — "f of x" — and the idea of a machine that takes an input and returns exactly one output had a symbol. Every line of robot code that reads <code>y = f(x)</code> is speaking his shorthand.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/dirichlet.jpg" alt="Peter Gustav Lejeune Dirichlet"></div>
+        <figcaption class="plaque">
+          <div class="name">P. G. L. Dirichlet</div>
+          <div class="dates">1805 – 1859 · DÜREN → GÖTTINGEN</div>
+          <div class="role">In 1837 he cut the last cord: a function need not be a formula at all — just a lawful pairing of each input with one output. That freedom is exactly what lets a lookup table, a sensor, or a neural net all count as functions.</div>
+        </figcaption>
+      </figure>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/function-machine.svg" alt="a sensor is a function"></div>
+      <figcaption class="plaque-caption">Input, rule, output — the shape of every reliable part.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT III ================= -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">Every function is a shape</h2>
+    <p class="lede reveal">
+      A rule you can only probe one number at a time is hard to hold in your head.
+      So plot it: feed every input along the bottom, stack each output up the side,
+      and the function becomes a <em>picture</em> you can read at a glance. Sweep
+      the input and watch the machine draw itself.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 6.2 — the rule, drawn</span>
+        <span class="plaque-caption">sweep the input; the function traces its own graph</span>
+      </div>
+      <canvas id="graph" height="380"></canvas>
+      <div class="controls">
+        <label>input x <input type="range" id="gx" min="0" max="10" value="3" step="0.1"> <code id="gxv">3.0</code></label>
+        <button class="toggle on" id="ruleSonar">d = v·t / 2  (sonar)</button>
+        <button class="toggle" id="ruleDouble">double it</button>
+        <button class="toggle" id="ruleSquare">square it</button>
+      </div>
+      <div class="readout">
+        <span>x = <b id="gxr">3.0</b></span>
+        <span>f(x) = <b id="gfx">—</b></span>
+        <span>domain: <b id="gdom">0 … 10</b></span>
+        <span>range: <b id="grng">—</b></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-sonar.svg" alt="d equals v t over 2" style="max-height:60px;"></div>
+      <figcaption class="plaque-caption">
+        The sonar rule: sound's speed <em>v</em> is fixed, so the echo time <em>t</em>
+        alone decides the distance — halved, because the pulse flies there
+        <em>and back</em>. A formula is just a function you can name.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT IV ================= -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Machines in series</h2>
+    <p class="lede reveal">
+      A robot is never one function — it is a <em>chain</em> of them. The echo
+      time enters the first machine and leaves as a distance; that distance enters
+      the second and leaves as motor steps. Feeding one machine's output into the
+      next is called <em>composition</em>, and it is how every pipeline on Earth
+      is built. Aim the gripper at the mark by feeding the chain the right echo.
+    </p>
+
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 6.3 — compose the pipeline</span>
+        <span class="plaque-caption">echo → distance → steps, one value flowing through two rules</span>
+      </div>
+      <canvas id="compose" height="360"></canvas>
+      <div class="controls">
+        <label>echo time t (µs) <input type="range" id="cIn" min="0" max="12000" value="3000" step="50"> <code id="cInv">3000</code></label>
+        <button class="toggle" id="cRun">send it through</button>
+        <button class="toggle" id="cNew">new target</button>
+      </div>
+      <div class="readout">
+        <span>f: distance d = <b id="cMid">—</b></span>
+        <span>g: motor steps s = <b id="cOut">—</b></span>
+        <span>target mark: <b id="cTarget">—</b></span>
+        <span id="cStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-compose.svg" alt="g composed with f of x equals g of f of x" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">
+        Read it inside-out: do <em>f</em> first, hand the result to <em>g</em>.
+        The gripper reaches the mark only when the whole chain agrees — the
+        pipeline is its own answer key.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ================= ACT V ================= -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Every sensor driver, every calibration curve, every layer of a neural
+        network is a function in Euler's sense and Dirichlet's — a lawful box
+        from input to output — and every robot behaviour is those boxes composed
+        into a chain. Master the box and the chain, and "how does the robot turn
+        what it senses into what it does?" stops being magic. Next, in
+        Folio&nbsp;07, we meet a function so important to batteries and signals
+        that it had to invent its own number: <em>e</em>.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> take any everyday machine — a microwave's
+        time knob, a thermostat, a volume dial — and write its rule as
+        <code>output = f(input)</code>. State its domain (which inputs are
+        allowed) and range (which outputs can result). You are now reading the
+        world as a pipeline of functions, which is precisely how a roboticist
+        sees it.
+      </p>
+      <a class="next-exhibit reveal" href="curves-of-decay.html">continue to folio 07 — curves of decay</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d', mat:'#f2e9d2' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+const VSOUND = 0.343;   // mm per µs
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr;
+    cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save();
+  ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke();
+  ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function inkRect(ctx, x, y, w, h, color, width) {
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x + ox, y + oy); ctx.lineTo(x + w + ox, y + oy);
+    ctx.lineTo(x + w + ox, y + h + oy); ctx.lineTo(x + ox, y + h + oy); ctx.closePath();
+  }, color, width);
+}
+function inkArrow(ctx, x1, y1, x2, y2, color, width) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy); }, color, width);
+  const a = Math.atan2(y2 - y1, x2 - x1);
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 10 * Math.cos(a - 0.5) + ox, y2 - 10 * Math.sin(a - 0.5) + oy);
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 10 * Math.cos(a + 0.5) + ox, y2 - 10 * Math.sin(a + 0.5) + oy);
+  }, color, width * 0.85);
+}
+function machineBox(ctx, x, y, w, h, label, color) {
+  ctx.save(); ctx.globalAlpha = 0.10; ctx.fillStyle = color; ctx.fillRect(x, y, w, h); ctx.restore();
+  inkRect(ctx, x, y, w, h, color, 2.2);
+  // little gears on the lid
+  ctx.fillStyle = color; ctx.font = 'bold 26px ' + HAND; ctx.textAlign = 'center';
+  ctx.fillText(label, x + w / 2, y + h / 2 + 9);
+  ctx.textAlign = 'start';
+}
+
+/* ---------------- LAB 6.1 — the black box ---------------- */
+(function () {
+  const cv = document.getElementById('blackbox'), S = setupCanvas(cv);
+  let ctx = S.resize(), revealed = false, count = 0, lastIn = null, lastOut = null;
+  const log = [];
+  const rule = (x) => 2 * x + 3;           // hidden rule
+  const el = (id) => document.getElementById(id);
+
+  function draw(dropT) {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const bx = w / 2 - 70, by = h / 2 - 60, bw = 140, bh = 120;
+    machineBox(ctx, bx, by, bw, bh, revealed ? '2x+3' : '?', revealed ? C.olive : C.ink);
+    // input arrow + value (left)
+    inkArrow(ctx, 60, by + bh / 2, bx - 6, by + bh / 2, C.slate, 2);
+    ctx.fillStyle = C.slate; ctx.font = '18px ' + HAND;
+    ctx.fillText('in: ' + lastIn, 66, by + bh / 2 - 12);
+    // output arrow + value (right)
+    inkArrow(ctx, bx + bw + 6, by + bh / 2, w - 60, by + bh / 2, C.chalk, 2);
+    ctx.fillStyle = C.chalk;
+    ctx.fillText('out: ' + (lastOut == null ? '—' : lastOut), w - 150, by + bh / 2 - 12);
+    // a falling token while dropping
+    if (dropT != null) {
+      const px = bx + bw / 2, py = by - 40 + dropT * 90;
+      ctx.fillStyle = C.slate; ctx.beginPath(); ctx.arc(px, py, 12, 0, TAU); ctx.fill();
+      ctx.fillStyle = C.mat; ctx.font = '14px ' + HAND; ctx.textAlign = 'center';
+      ctx.fillText(lastIn, px, py + 5); ctx.textAlign = 'start';
+    }
+    // probe log
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('probe log', 40, 30);
+    log.slice(-8).forEach((p, i) => ctx.fillText(p[0] + '  →  ' + p[1], 40, 52 + i * 20));
+  }
+  let anim = null;
+  function probe() {
+    lastIn = +el('bbIn').value; lastOut = rule(lastIn);
+    log.push([lastIn, lastOut]); count++;
+    el('bbOut').textContent = lastOut; el('bbCount').textContent = count;
+    const repeat = log.filter(p => p[0] === lastIn);
+    el('bbStatus').textContent = repeat.length > 1
+      ? 'fed ' + lastIn + ' before → same ' + lastOut + '. Predictable: it is a function.'
+      : '';
+    if (anim) cancelAnimationFrame(anim);
+    let t = 0;
+    const step = () => { t = Math.min(1, t + 0.06); draw(t < 1 ? t : null); if (t < 1) anim = requestAnimationFrame(step); else anim = null; };
+    anim = requestAnimationFrame(step);
+  }
+  el('bbIn').addEventListener('input', () => { el('bbInv').textContent = el('bbIn').value; });
+  el('bbProbe').addEventListener('click', probe);
+  el('bbReveal').addEventListener('click', () => { revealed = true; el('bbReveal').classList.add('on'); draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  lastIn = 2; draw();
+})();
+
+/* ---------------- LAB 6.2 — the graph ---------------- */
+(function () {
+  const cv = document.getElementById('graph'), S = setupCanvas(cv);
+  let ctx = S.resize(), rule = 'sonar';
+  const el = (id) => document.getElementById(id);
+  const RULES = {
+    sonar:  { f: (x) => VSOUND * (x * 1000) / 2 / 100, ymax: 18, label: 'd = v·t/2' }, // x in ms→scaled
+    double: { f: (x) => 2 * x, ymax: 20, label: 'double' },
+    square: { f: (x) => x * x / 5, ymax: 20, label: 'square' },
+  };
+
+  function draw() {
+    const w = S.w, h = S.h, R = RULES[rule];
+    paper(ctx, w, h);
+    const pad = 54, x0 = pad + 20, y0 = h - pad, plotW = w - x0 - pad, plotH = h - 2 * pad;
+    const XMAX = 10, YMAX = R.ymax;
+    const sx = (x) => x0 + (x / XMAX) * plotW;
+    const sy = (y) => y0 - (Math.min(y, YMAX) / YMAX) * plotH;
+    // axes
+    inkArrow(ctx, x0, y0, x0 + plotW + 16, y0, C.ink, 1.8);
+    inkArrow(ctx, x0, y0, x0, y0 - plotH - 16, C.ink, 1.8);
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('input  x →', x0 + plotW - 40, y0 + 24);
+    ctx.save(); ctx.translate(x0 - 22, y0 - plotH / 2 + 30); ctx.rotate(-Math.PI / 2);
+    ctx.fillText('output  f(x) →', 0, 0); ctx.restore();
+    // the curve
+    inkStroke(ctx, (ox, oy) => {
+      for (let i = 0; i <= 100; i++) { const x = i / 100 * XMAX; const px = sx(x) + ox, py = sy(R.f(x)) + oy; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+    }, C.chalk, 2);
+    // current point
+    const x = +el('gx').value, y = R.f(x);
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(sx(x) + ox, y0 + oy); ctx.lineTo(sx(x) + ox, sy(y) + oy); }, C.slate, 1.4);
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(x0 + ox, sy(y) + oy); ctx.lineTo(sx(x) + ox, sy(y) + oy); }, C.olive, 1.4);
+    ctx.save(); ctx.fillStyle = C.bg; ctx.strokeStyle = C.chalk; ctx.lineWidth = 2.4;
+    ctx.beginPath(); ctx.arc(sx(x), sy(y), 7, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    // readouts
+    el('gxr').textContent = x.toFixed(1); el('gxv').textContent = x.toFixed(1);
+    el('gfx').textContent = y.toFixed(2);
+    el('gdom').textContent = '0 … 10';
+    el('grng').textContent = R.f(0).toFixed(1) + ' … ' + R.f(10).toFixed(1);
+  }
+  function pick(r, btn) { rule = r; ['ruleSonar', 'ruleDouble', 'ruleSquare'].forEach(id => el(id).classList.remove('on')); btn.classList.add('on'); draw(); }
+  el('gx').addEventListener('input', draw);
+  el('ruleSonar').addEventListener('click', (e) => pick('sonar', e.target));
+  el('ruleDouble').addEventListener('click', (e) => pick('double', e.target));
+  el('ruleSquare').addEventListener('click', (e) => pick('square', e.target));
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* ---------------- LAB 6.3 — composition ---------------- */
+(function () {
+  const cv = document.getElementById('compose'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0, target = 4, running = false;
+  const STEP_MM = 0.5;                       // one motor step = 0.5 mm
+  const el = (id) => document.getElementById(id);
+  const f = (t) => VSOUND * t / 2;            // echo µs -> distance mm
+  const g = (d) => Math.round(d / STEP_MM);   // distance mm -> steps
+
+  function newTarget() { target = 2 + Math.floor(Math.random() * 7); prog = 0; running = false; el('cStatus').textContent = ''; draw(); }
+
+  function draw() {
+    const w = S.w, h = S.h;
+    paper(ctx, w, h);
+    const t = +el('cIn').value, d = f(t), s = g(d);
+    const y = h / 2 - 30, bw = 128, bh = 92, gap = (w - 2 * bw - 120) / 3;
+    const x1 = 60 + gap, x2 = x1 + bw + gap;
+    // input
+    inkArrow(ctx, 30, y + bh / 2, x1 - 6, y + bh / 2, C.slate, 2);
+    ctx.fillStyle = C.slate; ctx.font = '15px ' + HAND;
+    ctx.fillText('t = ' + t + ' µs', 36, y + bh / 2 - 12);
+    machineBox(ctx, x1, y, bw, bh, 'f', C.olive);
+    ctx.fillStyle = C.ghost; ctx.fillText('echo → mm', x1 + 20, y + bh + 20);
+    // middle value
+    inkArrow(ctx, x1 + bw + 6, y + bh / 2, x2 - 6, y + bh / 2, C.olive, 2);
+    ctx.fillStyle = C.olive; ctx.fillText('d = ' + d.toFixed(0) + ' mm', x1 + bw + 12, y + bh / 2 - 12);
+    machineBox(ctx, x2, y, bw, bh, 'g', C.slate);
+    ctx.fillStyle = C.ghost; ctx.fillText('mm → steps', x2 + 16, y + bh + 20);
+    // output
+    inkArrow(ctx, x2 + bw + 6, y + bh / 2, w - 30, y + bh / 2, C.chalk, 2);
+    ctx.fillStyle = C.chalk; ctx.fillText('s = ' + s, w - 96, y + bh / 2 - 12);
+    // target gripper mark below
+    const gy = h - 46, sc = (w - 100) / 12;
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(50 + ox, gy + oy); ctx.lineTo(w - 50 + ox, gy + oy); }, C.ink, 1.6);
+    const tx = 50 + target * sc;
+    inkStroke(ctx, (ox, oy) => { ctx.moveTo(tx + ox, gy + oy); ctx.lineTo(tx + ox, gy - 30 + oy); }, C.chalk, 1.8);
+    ctx.fillStyle = C.chalk; ctx.font = '14px ' + HAND; ctx.fillText('mark: ' + target + ' cm', tx - 20, gy - 36);
+    // gripper travels to d (cm) when run
+    const grip = 50 + Math.min(12, d / 10) * sc * prog;
+    ctx.save(); ctx.fillStyle = C.slate; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(grip, gy, 7, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    el('cInv').textContent = t; el('cMid').textContent = d.toFixed(1) + ' mm';
+    el('cOut').textContent = s; el('cTarget').textContent = target + ' cm';
+  }
+  function run() {
+    if (anim) cancelAnimationFrame(anim);
+    prog = 0; running = true;
+    const step = () => {
+      prog = Math.min(1, prog + 0.02); draw();
+      if (prog < 1) { anim = requestAnimationFrame(step); return; }
+      anim = null;
+      const d = f(+el('cIn').value), reachedCm = d / 10;
+      el('cStatus').textContent = Math.abs(reachedCm - target) <= 0.4
+        ? '✦ gripper on the mark — the whole chain agreed.'
+        : 'off by ' + (reachedCm - target).toFixed(1) + ' cm — adjust the echo you feed in.';
+    };
+    anim = requestAnimationFrame(step);
+  }
+  el('cIn').addEventListener('input', () => { prog = 0; draw(); });
+  el('cRun').addEventListener('click', run);
+  el('cNew').addEventListener('click', newTarget);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newTarget();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>
