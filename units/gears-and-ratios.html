@@ -390,21 +390,25 @@ function drawGear(ctx, x, y, r, teeth, angle, color) {
     const w = S.w, h = S.h;
     paper(ctx, w, h);
     const g1 = h * 0.42, g2 = h * 0.86;
-    const startX = 70;
+    const startX = 70, lineTurns = 6;
     const turns = +slider.value;
-    const target = startX + RA * TAU * 6;    // rover A arrives at exactly 6 turns
+    // display scale (px per mm): put A's finish line mid-canvas so B stays
+    // visible when it overshoots, whatever the canvas width
+    const sc = (w * 0.5 - startX) / (RA * TAU * lineTurns);
+    const target = startX + RA * TAU * lineTurns * sc;
     ground(ctx, w, g1); ground(ctx, w, g2);
     chalkFlag(ctx, target, g1, '');
     chalkFlag(ctx, target, g2, 'the line');
-    const dA = RA * TAU * turns, dB = RB * TAU * turns;
-    drawRover(ctx, startX + dA, g1, RA, dA / RA, C.slate, 'A');
-    drawRover(ctx, startX + dB, g2, RB, dB / RB, C.chalk, 'B');
+    const dA = RA * TAU * turns, dB = RB * TAU * turns;          // real mm
+    const xA = startX + dA * sc, xB = Math.min(startX + dB * sc, w - RB - 12);
+    drawRover(ctx, xA, g1, RA, dA / RA, C.slate, 'A');
+    drawRover(ctx, xB, g2, RB, dB / RB, C.chalk, 'B');
     document.getElementById('distA').textContent = dA.toFixed(0) + ' mm';
     document.getElementById('distB').textContent = dB.toFixed(0) + ' mm';
     const status = document.getElementById('raceStatus');
-    if (Math.abs((startX + dA) - target) < 4 && turns > 0)
+    if (Math.abs(xA - target) < 6 && turns > 0)
       status.textContent = 'A is on the line — and B overshot it by ' + (dB - dA).toFixed(0) + ' mm. Same turns, different truths.';
-    else if (startX + dB > target + 4 && startX + dA < target - 4)
+    else if (xB > target + 6 && xA < target - 6)
       status.textContent = 'B has already passed the line; A is still short. One slider cannot serve two wheels.';
     else status.textContent = '';
   }
@@ -463,7 +467,7 @@ function drawGear(ctx, x, y, r, teeth, angle, color) {
   const cv = document.getElementById('train'), S = setupCanvas(cv);
   let ctx = S.resize(), anim = null, prog = 0, target = 900;
   const el = (id) => document.getElementById(id);
-  const SCALE = 0.55;                        // mm -> px on the road
+  // display scale (mm -> px) is derived per-frame from the canvas width, in draw()
 
   function params() {
     return { n1: +el('n1').value, n2: +el('n2').value,
@@ -485,14 +489,16 @@ function drawGear(ctx, x, y, r, teeth, angle, color) {
     ctx.fillText('motor · N₁ = ' + p.n1, gx + r1 + 12, gy - r1 - 4);
     ctx.fillText('wheel · N₂ = ' + p.n2, gx + r2 + 12, gy + r2 + 4);
     // --- right: the rover on its road ---
-    const g = h * 0.82, startX = 260;
+    const g = h * 0.82, roadStart = 250;
+    const SCALE = (w * 0.9 - roadStart) / 1400;   // fit targets up to ~1400 mm
     ground(ctx, w, g);
-    chalkFlag(ctx, startX + target * SCALE, g, target + ' mm');
+    chalkFlag(ctx, Math.min(roadStart + target * SCALE, w - 20), g, target + ' mm');
     const dist = predicted(p) * prog;
-    drawRover(ctx, startX + dist * SCALE, g, Math.max(16, p.r * 0.55), dist / p.r, C.ink, '');
+    const roverX = Math.min(roadStart + dist * SCALE, w - 30);
+    drawRover(ctx, roverX, g, Math.max(16, p.r * 0.5), dist / p.r, C.ink, '');
     // axle hint: dashed line from wheel gear to rover
     ctx.save(); ctx.setLineDash([3, 7]); ctx.strokeStyle = C.grid; ctx.lineWidth = 1.4;
-    ctx.beginPath(); ctx.moveTo(gx + r2 + 60, gy + r2); ctx.lineTo(startX + dist * SCALE - 20, g - p.r * 0.55); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx + r2 + 60, gy + r2); ctx.lineTo(roverX - 20, g - p.r * 0.5); ctx.stroke();
     ctx.restore();
     // readouts
     el('ratio').textContent = (p.n1 / p.n2).toFixed(3);

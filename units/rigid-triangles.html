@@ -312,10 +312,14 @@ function missionLab(canvasId, sliderId, sliderLabelId, flyId, newId, attemptsId,
     draw();
   }
   function geom() {
-    const w = S.w, h = S.h;
-    const maxLeg = 13;
-    const sc = Math.min((w - 200) / maxLeg, (h - 120) / maxLeg);
-    return { hx: 90, hy: h - 60, sc };
+    const w = S.w, h = S.h, pad = 58;
+    // fit THIS mission (home at corner, legs up-and-right) to the canvas, and
+    // centre its bounding box — so a small 3-4 mission fills the window too
+    const maxUnit = Math.max(M.a, M.b, 5);
+    const sc = Math.min((w - 2 * pad) / maxUnit, (h - 2 * pad) / maxUnit);
+    const hx = (w - M.a * sc) / 2;
+    const hy = (h + M.b * sc) / 2;
+    return { hx, hy, sc };
   }
   function draw() {
     const w = S.w, h = S.h;
