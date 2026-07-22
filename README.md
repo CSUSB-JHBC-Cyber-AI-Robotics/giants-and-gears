@@ -30,6 +30,11 @@ articles for attribution).
 | `units/machines-as-functions.html` | **Folio 06** — functions & composition: black-box probe, function-graph tracer, compose-the-pipeline |
 | `units/curves-of-decay.html` | **Folio 07** — exponentials & logs: optimistic-fuel-gauge fail, fit-τ discharge, logarithm-as-clock |
 | `units/trusting-a-noisy-sensor.html` | **Folio 08** — mean, variance & the bell: one-ping fail, bell-builds-itself, √n confidence |
+| `units/arrows-of-motion.html` | **Folio 09** — vectors: crosswind fail, tip-to-tail playground, ferry-angle |
+| `units/the-rotation-machine.html` | **Folio 10** — matrices & rotation: frame-mismatch fail, rotation dial, camera→world |
+| `units/the-speed-of-speed.html` | **Folio 11** — derivatives: laggy speedometer, secant→tangent limit, predict-with-slope |
+| `units/adding-up-motion.html` | **Folio 12** — integrals: blind-robot area, Riemann sum, dead-reckoning drift |
+| `units/numbers-that-rotate.html` | **Folio 13** — complex numbers: √of-a-turn, Argand plane, the rotor |
 | `curriculum.md` | The master skeleton: every unit's robotics hook, giants, artifact formula, planned lab, plus the five design invariants |
 | `assets/img/portraits/` | mathematician portraits & artifacts pulled from the offline Wikipedia archive |
 | `assets/img/diagrams/` | DaVinci Ink hand-drawn diagrams + ink formula SVGs, generated locally |
@@ -38,10 +43,11 @@ articles for attribution).
 | `tools/fetch_named_image.py` | Pull a *specific* image from an article by filename substring |
 | `tools/make_diagrams.py` | Regenerate DaVinci Ink diagrams (`ultrapc.diagrams.ink_*`) and formula SVGs (matplotlib mathtext, no KaTeX) |
 
-**Stages I and II are complete** — Folios 01–08: "Making a Machine Move at All"
-(gears, coordinates, equations, triangles) and "Sensing and Turning"
-(trigonometry, functions, decay, noise). Folios 09–26 are mapped in
-`curriculum.md` and shown "in preparation" on the codex map.
+**Stages I, II and III are complete** — Folios 01–13: "Making a Machine Move at
+All" (gears, coordinates, equations, triangles), "Sensing and Turning"
+(trigonometry, functions, decay, noise), and "Describing Motion Exactly"
+(vectors, rotation, derivatives, integrals, complex numbers). Folios 14–26 are
+mapped in `curriculum.md` and shown "in preparation" on the codex map.
 
 ## Building the next unit
 
