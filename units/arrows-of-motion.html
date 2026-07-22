@@ -221,13 +221,17 @@ const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#9641
 const HAND = "'Ink Free', 'Segoe Print', cursive";
 
 function setupCanvas(cv) {
-  const dpr = devicePixelRatio || 1;
+  const designH = parseInt(cv.getAttribute('height'), 10);   // fixed design height
   function resize() {
-    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
-    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
-    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+    const dpr = devicePixelRatio || 1;
+    const w = Math.max(1, cv.clientWidth);
+    cv.width = w * dpr; cv.height = designH * dpr;
+    cv.style.height = designH + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
   }
-  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+  return { resize, get w() { return Math.max(1, cv.clientWidth); }, get h() { return designH; } };
 }
 function inkStroke(ctx, drawPath, color, width) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';

@@ -21,8 +21,16 @@
      many canvases don't each trigger a separate pass. */
   if ('ResizeObserver' in window) {
     let pending = false;
-    const ro = new ResizeObserver(() => {
-      if (pending) return;
+    const lastW = new WeakMap();
+    const ro = new ResizeObserver((entries) => {
+      // react to WIDTH changes only — our own backing-store writes touch height
+      // and must never re-trigger the loop
+      let changed = false;
+      for (const e of entries) {
+        const w = Math.round(e.contentRect.width);
+        if (lastW.get(e.target) !== w) { lastW.set(e.target, w); changed = true; }
+      }
+      if (!changed || pending) return;
       pending = true;
       requestAnimationFrame(() => { pending = false; window.dispatchEvent(new Event('resize')); });
     });
@@ -30,4 +38,12 @@
   }
   // belt-and-braces for very old engines
   window.addEventListener('load', () => window.dispatchEvent(new Event('resize')));
+
+  /* Tag wide ink diagrams (anything that isn't an f-*.svg formula) so CSS can
+     shrink them into short, horizontally scrollable plate windows. */
+  document.querySelectorAll('.formula-artifact img').forEach((img) => {
+    const name = (img.getAttribute('src') || '').split('/').pop();
+    if (name && !name.startsWith('f-'))
+      img.closest('.formula-artifact').classList.add('plate-diagram');
+  });
 })();

@@ -244,13 +244,17 @@ const TRUE_D = 60, SIGMA = 6;                 // cm; sensor noise
 const XMIN = 30, XMAX = 90;                   // distance axis (cm)
 
 function setupCanvas(cv) {
-  const dpr = devicePixelRatio || 1;
+  const designH = parseInt(cv.getAttribute('height'), 10);   // fixed design height
   function resize() {
-    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
-    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
-    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+    const dpr = devicePixelRatio || 1;
+    const w = Math.max(1, cv.clientWidth);
+    cv.width = w * dpr; cv.height = designH * dpr;
+    cv.style.height = designH + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
   }
-  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+  return { resize, get w() { return Math.max(1, cv.clientWidth); }, get h() { return designH; } };
 }
 function inkStroke(ctx, drawPath, color, width) {
   ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';

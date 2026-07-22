@@ -107,7 +107,7 @@ code, .mono { font-family: var(--mono); color: var(--ink-strong); background: rg
 
 /* ---- folio sections ---- */
 .exhibit {
-  margin: 6rem 0; display: grid; gap: 2.4rem;
+  margin: 3.5rem 0; display: grid; gap: 2.4rem;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
   align-items: center;
 }
@@ -124,21 +124,31 @@ code, .mono { font-family: var(--mono); color: var(--ink-strong); background: rg
 .reveal.lit { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-/* ---- portraits: sketches pinned into the notebook ---- */
-.gallery { display: flex; flex-wrap: wrap; gap: 2.2rem; justify-content: center; margin: 2.5rem 0; }
-.portrait { width: 200px; text-align: center; }
-.portrait .frame { padding: 7px; }
+/* ---- portraits: a horizontal shelf of pinned sketches (scrolls sideways
+        when the giants outnumber the window; centres when they don't) ---- */
+.gallery {
+  display: flex; flex-wrap: nowrap; gap: 1.6rem; margin: 2rem 0;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity; padding: .4rem .2rem 1rem;
+  scrollbar-width: thin; scrollbar-color: var(--gold) transparent;
+}
+.gallery::before, .gallery::after { content: ''; margin: auto; }  /* centre until overflow */
+.gallery::-webkit-scrollbar { height: 8px; }
+.gallery::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+.gallery::-webkit-scrollbar-track { background: rgba(55, 42, 27, .12); }
+.portrait { width: 168px; flex: 0 0 auto; text-align: center; scroll-snap-align: center; }
+.portrait .frame { padding: 6px; }
 .portrait:nth-child(odd) .frame { transform: rotate(-1.1deg); }
 .portrait:nth-child(even) .frame { transform: rotate(.8deg); }
 .portrait .frame img { filter: sepia(.32) contrast(1.02) saturate(.9); aspect-ratio: 3/4; object-fit: cover; }
-.portrait .plaque { margin-top: .8rem; }
-.portrait .plaque .name { font-family: var(--display); font-size: .92rem; color: var(--ink-strong); letter-spacing: .08em; }
-.portrait .plaque .dates { font-family: var(--mono); font-size: .66rem; color: var(--chalk); letter-spacing: .14em; margin: .2rem 0; }
-.portrait .plaque .role { font-family: var(--hand); color: var(--sepia); font-size: 1.02rem; line-height: 1.3; }
+.portrait .plaque { margin-top: .7rem; }
+.portrait .plaque .name { font-family: var(--display); font-size: .84rem; color: var(--ink-strong); letter-spacing: .06em; }
+.portrait .plaque .dates { font-family: var(--mono); font-size: .6rem; color: var(--chalk); letter-spacing: .12em; margin: .2rem 0; }
+.portrait .plaque .role { font-family: var(--hand); color: var(--sepia); font-size: .95rem; line-height: 1.28; }
 
 /* ---- construction rule: compass points and a dashed ink line ---- */
 .constellation-rule {
-  height: 1px; margin: 4.5rem auto; max-width: 420px; position: relative;
+  height: 1px; margin: 2.8rem auto; max-width: 420px; position: relative;
   background: repeating-linear-gradient(90deg, var(--rule) 0 6px, transparent 6px 14px);
 }
 .constellation-rule::before, .constellation-rule::after {
@@ -148,18 +158,32 @@ code, .mono { font-family: var(--mono); color: var(--ink-strong); background: rg
 .constellation-rule::before { left: -4px; }
 .constellation-rule::after { right: -4px; }
 
-/* ---- artifact formulas: ink on the mat, gold hairline ---- */
-.formula-artifact { text-align: center; margin: 3rem auto; max-width: 720px; }
-.formula-artifact .frame { padding: 2rem 1.8rem; }
+/* ---- artifact formulas: ink on the mat, gold hairline (kept compact) ---- */
+.formula-artifact { text-align: center; margin: 1.8rem auto; max-width: 680px; }
+.formula-artifact .frame { padding: 1.1rem 1rem; }
 .formula-artifact .frame img { width: auto; max-width: 100%; margin: 0 auto; }
-.formula-artifact .plaque-caption { margin-top: .9rem; }
+.formula-artifact .plaque-caption { margin-top: .7rem; font-size: 1.05rem; }
+
+/* ---- wide ink diagrams: a short window that scrolls sideways ----
+   site.js tags these with .plate-diagram (any artifact img that isn't an
+   f-*.svg formula). The frame becomes a fixed-height porthole; the drawing
+   keeps its natural proportions and pans horizontally when wider. */
+.plate-diagram { max-width: 760px; }
+.plate-diagram .frame {
+  overflow-x: auto; overscroll-behavior-x: contain; padding: 8px;
+  scrollbar-width: thin; scrollbar-color: var(--gold) transparent;
+}
+.plate-diagram .frame::-webkit-scrollbar { height: 8px; }
+.plate-diagram .frame::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+.plate-diagram .frame::-webkit-scrollbar-track { background: rgba(55, 42, 27, .12); }
+.plate-diagram .frame img { height: 330px; width: auto; max-width: none; margin: 0 auto; }
 
 /* ---- interactive labs: dark technical plates bound into the page ---- */
 .lab {
   border: 1px solid var(--gold);
   box-shadow: inset 0 0 0 1px var(--rule), 2px 4px 12px rgba(58, 44, 26, .2);
   background: var(--mat);
-  padding: 1.2rem 1.3rem; margin: 2.5rem 0;
+  padding: 1.2rem 1.3rem; margin: 1.8rem 0;
 }
 .lab-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: .9rem; }
 .lab-head .smallcaps { color: var(--chalk); }
