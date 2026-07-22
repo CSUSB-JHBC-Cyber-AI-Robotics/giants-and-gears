@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 11 — The Speed of Speed · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage III · Describing Motion Exactly</span>
+  <span class="right">Folio 11 · limits &amp; derivatives</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 11 · CODEX I · GIANTS: NEWTON — LEIBNIZ</div>
+    <h1 class="reveal" style="margin:.6rem 0;">The Speed of Speed</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which the wheel encoder knows exactly where the robot has been and
+      nothing about how fast it is going <em>now</em>, and two rivals invent the
+      same escape.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT I -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">Average speed answers the wrong question</h2>
+      <p class="lede reveal">
+        The encoder reports position. To get velocity you do the obvious thing:
+        take two readings, subtract, divide by the time between them. But over a
+        wide window that gives the <em>average</em> speed — and while the robot is
+        speeding up or slowing down, the average is never the speed it has right
+        now. Widen the window and watch the estimate drift off the truth.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 11.1 — the laggy speedometer</span>
+          <span class="plaque-caption">average over a window ≠ speed at the instant</span>
+        </div>
+        <canvas id="secant" height="380"></canvas>
+        <div class="controls">
+          <label>reading at t <input type="range" id="t0" min="1" max="8" value="4" step="0.1"> <code id="t0v">4.0</code></label>
+          <label>window h <input type="range" id="hwin" min="0.2" max="3" value="2.5" step="0.1"> <code id="hwinv">2.5</code></label>
+        </div>
+        <div class="readout">
+          <span style="color:#46617a">average over window: <b id="avgV">—</b></span>
+          <span style="color:#96412e">true speed now: <b id="trueV">—</b></span>
+          <span id="secStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        The wide secant line and the truth part ways the moment the robot's speed
+        changes. The fix is daring and simple: make the window <em>smaller</em> —
+        and keep shrinking it until the two readings are a hair apart. What the
+        average speed becomes at that vanishing point is the speed at the instant.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT II -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">The rate of change, named twice</h2>
+    <p class="lede reveal">
+      Two men, working apart, caught the same idea within a decade — and then their
+      followers fought about it for a century. The feud was bitter; the mathematics
+      was identical, and it is the mathematics your controller runs.
+    </p>
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/newton.jpg" alt="Isaac Newton"></div>
+        <figcaption class="plaque">
+          <div class="name">Isaac Newton</div>
+          <div class="dates">1643 – 1727 · WOOLSTHORPE → LONDON</div>
+          <div class="role">In his plague-year of 1666 he built "fluxions" to describe how quantities flow and change — the derivative — to explain the motion of the planets. Physics has computed rates his way ever since.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/leibniz.jpg" alt="Gottfried Wilhelm Leibniz"></div>
+        <figcaption class="plaque">
+          <div class="name">Gottfried Wilhelm Leibniz</div>
+          <div class="dates">1646 – 1716 · LEIPZIG → HANNOVER</div>
+          <div class="role">Found the same calculus independently and gave it the notation we still use — <em>dx/dt</em>, the "d" of difference shrunk to nothing. His symbols were so good they won the argument that his reputation lost.</div>
+        </figcaption>
+      </figure>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/calculus-history.svg" alt="the rate of change, named twice"></div>
+      <figcaption class="plaque-caption">Same summit, two paths — and one notation that outlived the quarrel.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT III -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">Shrink the window to nothing</h2>
+    <p class="lede reveal">
+      Here is the whole move. Keep the reading fixed and slide the window down
+      toward zero. The line through the two points — the secant — pivots, and as
+      the gap vanishes it settles onto the <em>tangent</em>: the line that grazes
+      the curve at a single instant. Its slope is the derivative, the exact speed.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 11.2 — secant becomes tangent</span>
+        <span class="plaque-caption">drive h toward 0 and watch the slope settle</span>
+      </div>
+      <canvas id="limit" height="380"></canvas>
+      <div class="controls">
+        <label>window h <input type="range" id="hlim" min="0.02" max="3" value="2" step="0.02"> <code id="hlimv">2.00</code></label>
+        <button class="toggle" id="shrink">shrink h → 0</button>
+      </div>
+      <div class="readout">
+        <span>secant slope: <b id="secSlope">—</b></span>
+        <span>tangent (derivative): <b id="tanSlope">—</b></span>
+        <span id="limStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-derivative.svg" alt="f prime equals limit of difference quotient" style="max-height:70px;"></div>
+      <figcaption class="plaque-caption">
+        The derivative, in full: the slope between two points <em>as the gap h
+        goes to zero</em>. "Speed at an instant" finally means something exact.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT IV -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">The tangent sees the future</h2>
+    <p class="lede reveal">
+      Why controllers crave the instantaneous speed: it is the robot's best guess
+      of what happens next. Stand at the current instant, follow the tangent
+      forward a moment, and you have predicted the next position before it arrives.
+      Slide along the run and check the prediction against reality.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 11.3 — predict with the slope</span>
+        <span class="plaque-caption">position + velocity·Δt ≈ where next</span>
+      </div>
+      <canvas id="predict" height="380"></canvas>
+      <div class="controls">
+        <label>now at t <input type="range" id="pt" min="1" max="8.4" value="3" step="0.1"> <code id="ptv">3.0</code></label>
+        <label>look ahead Δt <input type="range" id="dt" min="0.2" max="2" value="1" step="0.1"> <code id="dtv">1.0</code></label>
+      </div>
+      <div class="readout">
+        <span>velocity now: <b id="vNow">—</b></span>
+        <span>tangent predicts: <b id="predPos">—</b></span>
+        <span>actual: <b id="actPos">—</b></span>
+        <span id="predStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+    <p class="reveal">
+      Small look-ahead, near-perfect prediction; reach too far and the curve bends
+      away from the straight tangent. Every model-predictive controller,
+      every Kalman filter's "predict" step (Folio&nbsp;20), every physics engine
+      steps forward exactly this way — position plus velocity times a small slice
+      of time.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT V -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Velocity and acceleration from raw position, the "D" in every PID
+        controller, edge detection in vision, the gradients that train neural
+        networks — all are derivatives, all are that vanishing window. Once you can
+        take a rate of change, a robot stops merely knowing where it <em>was</em>
+        and starts knowing where it is <em>heading</em>. Next, in Folio&nbsp;12, we
+        run the machine backwards: add up a stream of velocities to recover
+        position, when no GPS will tell you.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> in a car (as passenger), glance at the odometer
+        every few seconds and note the gaps. Over a minute you get average speed;
+        the speedometer needle shows the derivative — the same distance, measured
+        over an interval so short it reads as "now."
+      </p>
+      <a class="next-exhibit reveal" href="adding-up-motion.html">continue to folio 12 — adding up motion</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+// the run: position vs time (m vs s). Speed varies, so instant ≠ average.
+const XMAXT = 10, POSMAX = 40;
+function X(t) { return 3 * t + 3.2 * Math.sin(0.7 * t); }
+function V(t) { return 3 + 3.2 * 0.7 * Math.cos(0.7 * t); }   // exact derivative
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke(); ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function plot(S, ctx) {
+  const w = S.w, h = S.h, pad = 50, x0 = pad + 20, y0 = h - pad, plotW = w - x0 - pad, plotH = h - 2 * pad;
+  const sx = (t) => x0 + t / XMAXT * plotW, sy = (x) => y0 - x / POSMAX * plotH;
+  inkStroke(ctx, (a, b) => { ctx.moveTo(x0 + a, y0 + b); ctx.lineTo(x0 + plotW + 16 + a, y0 + b); }, C.ink, 1.8);
+  inkStroke(ctx, (a, b) => { ctx.moveTo(x0 + a, y0 + b); ctx.lineTo(x0 + a, y0 - plotH - 16 + b); }, C.ink, 1.8);
+  ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+  ctx.fillText('time t (s) →', x0 + plotW - 50, y0 + 24);
+  ctx.save(); ctx.translate(x0 - 22, y0 - plotH / 2 + 34); ctx.rotate(-Math.PI / 2); ctx.fillText('position x (m) →', 0, 0); ctx.restore();
+  // the position curve
+  inkStroke(ctx, (a, b) => { for (let i = 0; i <= 140; i++) { const t = i / 140 * XMAXT; const px = sx(t) + a, py = sy(X(t)) + b; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); } }, C.ink, 2);
+  return { sx, sy, x0, y0, plotW, plotH };
+}
+function dot(ctx, x, y, color) { ctx.save(); ctx.fillStyle = C.bg; ctx.strokeStyle = color; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.arc(x, y, 6, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); }
+
+/* LAB 11.1 — the laggy speedometer */
+(function () {
+  const cv = document.getElementById('secant'), S = setupCanvas(cv);
+  let ctx = S.resize(); const el = (id) => document.getElementById(id);
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h); const P = plot(S, ctx);
+    const t = +el('t0').value, hh = Math.min(+el('hwin').value, XMAXT - t);
+    const x1 = X(t), x2 = X(t + hh);
+    // secant
+    inkStroke(ctx, (a, b) => {
+      const m = (x2 - x1) / hh, t0 = Math.max(0, t - 1.5), t1 = Math.min(XMAXT, t + hh + 1.5);
+      ctx.moveTo(P.sx(t0) + a, P.sy(x1 + m * (t0 - t)) + b); ctx.lineTo(P.sx(t1) + a, P.sy(x1 + m * (t1 - t)) + b);
+    }, C.slate, 2);
+    dot(ctx, P.sx(t), P.sy(x1), C.slate); dot(ctx, P.sx(t + hh), P.sy(x2), C.slate);
+    // true tangent
+    const m2 = V(t);
+    inkStroke(ctx, (a, b) => { const t0 = Math.max(0, t - 1.5), t1 = Math.min(XMAXT, t + 1.5); ctx.moveTo(P.sx(t0) + a, P.sy(x1 + m2 * (t0 - t)) + b); ctx.lineTo(P.sx(t1) + a, P.sy(x1 + m2 * (t1 - t)) + b); }, C.chalk, 2);
+    el('t0v').textContent = t.toFixed(1); el('hwinv').textContent = (+el('hwin').value).toFixed(1);
+    el('avgV').textContent = ((x2 - x1) / hh).toFixed(2) + ' m/s';
+    el('trueV').textContent = m2.toFixed(2) + ' m/s';
+    el('secStatus').textContent = 'gap: ' + Math.abs((x2 - x1) / hh - m2).toFixed(2) + ' m/s — shrink the window to close it.';
+  }
+  el('t0').addEventListener('input', draw); el('hwin').addEventListener('input', draw);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 11.2 — secant becomes tangent */
+(function () {
+  const cv = document.getElementById('limit'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null; const el = (id) => document.getElementById(id);
+  const T = 4.5;
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h); const P = plot(S, ctx);
+    const hh = +el('hlim').value, x1 = X(T), x2 = X(T + hh), m = (x2 - x1) / hh;
+    inkStroke(ctx, (a, b) => { const t0 = Math.max(0, T - 2), t1 = Math.min(XMAXT, T + hh + 2); ctx.moveTo(P.sx(t0) + a, P.sy(x1 + m * (t0 - T)) + b); ctx.lineTo(P.sx(t1) + a, P.sy(x1 + m * (t1 - T)) + b); }, C.slate, 2);
+    dot(ctx, P.sx(T), P.sy(x1), C.chalk); dot(ctx, P.sx(T + hh), P.sy(x2), C.slate);
+    el('hlimv').textContent = hh.toFixed(2);
+    el('secSlope').textContent = m.toFixed(3) + ' m/s';
+    el('tanSlope').textContent = V(T).toFixed(3) + ' m/s';
+    el('limStatus').textContent = hh < 0.2 ? '✦ the secant IS the tangent now — that limit is the derivative.' : '';
+  }
+  function shrink() { if (anim) cancelAnimationFrame(anim); const step = () => { const v = Math.max(0.02, +el('hlim').value - 0.06); el('hlim').value = v; draw(); if (v > 0.02) anim = requestAnimationFrame(step); else anim = null; }; anim = requestAnimationFrame(step); }
+  el('hlim').addEventListener('input', draw);
+  el('shrink').addEventListener('click', shrink);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 11.3 — predict with the slope */
+(function () {
+  const cv = document.getElementById('predict'), S = setupCanvas(cv);
+  let ctx = S.resize(); const el = (id) => document.getElementById(id);
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h); const P = plot(S, ctx);
+    const t = +el('pt').value, dt = +el('dt').value, x0 = X(t), v = V(t);
+    const pred = x0 + v * dt, act = X(t + dt);
+    // tangent extended forward
+    inkStroke(ctx, (a, b) => { ctx.moveTo(P.sx(t) + a, P.sy(x0) + b); ctx.lineTo(P.sx(t + dt) + a, P.sy(pred) + b); }, C.slate, 2.2);
+    dot(ctx, P.sx(t), P.sy(x0), C.chalk);
+    // predicted vs actual points
+    ctx.save(); ctx.fillStyle = C.slate; ctx.beginPath(); ctx.arc(P.sx(t + dt), P.sy(pred), 6, 0, TAU); ctx.fill(); ctx.restore();
+    dot(ctx, P.sx(t + dt), P.sy(act), C.olive);
+    ctx.fillStyle = C.slate; ctx.font = '14px ' + HAND; ctx.fillText('predicted', P.sx(t + dt) + 8, P.sy(pred));
+    ctx.fillStyle = C.olive; ctx.fillText('actual', P.sx(t + dt) + 8, P.sy(act) + 16);
+    el('ptv').textContent = t.toFixed(1); el('dtv').textContent = dt.toFixed(1);
+    el('vNow').textContent = v.toFixed(2) + ' m/s';
+    el('predPos').textContent = pred.toFixed(2) + ' m';
+    el('actPos').textContent = act.toFixed(2) + ' m';
+    el('predStatus').textContent = 'prediction error: ' + Math.abs(pred - act).toFixed(2) + ' m' + (Math.abs(pred - act) < 0.3 ? ' — tight.' : ' — shorten Δt.');
+  }
+  el('pt').addEventListener('input', draw); el('dt').addEventListener('input', draw);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

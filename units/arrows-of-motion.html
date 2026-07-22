@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 09 — Arrows of Motion · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage III · Describing Motion Exactly</span>
+  <span class="right">Folio 09 · vectors</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 09 · CODEX I · GIANTS: HAMILTON — GRASSMANN</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Arrows of Motion</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a drone aims dead at its landing pad and drifts past it anyway,
+      because the wind gets a vote — and two men taught arrows how to add.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT I -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">Aim true, arrive wrong</h2>
+      <p class="lede reveal">
+        The pad is straight ahead. You point the drone's thrust right at it and
+        commit. But a steady crosswind is blowing, and the drone obeys
+        <em>both</em> pushes at once. Set your heading and fly.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 9.1 — the crosswind</span>
+          <span class="plaque-caption">point at the pad; let the wind have its say</span>
+        </div>
+        <canvas id="cross" height="380"></canvas>
+        <div class="controls">
+          <label>heading <input type="range" id="hdg" min="0" max="90" value="45" step="1"> <code id="hdgv">45°</code></label>
+          <label>thrust <input type="range" id="thr" min="3" max="9" value="6" step="0.5"> <code id="thrv">6</code></label>
+          <button class="toggle" id="fly">fly</button>
+          <button class="toggle" id="crossReset">reset</button>
+        </div>
+        <div class="readout">
+          <span>wind: <b>4 → east</b></span>
+          <span>where you land: <b id="landAt">—</b></span>
+          <span id="crossStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Point straight at the pad and the wind carries you east of it every time.
+        The drone's true motion is not your thrust and not the wind — it is the
+        two <em>added together</em>, tip to tail. A push with a direction is a
+        <em>vector</em>, and the only way to predict the drone is to do vector
+        arithmetic.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT II -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">Arrows learn arithmetic</h2>
+    <p class="lede reveal">
+      For centuries an arrow was a picture, not a number. Then, within a single
+      year, two men gave arrows a full algebra — you could add them, scale them,
+      and multiply them — and physics has spoken in vectors ever since.
+    </p>
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/hamilton.jpg" alt="William Rowan Hamilton"></div>
+        <figcaption class="plaque">
+          <div class="name">William Rowan Hamilton</div>
+          <div class="dates">1805 – 1865 · DUBLIN</div>
+          <div class="role">In 1843 he invented quaternions to multiply directions in 3-D — and coined the very word <em>vector</em>. His four-dimensional numbers now steer every drone; we meet them properly in Folio 21.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/grassmann.jpg" alt="Hermann Grassmann"></div>
+        <figcaption class="plaque">
+          <div class="name">Hermann Grassmann</div>
+          <div class="dates">1809 – 1877 · STETTIN</div>
+          <div class="role">A schoolteacher who, in 1844, built the whole theory of vector spaces — addition, scaling, dimension — decades before anyone understood him. Every "space" a robot reasons in is Grassmann's.</div>
+        </figcaption>
+      </figure>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/vectors-history.svg" alt="arrows learn arithmetic"></div>
+      <figcaption class="plaque-caption">From a flash of insight on a Dublin bridge to the modern arrow.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT III -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">Two arrows, tip to tail</h2>
+    <p class="lede reveal">
+      Here is the entire rule. To add two vectors, walk the first, then walk the
+      second from where you stopped; the arrow from start to finish is the sum.
+      Drag the two arrows below — your thrust and the wind — and watch the
+      resultant, its length, and the angle between them appear.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 9.2 — the vector playground</span>
+        <span class="plaque-caption">drag either arrowhead</span>
+      </div>
+      <canvas id="play" height="400"></canvas>
+      <div class="readout">
+        <span style="color:#46617a">thrust u = <b id="uComp">—</b></span>
+        <span style="color:#5b6b3a">wind v = <b id="vComp">—</b></span>
+        <span style="color:#96412e">sum u+v = <b id="wComp">—</b></span>
+        <span>|u+v| = <b id="wMag">—</b></span>
+        <span>angle between = <b id="uvAng">—</b></span>
+      </div>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-vector-add.svg" alt="w equals u plus v, componentwise" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">
+        Add them component by component: east-with-east, north-with-north. The
+        picture and the arithmetic are the same act.
+      </figcaption>
+    </figure>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-dot.svg" alt="u dot v equals magnitudes times cosine" style="max-height:48px;"></div>
+      <figcaption class="plaque-caption">
+        The dot product measures how much two arrows <em>agree</em> — full when
+        aligned, zero at right angles. It is how a robot asks "am I facing the goal?"
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT IV -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Aim into the wind</h2>
+    <p class="lede reveal">
+      Now beat the crosswind for real. If you want to travel straight to the pad,
+      your thrust must cancel the wind's sideways shove and still carry you
+      forward — so you aim not at the pad, but <em>upwind of it</em>. Find the
+      heading whose sum with the wind points dead at the target.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 9.3 — the ferry angle</span>
+        <span class="plaque-caption">thrust + wind must equal the straight path</span>
+      </div>
+      <canvas id="ferry" height="400"></canvas>
+      <div class="controls">
+        <label>heading <input type="range" id="fh" min="-80" max="80" value="0" step="1"> <code id="fhv">0°</code></label>
+        <button class="toggle" id="ferryFly">fly</button>
+        <button class="toggle" id="ferryNew">new wind</button>
+      </div>
+      <div class="readout">
+        <span>wind: <b id="fWind">—</b></span>
+        <span>your thrust + wind: <b id="fSum">—</b></span>
+        <span id="ferryStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+    <p class="reveal">
+      Watch the resultant arrow swing onto the target line as you tune the
+      heading — the drone flies a straight path only when thrust and wind add to
+      exactly the direction of the pad. Every boat crossing a river, every plane
+      in a jetstream, every quadrotor in a gust solves this same vector equation,
+      hundreds of times a second.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT V -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Velocities, forces, headings, the pull of every obstacle in a path
+        planner's potential field — a robot represents them all as vectors and
+        combines them by addition. Get this and "what will the machine actually
+        do when three things push at once?" becomes a sum you can compute. Next,
+        in Folio&nbsp;10, we learn to <em>turn</em> a vector — to convert what the
+        camera sees into where the world is — with a machine made of four numbers.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> walk 3 steps east and 4 steps north, then have a
+        friend walk straight from your start to your finish. They walked the
+        vector sum — and by Folio&nbsp;04's theorem, exactly 5 steps. Motion adds
+        like arrows, always.
+      </p>
+      <a class="next-exhibit reveal" href="the-rotation-machine.html">continue to folio 10 — the rotation machine</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2, D2R = Math.PI / 180, R2D = 180 / Math.PI;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke(); ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function vec(ctx, x1, y1, x2, y2, color, width) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy); }, color, width || 2.4);
+  const a = Math.atan2(y2 - y1, x2 - x1);
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 12 * Math.cos(a - 0.45) + ox, y2 - 12 * Math.sin(a - 0.45) + oy);
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 12 * Math.cos(a + 0.45) + ox, y2 - 12 * Math.sin(a + 0.45) + oy);
+  }, color, (width || 2.4) * 0.9);
+}
+function pad(ctx, x, y) {
+  inkStroke(ctx, (ox, oy) => { ctx.arc(x + ox, y + oy, 13, 0, TAU); }, C.chalk, 1.8);
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x - 9 + ox, y + oy); ctx.lineTo(x + 9 + ox, y + oy); ctx.moveTo(x + ox, y - 9 + oy); ctx.lineTo(x + ox, y + 9 + oy); }, C.chalk, 1.4);
+}
+function drone(ctx, x, y, color) {
+  ctx.save(); ctx.fillStyle = C.bg; ctx.strokeStyle = color; ctx.lineWidth = 2;
+  for (const [sx, sy] of [[-9, -6], [9, -6], [-9, 6], [9, 6]]) { ctx.beginPath(); ctx.arc(x + sx, y + sy, 5, 0, TAU); ctx.fill(); ctx.stroke(); }
+  ctx.beginPath(); ctx.moveTo(x - 9, y - 6); ctx.lineTo(x + 9, y + 6); ctx.moveTo(x + 9, y - 6); ctx.lineTo(x - 9, y + 6); ctx.stroke(); ctx.restore();
+}
+
+/* LAB 9.1 — the crosswind */
+(function () {
+  const cv = document.getElementById('cross'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0;
+  const WIND = { x: 4, y: 0 };                  // east
+  const el = (id) => document.getElementById(id);
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const ox = 90, oy = h - 70, sc = 22;
+    const target = { x: 8, y: 7 };               // pad up-and-right
+    pad(ctx, ox + target.x * sc, oy - target.y * sc);
+    ctx.fillStyle = C.chalk; ctx.font = '14px ' + HAND; ctx.fillText('pad', ox + target.x * sc + 14, oy - target.y * sc);
+    drone(ctx, ox, oy, C.ink);
+    const hdg = +el('hdg').value * D2R, thr = +el('thr').value;
+    const tv = { x: thr * Math.cos(hdg), y: thr * Math.sin(hdg) };
+    const sum = { x: tv.x + WIND.x, y: tv.y + WIND.y };
+    // faint intended-heading and wind arrows
+    vec(ctx, ox, oy, ox + tv.x * sc, oy - tv.y * sc, C.slate, 2);
+    ctx.fillStyle = C.slate; ctx.fillText('thrust', ox + tv.x * sc * 0.5, oy - tv.y * sc * 0.5 - 8);
+    vec(ctx, ox + tv.x * sc, oy - tv.y * sc, ox + sum.x * sc, oy - sum.y * sc, C.olive, 2);
+    ctx.fillStyle = C.olive; ctx.fillText('wind', ox + (tv.x + WIND.x * 0.5) * sc, oy - tv.y * sc - 8);
+    // actual path (resultant) travelled by drone
+    const px = ox + sum.x * sc * prog, py = oy - sum.y * sc * prog;
+    inkStroke(ctx, (a, b) => { ctx.moveTo(ox + a, oy + b); ctx.lineTo(px + a, py + b); }, C.chalk, 1.6);
+    if (prog > 0) drone(ctx, px, py, C.chalk);
+    el('hdgv').textContent = el('hdg').value + '°'; el('thrv').textContent = (+el('thr').value).toFixed(1);
+    el('landAt').textContent = '(' + sum.x.toFixed(1) + ', ' + sum.y.toFixed(1) + ')';
+    if (prog >= 1) {
+      const miss = Math.hypot(sum.x - target.x, sum.y - target.y);
+      el('crossStatus').textContent = miss < 0.6 ? '✦ on the pad — you aimed upwind.' : 'drifted ' + miss.toFixed(1) + ' units off — the wind added itself in.';
+    }
+  }
+  function fly() { if (anim) cancelAnimationFrame(anim); prog = 0; const step = () => { prog = Math.min(1, prog + 0.02); draw(); if (prog < 1) anim = requestAnimationFrame(step); else anim = null; }; anim = requestAnimationFrame(step); }
+  el('hdg').addEventListener('input', () => { prog = 0; el('crossStatus').textContent = ''; draw(); });
+  el('thr').addEventListener('input', () => { prog = 0; el('crossStatus').textContent = ''; draw(); });
+  el('fly').addEventListener('click', fly);
+  el('crossReset').addEventListener('click', () => { prog = 0; el('crossStatus').textContent = ''; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 9.2 — vector playground */
+(function () {
+  const cv = document.getElementById('play'), S = setupCanvas(cv);
+  let ctx = S.resize(), drag = null;
+  let u = { x: 6, y: 4 }, v = { x: 3, y: -5 };
+  const el = (id) => document.getElementById(id);
+  function O() { return { x: S.w * 0.32, y: S.h * 0.56, sc: 20 }; }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h); const o = O();
+    // axes
+    inkStroke(ctx, (a, b) => { ctx.moveTo(30 + a, o.y + b); ctx.lineTo(w - 30 + a, o.y + b); }, C.ink, 1.4);
+    inkStroke(ctx, (a, b) => { ctx.moveTo(o.x + a, h - 20 + b); ctx.lineTo(o.x + a, 20 + b); }, C.ink, 1.4);
+    const ux = o.x + u.x * o.sc, uy = o.y - u.y * o.sc;
+    const vx = o.x + v.x * o.sc, vy = o.y - v.y * o.sc;
+    const wv = { x: u.x + v.x, y: u.y + v.y };
+    const wx = o.x + wv.x * o.sc, wy = o.y - wv.y * o.sc;
+    // tip-to-tail: v drawn from tip of u (faint)
+    inkStroke(ctx, (a, b) => { ctx.moveTo(ux + a, uy + b); ctx.lineTo(ux + v.x * o.sc + a, uy - v.y * o.sc + b); }, C.ghost, 1.4);
+    vec(ctx, o.x, o.y, ux, uy, C.slate, 2.6);
+    vec(ctx, o.x, o.y, vx, vy, C.olive, 2.6);
+    vec(ctx, o.x, o.y, wx, wy, C.chalk, 3);
+    ctx.font = '15px ' + HAND;
+    ctx.fillStyle = C.slate; ctx.fillText('u', ux + 6, uy - 4);
+    ctx.fillStyle = C.olive; ctx.fillText('v', vx + 6, vy - 4);
+    ctx.fillStyle = C.chalk; ctx.fillText('u + v', wx + 6, wy - 4);
+    const dot = u.x * v.x + u.y * v.y;
+    const ang = Math.acos(dot / (Math.hypot(u.x, u.y) * Math.hypot(v.x, v.y) || 1)) * R2D;
+    el('uComp').textContent = '(' + u.x.toFixed(1) + ', ' + u.y.toFixed(1) + ')';
+    el('vComp').textContent = '(' + v.x.toFixed(1) + ', ' + v.y.toFixed(1) + ')';
+    el('wComp').textContent = '(' + wv.x.toFixed(1) + ', ' + wv.y.toFixed(1) + ')';
+    el('wMag').textContent = Math.hypot(wv.x, wv.y).toFixed(2);
+    el('uvAng').textContent = ang.toFixed(0) + '°';
+  }
+  function pick(e) {
+    const r = cv.getBoundingClientRect(), o = O();
+    const mx = e.clientX - r.left, my = e.clientY - r.top;
+    const du = Math.hypot(mx - (o.x + u.x * o.sc), my - (o.y - u.y * o.sc));
+    const dv = Math.hypot(mx - (o.x + v.x * o.sc), my - (o.y - v.y * o.sc));
+    drag = (du < dv && du < 26) ? 'u' : (dv < 26 ? 'v' : null);
+    if (drag) move(e);
+  }
+  function move(e) {
+    if (!drag) return; const r = cv.getBoundingClientRect(), o = O();
+    const gx = ((e.clientX - r.left) - o.x) / o.sc, gy = (o.y - (e.clientY - r.top)) / o.sc;
+    const t = drag === 'u' ? u : v; t.x = Math.max(-10, Math.min(10, Math.round(gx))); t.y = Math.max(-8, Math.min(8, Math.round(gy)));
+    draw();
+  }
+  cv.addEventListener('pointerdown', (e) => { pick(e); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', move);
+  cv.addEventListener('pointerup', () => drag = null);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 9.3 — the ferry angle */
+(function () {
+  const cv = document.getElementById('ferry'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0, wind = { x: -3, y: 0 };
+  const THR = 7, el = (id) => document.getElementById(id);
+  const target = { x: 0, y: 9 };                 // straight up
+  function newWind() { wind = { x: (Math.random() < .5 ? -1 : 1) * (2 + Math.random() * 3), y: 0 }; prog = 0; el('ferryStatus').textContent = ''; draw(); }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const ox = w / 2, oy = h - 60, sc = 26;
+    pad(ctx, ox + target.x * sc, oy - target.y * sc);
+    ctx.fillStyle = C.chalk; ctx.font = '14px ' + HAND; ctx.fillText('pad', ox + 16, oy - target.y * sc);
+    // target line
+    ctx.save(); ctx.setLineDash([4, 7]); ctx.strokeStyle = C.ghost; ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(ox, oy); ctx.lineTo(ox + target.x * sc, oy - target.y * sc); ctx.stroke(); ctx.restore();
+    drone(ctx, ox, oy, C.ink);
+    const hdg = (90 + +el('fh').value) * D2R;     // 0° slider = straight up
+    const tv = { x: THR * Math.cos(hdg), y: THR * Math.sin(hdg) };
+    const sum = { x: tv.x + wind.x, y: tv.y + wind.y };
+    vec(ctx, ox, oy, ox + tv.x * sc, oy - tv.y * sc, C.slate, 2.2);
+    vec(ctx, ox + tv.x * sc, oy - tv.y * sc, ox + sum.x * sc, oy - sum.y * sc, C.olive, 2.2);
+    vec(ctx, ox, oy, ox + sum.x * sc, oy - sum.y * sc, C.chalk, 2.8);
+    ctx.fillStyle = C.slate; ctx.fillText('thrust', ox + tv.x * sc * 0.5 - 10, oy - tv.y * sc * 0.5);
+    ctx.fillStyle = C.olive; ctx.fillText('wind', ox + (tv.x + wind.x * 0.5) * sc, oy - tv.y * sc - 6);
+    // travel
+    const px = ox + sum.x * sc * prog * (target.y / Math.max(0.1, sum.y)), py = oy - sum.y * sc * prog * (target.y / Math.max(0.1, sum.y));
+    if (prog > 0) { inkStroke(ctx, (a, b) => { ctx.moveTo(ox + a, oy + b); ctx.lineTo(px + a, py + b); }, C.chalk, 1.4); drone(ctx, px, py, C.chalk); }
+    el('fhv').textContent = el('fh').value + '°';
+    el('fWind').textContent = wind.x.toFixed(1) + ' ' + (wind.x < 0 ? 'west' : 'east');
+    el('fSum').textContent = '(' + sum.x.toFixed(1) + ', ' + sum.y.toFixed(1) + ')';
+    if (prog >= 1) {
+      el('ferryStatus').textContent = Math.abs(sum.x) < 0.5
+        ? '✦ dead straight to the pad — thrust cancelled the wind.'
+        : 'still drifting ' + Math.abs(sum.x).toFixed(1) + ' ' + (sum.x < 0 ? 'west' : 'east') + ' — steer further into the wind.';
+    }
+  }
+  function fly() { if (anim) cancelAnimationFrame(anim); prog = 0; const step = () => { prog = Math.min(1, prog + 0.02); draw(); if (prog < 1) anim = requestAnimationFrame(step); else anim = null; }; anim = requestAnimationFrame(step); }
+  el('fh').addEventListener('input', () => { prog = 0; el('ferryStatus').textContent = ''; draw(); });
+  el('ferryFly').addEventListener('click', fly);
+  el('ferryNew').addEventListener('click', newWind);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newWind();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

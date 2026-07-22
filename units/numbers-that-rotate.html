@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 13 — Numbers That Rotate · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage III · Describing Motion Exactly</span>
+  <span class="right">Folio 13 · complex numbers</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 13 · CODEX I · GIANTS: ARGAND — EULER — HAMILTON</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Numbers That Rotate</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which multiplication stops making things bigger and starts making them
+      <em>turn</em>, and the most beautiful equation in mathematics turns out to
+      live inside your drone.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT I -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">Half of a flip</h2>
+      <p class="lede reveal">
+        On the number line, multiplying by −1 flips +1 all the way to −1 — a
+        half-turn, 180°. Here is the puzzle that stumped mathematicians for
+        centuries: what single number, applied <em>twice</em>, performs that flip?
+        Its square would have to be −1 — and no number on the line squares to a
+        negative. Try it.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 13.1 — the square root of a turn</span>
+          <span class="plaque-caption">×(−1) is a half-turn; what is half of that?</span>
+        </div>
+        <canvas id="flip" height="340"></canvas>
+        <div class="controls">
+          <button class="toggle" id="doFlip">× (−1)  — the 180° flip</button>
+          <button class="toggle" id="doHalf">the half-turn — × i</button>
+          <button class="toggle" id="flipReset">reset</button>
+        </div>
+        <div class="readout">
+          <span>point is at: <b id="flipPos">1</b></span>
+          <span id="flipStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Step off the line into the plane and it appears at once: a quarter-turn
+        upward lands you at a new point, <em>i</em>, and turning again lands you at
+        −1. So <em>i</em>&nbsp;×&nbsp;<em>i</em>&nbsp;=&nbsp;−1 — the impossible
+        number is simply a 90° rotation. Multiplication just learned to turn.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT II -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">To multiply is to rotate</h2>
+    <p class="lede reveal">
+      For 250 years these were "imaginary" numbers — useful, distrusted, unpicturable.
+      Then a Parisian bookkeeper drew them, and a Swiss master bound them to
+      geometry with a single line so perfect it still stops people in their tracks.
+    </p>
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/argand.jpg" alt="Argand's 1806 essay on complex numbers" style="object-fit:contain; background:#f6efdd;"></div>
+        <figcaption class="plaque">
+          <div class="name">Jean-Robert Argand</div>
+          <div class="dates">1768 – 1822 · GENEVA → PARIS</div>
+          <div class="role">No portrait of him survives — only his 1806 essay, shown here, which drew complex numbers as points in a plane. The "Argand diagram" made the imaginary visible, and turned algebra into geometry.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/euler.jpg" alt="Leonhard Euler"></div>
+        <figcaption class="plaque">
+          <div class="name">Leonhard Euler</div>
+          <div class="dates">1707 – 1783 · BASEL → ST PETERSBURG</div>
+          <div class="role">Wrote e<sup>iθ</sup> = cos θ + i·sin θ — a point on the unit circle at angle θ. Set θ = π and it becomes e<sup>iπ</sup> = −1, the half-turn from Act I, tying together e, i, π, 1 and 0.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/hamilton.jpg" alt="William Rowan Hamilton"></div>
+        <figcaption class="plaque">
+          <div class="name">William Rowan Hamilton</div>
+          <div class="dates">1805 – 1865 · DUBLIN</div>
+          <div class="role">Took rotation-by-multiplication into three dimensions with quaternions (1843), the system that spins every drone and game camera today. We fly with them in Folio 21.</div>
+        </figcaption>
+      </figure>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/complex-history.svg" alt="to multiply is to rotate"></div>
+      <figcaption class="plaque-caption">From "imaginary" to the arithmetic that runs an IMU.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT III -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">Multiply: angles add, lengths scale</h2>
+    <p class="lede reveal">
+      On Argand's plane a complex number is an arrow with a length and an angle.
+      The magic is in multiplication: to multiply two of them, you <em>add their
+      angles and multiply their lengths</em>. Drag the arrow, choose what to
+      multiply by, and watch it swing.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 13.2 — the Argand plane</span>
+        <span class="plaque-caption">drag z; multiply and watch the angle add</span>
+      </div>
+      <canvas id="argand" height="400"></canvas>
+      <div class="controls">
+        <button class="toggle on" id="mulI">× i  (90°)</button>
+        <button class="toggle" id="mulRot">× e^{iθ}</button>
+        <label id="rotWrap" style="display:none">θ <input type="range" id="mtheta" min="0" max="360" value="45" step="1"> <code id="mthetav">45°</code></label>
+      </div>
+      <div class="readout">
+        <span style="color:#46617a">z = <b id="zVal">—</b></span>
+        <span style="color:#96412e">z × (factor) = <b id="zwVal">—</b></span>
+        <span>angle: <b id="angAdd">—</b></span>
+      </div>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-euler.svg" alt="e to the i theta equals cos theta plus i sin theta" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">
+        Euler's formula: a point on the unit circle at angle θ. Multiplying by it
+        rotates by θ — the rotation matrix of Folio 10, folded into one number.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT IV -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Spin the arm with a multiplication</h2>
+    <p class="lede reveal">
+      Return to Folio&nbsp;05's arm — but rotate it now the complex way. Treat each
+      link as a complex number; multiply by e<sup>iθ</sup> and it turns by θ, no
+      sine or cosine in sight. Stack two rotations by <em>multiplying</em> the
+      factors, and their angles simply add. Aim the hand at the mark.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 13.3 — the rotor</span>
+        <span class="plaque-caption">two multiplications, two joints, angles that add</span>
+      </div>
+      <canvas id="rotor" height="380"></canvas>
+      <div class="controls">
+        <label>θ₁ (shoulder) <input type="range" id="r1" min="0" max="180" value="40" step="1"> <code id="r1v">40°</code></label>
+        <label>θ₂ (elbow) <input type="range" id="r2" min="-150" max="150" value="60" step="1"> <code id="r2v">60°</code></label>
+        <button class="toggle" id="rotorNew">new mark</button>
+      </div>
+      <div class="readout">
+        <span>shoulder factor: <b id="f1">—</b></span>
+        <span>hand angle (θ₁+θ₂): <b id="handAng">—</b></span>
+        <span id="rotorStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+    <p class="reveal">
+      The hand reaches the mark when the two rotations, <em>multiplied</em>, point
+      it there — and notice the elbow angle simply adds to the shoulder's, exactly
+      because multiplying complex numbers adds their angles. This is why spacecraft
+      and drones store orientation as things you multiply, not angles you add by
+      hand: composition comes for free.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT V -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can… — and Stage III complete</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Complex numbers are the compact language of rotation and oscillation:
+        phase in a signal, the spin of an AC motor, the poles of a controller
+        (Folio&nbsp;19), the frequencies of Fourier (Folio&nbsp;22), and — grown one
+        dimension — the quaternions that fly every drone. With them,
+        <em>Stage&nbsp;III — Describing Motion Exactly</em> is complete: your robot
+        can add motions as vectors, turn them with matrices and multiplications,
+        take their rate with derivatives, and accumulate them with integrals.
+        Stage&nbsp;IV opens the robot's bloodstream — linear algebra, Jacobians, and
+        the equations of change.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> on graph paper, plot the point (0, 1) — that is
+        <em>i</em>. Multiply it by <em>i</em> (rotate 90°) and you land on (−1, 0).
+        Again, and again: i, −1, −i, 1 — four multiplications, one full circle. You
+        have watched arithmetic go around.
+      </p>
+      <a class="next-exhibit reveal" href="../index.html">return to the codex map</a>
+      <a class="next-exhibit reveal" href="arrows-of-motion.html" style="margin-left:1rem;">revisit folio 09</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2, D2R = Math.PI / 180, R2D = 180 / Math.PI;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke(); ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function vec(ctx, x1, y1, x2, y2, color, width) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy); }, color, width || 2.4);
+  const a = Math.atan2(y2 - y1, x2 - x1);
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 12 * Math.cos(a - 0.45) + ox, y2 - 12 * Math.sin(a - 0.45) + oy);
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 12 * Math.cos(a + 0.45) + ox, y2 - 12 * Math.sin(a + 0.45) + oy);
+  }, color, (width || 2.4) * 0.9);
+}
+function axes(ctx, ox, oy, w, h, sc) {
+  inkStroke(ctx, (a, b) => { ctx.moveTo(ox - w + a, oy + b); ctx.lineTo(ox + w + a, oy + b); }, C.ink, 1.3);
+  inkStroke(ctx, (a, b) => { ctx.moveTo(ox + a, oy + h + b); ctx.lineTo(ox + a, oy - h + b); }, C.ink, 1.3);
+  ctx.fillStyle = C.ghost; ctx.font = '13px ' + HAND;
+  ctx.fillText('real →', ox + w - 44, oy - 8); ctx.fillText('imaginary ↑', ox + 8, oy - h + 16);
+}
+
+/* LAB 13.1 — square root of a turn */
+(function () {
+  const cv = document.getElementById('flip'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, ang = 0;   // current angle of the unit point (rad)
+  const el = (id) => document.getElementById(id);
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const ox = w / 2, oy = h / 2 + 10, sc = Math.min(w * 0.32, 120);
+    axes(ctx, ox, oy, sc + 40, sc + 30, sc);
+    // unit circle guide
+    ctx.save(); ctx.setLineDash([3, 7]); ctx.strokeStyle = '#2b405a33'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.arc(ox, oy, sc, 0, TAU); ctx.stroke(); ctx.restore();
+    // labels 1, -1, i, -i
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+    ctx.fillText('1', ox + sc + 6, oy + 4); ctx.fillText('−1', ox - sc - 20, oy + 4);
+    ctx.fillText('i', ox - 6, oy - sc - 8); ctx.fillText('−i', ox - 8, oy + sc + 18);
+    // the point
+    const px = ox + sc * Math.cos(ang), py = oy - sc * Math.sin(ang);
+    vec(ctx, ox, oy, px, py, C.chalk, 3);
+    ctx.save(); ctx.fillStyle = C.bg; ctx.strokeStyle = C.chalk; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.arc(px, py, 7, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    const deg = ((ang * R2D) % 360 + 360) % 360;
+    const names = { 0: '1', 90: 'i', 180: '−1', 270: '−i' };
+    el('flipPos').textContent = names[Math.round(deg)] || (Math.cos(ang).toFixed(2) + ' + ' + Math.sin(ang).toFixed(2) + 'i');
+  }
+  function turn(to, msg) {
+    if (anim) cancelAnimationFrame(anim); const from = ang;
+    let p = 0; const step = () => { p = Math.min(1, p + 0.04); ang = from + (to - from) * p; draw(); if (p < 1) anim = requestAnimationFrame(step); else { anim = null; el('flipStatus').textContent = msg; } };
+    anim = requestAnimationFrame(step);
+  }
+  el('doFlip').addEventListener('click', () => turn(ang + Math.PI, '× (−1): a 180° half-turn. Its square root is half the turn — 90°.'));
+  el('doHalf').addEventListener('click', () => turn(ang + Math.PI / 2, '× i: a 90° turn. Do it twice and you reach −1, so i² = −1.'));
+  el('flipReset').addEventListener('click', () => { ang = 0; el('flipStatus').textContent = ''; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 13.2 — the Argand plane */
+(function () {
+  const cv = document.getElementById('argand'), S = setupCanvas(cv);
+  let ctx = S.resize(), z = { x: 3, y: 1 }, mode = 'i', drag = false;
+  const el = (id) => document.getElementById(id);
+  function O() { return { x: S.w * 0.42, y: S.h * 0.54, sc: 34 }; }
+  function factor() { return mode === 'i' ? { x: 0, y: 1 } : { x: Math.cos(+el('mtheta').value * D2R), y: Math.sin(+el('mtheta').value * D2R) }; }
+  function mul(a, b) { return { x: a.x * b.x - a.y * b.y, y: a.x * b.y + a.y * b.x }; }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h); const o = O();
+    axes(ctx, o.x, o.y, w * 0.4, h * 0.42, o.sc);
+    const f = factor(), zw = mul(z, f);
+    vec(ctx, o.x, o.y, o.x + z.x * o.sc, o.y - z.y * o.sc, C.slate, 2.6);
+    vec(ctx, o.x, o.y, o.x + zw.x * o.sc, o.y - zw.y * o.sc, C.chalk, 3);
+    ctx.font = '15px ' + HAND;
+    ctx.fillStyle = C.slate; ctx.fillText('z', o.x + z.x * o.sc + 6, o.y - z.y * o.sc - 4);
+    ctx.fillStyle = C.chalk; ctx.fillText('z × factor', o.x + zw.x * o.sc + 6, o.y - zw.y * o.sc - 4);
+    // arc showing angle added
+    const a1 = Math.atan2(z.y, z.x), a2 = Math.atan2(zw.y, zw.x);
+    ctx.save(); ctx.strokeStyle = C.olive; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(o.x, o.y, 26, -a1, -a2, a2 > a1); ctx.stroke(); ctx.restore();
+    el('zVal').textContent = z.x.toFixed(1) + ' + ' + z.y.toFixed(1) + 'i';
+    el('zwVal').textContent = zw.x.toFixed(1) + ' + ' + zw.y.toFixed(1) + 'i';
+    el('angAdd').textContent = (a1 * R2D).toFixed(0) + '° + ' + (mode === 'i' ? 90 : +el('mtheta').value) + '° = ' + (a2 * R2D).toFixed(0) + '°';
+  }
+  function pick(e) { const r = cv.getBoundingClientRect(), o = O(); drag = Math.hypot((e.clientX - r.left) - (o.x + z.x * o.sc), (e.clientY - r.top) - (o.y - z.y * o.sc)) < 30; if (drag) move(e); }
+  function move(e) { if (!drag) return; const r = cv.getBoundingClientRect(), o = O(); z.x = Math.max(-6, Math.min(6, ((e.clientX - r.left) - o.x) / o.sc)); z.y = Math.max(-5, Math.min(5, (o.y - (e.clientY - r.top)) / o.sc)); draw(); }
+  cv.addEventListener('pointerdown', (e) => { pick(e); cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', move);
+  cv.addEventListener('pointerup', () => drag = false);
+  el('mulI').addEventListener('click', function () { mode = 'i'; this.classList.add('on'); el('mulRot').classList.remove('on'); el('rotWrap').style.display = 'none'; draw(); });
+  el('mulRot').addEventListener('click', function () { mode = 'rot'; this.classList.add('on'); el('mulI').classList.remove('on'); el('rotWrap').style.display = 'flex'; draw(); });
+  el('mtheta').addEventListener('input', () => { el('mthetav').textContent = el('mtheta').value + '°'; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 13.3 — the rotor (arm by complex multiplication) */
+(function () {
+  const cv = document.getElementById('rotor'), S = setupCanvas(cv);
+  let ctx = S.resize(), mark = 60; const L1 = 120, L2 = 92;
+  const el = (id) => document.getElementById(id);
+  function newMark() { mark = 20 + Math.floor(Math.random() * 120); draw(); }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const ox = w / 2, oy = h - 70;
+    const t1 = +el('r1').value * D2R, t2 = +el('r2').value * D2R;
+    // link 1 as complex L1·e^{iθ1}; link 2 rotated by θ1+θ2
+    const ex = ox + L1 * Math.cos(t1), ey = oy - L1 * Math.sin(t1);
+    const hx = ex + L2 * Math.cos(t1 + t2), hy = ey - L2 * Math.sin(t1 + t2);
+    // the target mark (on a ring at fixed radius so it's always reachable-ish)
+    const markAng = mark * D2R, R = L1 + L2 * 0.6;
+    const mx = ox + R * Math.cos(markAng), my = oy - R * Math.sin(markAng);
+    inkStroke(ctx, (a, b) => { ctx.arc(mx + a, my + b, 11, 0, TAU); }, C.chalk, 1.8);
+    ctx.fillStyle = C.chalk; ctx.font = '14px ' + HAND; ctx.fillText('mark ' + mark + '°', mx + 12, my);
+    // arm
+    inkStroke(ctx, (a, b) => { ctx.moveTo(ox + a, oy + b); ctx.lineTo(ex + a, ey + b); }, C.chalk, 6);
+    inkStroke(ctx, (a, b) => { ctx.moveTo(ex + a, ey + b); ctx.lineTo(hx + a, hy + b); }, C.slate, 5);
+    for (const [x, y, c] of [[ox, oy, C.ink], [ex, ey, C.ink], [hx, hy, C.olive]]) { ctx.save(); ctx.fillStyle = C.bg; ctx.strokeStyle = c; ctx.lineWidth = 2.4; ctx.beginPath(); ctx.arc(x, y, 6, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore(); }
+    const handAng = ((t1 + t2) * R2D % 360 + 360) % 360;
+    el('r1v').textContent = el('r1').value + '°'; el('r2v').textContent = el('r2').value + '°';
+    el('f1').textContent = 'cos' + el('r1').value + '° + i·sin' + el('r1').value + '°';
+    el('handAng').textContent = handAng.toFixed(0) + '°';
+    const handDir = Math.atan2(hy - oy, hx - ox);           // actual pointing from base
+    const diff = Math.abs(((Math.atan2(Math.sin(markAng - (-handDir + 0)), Math.cos(markAng)) )));
+    // simpler: compare hand bearing from base to mark bearing
+    const handBear = ((Math.atan2(oy - hy, hx - ox)) * R2D % 360 + 360) % 360;
+    const off = Math.min(Math.abs(handBear - mark), 360 - Math.abs(handBear - mark));
+    el('rotorStatus').textContent = off < 6 ? '✦ hand on the mark — θ₁+θ₂ points it there.' : 'hand bearing ' + handBear.toFixed(0) + '° vs mark ' + mark + '° — turn the joints.';
+  }
+  el('r1').addEventListener('input', draw); el('r2').addEventListener('input', draw);
+  el('rotorNew').addEventListener('click', newMark);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newMark();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 10 — The Rotation Machine · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage III · Describing Motion Exactly</span>
+  <span class="right">Folio 10 · matrices &amp; rotation</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 10 · CODEX I · GIANTS: EULER — CAYLEY</div>
+    <h1 class="reveal" style="margin:.6rem 0;">The Rotation Machine</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which the camera swears the target is on the left while the world insists
+      it is due north, and four numbers settle the argument.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT I -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">The camera's private compass</h2>
+      <p class="lede reveal">
+        The robot's camera reports the target at "20° to my left." True — from the
+        camera's point of view. But the robot's body is turned, so the camera's
+        "left" is not the world's "left." Drive on the raw camera bearing and see
+        where you end up. Then rotate the body and watch the lie grow.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 10.1 — two frames, one target</span>
+          <span class="plaque-caption">turn the body; the camera's bearing goes stale</span>
+        </div>
+        <canvas id="frames" height="380"></canvas>
+        <div class="controls">
+          <label>body heading ψ <input type="range" id="body" min="-90" max="90" value="35" step="1"> <code id="bodyv">35°</code></label>
+          <button class="toggle" id="driveCam">drive on camera bearing</button>
+          <button class="toggle" id="driveWorld">drive on world bearing</button>
+        </div>
+        <div class="readout">
+          <span>camera says: <b id="camBear">—</b></span>
+          <span>world truth: <b id="worldBear">—</b></span>
+          <span id="framesStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        The camera is never wrong — it just speaks its own language. To act in the
+        world, the robot must <em>translate</em> every camera direction by exactly
+        the body's rotation. That translation is a machine that takes any point and
+        turns it: a <em>rotation matrix</em>.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT II -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">A turn you can multiply</h2>
+    <p class="lede reveal">
+      Rotations were geometry until someone noticed they could be <em>arithmetic</em> —
+      a little grid of numbers you multiply into a point to spin it. That grid, the
+      matrix, became the workhorse of all of engineering.
+    </p>
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/euler.jpg" alt="Leonhard Euler"></div>
+        <figcaption class="plaque">
+          <div class="name">Leonhard Euler</div>
+          <div class="dates">1707 – 1783 · BASEL → ST PETERSBURG</div>
+          <div class="role">Proved that any rotation in 3-D, however complicated, is a single turn about one axis — Euler's rotation theorem. Every robot's orientation is measured in the angles that carry his name.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/cayley.jpg" alt="Arthur Cayley"></div>
+        <figcaption class="plaque">
+          <div class="name">Arthur Cayley</div>
+          <div class="dates">1821 – 1895 · RICHMOND → CAMBRIDGE</div>
+          <div class="role">In 1858 he set down the algebra of matrices — how to add and, crucially, <em>multiply</em> these grids of numbers. Every transform a robot applies, from camera to gripper, is Cayley's multiplication.</div>
+        </figcaption>
+      </figure>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/rotation-history.svg" alt="a turn you can multiply"></div>
+      <figcaption class="plaque-caption">From "any rotation is one turn" to the four numbers that perform it.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT III -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">Four numbers that spin a point</h2>
+    <p class="lede reveal">
+      Here is the whole machine. To rotate a point by angle θ, mix its old
+      coordinates with sine and cosine — the same shadows from Folio&nbsp;05, now
+      doing work. Turn the dial and watch the shape rotate rigidly, every point
+      obeying the same two lines.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 10.2 — the rotation dial</span>
+        <span class="plaque-caption">one angle turns every point at once</span>
+      </div>
+      <canvas id="dial" height="400"></canvas>
+      <div class="controls">
+        <label>angle θ <input type="range" id="theta" min="0" max="360" value="30" step="1"> <code id="thetav">30°</code></label>
+        <button class="toggle" id="showMat">show the matrix</button>
+      </div>
+      <div class="readout">
+        <span>a corner (2, 1) → <b id="ptOut">—</b></span>
+        <span>cos θ = <b id="cosv">—</b></span>
+        <span>sin θ = <b id="sinv">—</b></span>
+      </div>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-rotate.svg" alt="x prime equals x cos theta minus y sin theta" style="max-height:52px;"></div>
+      <figcaption class="plaque-caption">
+        The two lines of the rotation matrix, written out. New-east borrows from
+        old-east and old-north; new-north does the mirror. That is all a turn is.
+      </figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT IV -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Camera to world, and turns that stack</h2>
+    <p class="lede reveal">
+      Now fix the robot. The camera hands you the target in its own frame; apply
+      the rotation matrix for the body's heading and out comes the world direction —
+      drive <em>that</em> and you arrive. And because two rotations in a row are
+      just one bigger rotation, R(α)·R(β) = R(α+β), the robot can stack turns for
+      free.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 10.3 — apply the matrix, hit the target</span>
+        <span class="plaque-caption">world = R(ψ) · camera</span>
+      </div>
+      <canvas id="apply" height="380"></canvas>
+      <div class="controls">
+        <label>body heading ψ <input type="range" id="ab" min="-90" max="90" value="40" step="1"> <code id="abv">40°</code></label>
+        <button class="toggle on" id="useMatrix">apply R(ψ): on</button>
+        <button class="toggle" id="applyDrive">drive to world coords</button>
+        <button class="toggle" id="applyNew">new target</button>
+      </div>
+      <div class="readout">
+        <span>camera coords: <b id="camCoord">—</b></span>
+        <span>R(ψ)·camera = world: <b id="worldCoord">—</b></span>
+        <span id="applyStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+    <p class="reveal">
+      With the matrix on, the converted arrow lands on the true target no matter
+      how the body is turned; switch it off and the robot chases the camera's
+      private compass into the weeds. This one multiplication — camera to body to
+      world — runs in every self-driving stack on Earth.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT V -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Coordinate frames are the grammar of robotics — camera to body, body to
+        arm, arm to gripper, gripper to world — and every link between them is a
+        matrix you multiply. Master R(θ) and you can carry any measurement into any
+        frame the robot needs. In Folio&nbsp;13 these same turns become
+        <em>multiplication of complex numbers</em>; in Folio&nbsp;21, Hamilton's
+        quaternions do it in three dimensions without the dreaded gimbal lock.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> stand facing a wall and point at a lamp — note its
+        bearing. Now turn 45° and point again; the lamp's bearing <em>relative to
+        you</em> changed by exactly 45°, though the lamp never moved. You just ran
+        the rotation matrix in your own head.
+      </p>
+      <a class="next-exhibit reveal" href="the-speed-of-speed.html">continue to folio 11 — the speed of speed</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2, D2R = Math.PI / 180, R2D = 180 / Math.PI;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke(); ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function vec(ctx, x1, y1, x2, y2, color, width) {
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x1 + ox, y1 + oy); ctx.lineTo(x2 + ox, y2 + oy); }, color, width || 2.4);
+  const a = Math.atan2(y2 - y1, x2 - x1);
+  inkStroke(ctx, (ox, oy) => {
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 12 * Math.cos(a - 0.45) + ox, y2 - 12 * Math.sin(a - 0.45) + oy);
+    ctx.moveTo(x2 + ox, y2 + oy); ctx.lineTo(x2 - 12 * Math.cos(a + 0.45) + ox, y2 - 12 * Math.sin(a + 0.45) + oy);
+  }, color, (width || 2.4) * 0.9);
+}
+function robot(ctx, x, y, psi, color) {
+  ctx.save(); ctx.translate(x, y); ctx.rotate(-psi);
+  ctx.fillStyle = C.bg; ctx.strokeStyle = color; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(16, 0); ctx.lineTo(-10, 10); ctx.lineTo(-10, -10); ctx.closePath(); ctx.fill(); ctx.stroke();
+  ctx.restore();
+}
+function targetMark(ctx, x, y) {
+  inkStroke(ctx, (ox, oy) => { ctx.arc(x + ox, y + oy, 11, 0, TAU); }, C.chalk, 1.8);
+  inkStroke(ctx, (ox, oy) => { ctx.moveTo(x - 7 + ox, y + oy); ctx.lineTo(x + 7 + ox, y + oy); ctx.moveTo(x + ox, y - 7 + oy); ctx.lineTo(x + ox, y + 7 + oy); }, C.chalk, 1.4);
+}
+
+/* LAB 10.1 — two frames */
+(function () {
+  const cv = document.getElementById('frames'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0, mode = null;
+  const el = (id) => document.getElementById(id);
+  const tgt = { x: 5, y: 6 };                    // world coords of target
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const ox = w / 2, oy = h / 2 + 40, sc = 26, psi = +el('body').value * D2R;
+    targetMark(ctx, ox + tgt.x * sc, oy - tgt.y * sc);
+    ctx.fillStyle = C.chalk; ctx.font = '14px ' + HAND; ctx.fillText('target', ox + tgt.x * sc + 12, oy - tgt.y * sc);
+    // body heading arrow
+    vec(ctx, ox, oy, ox + 40 * Math.cos(psi), oy - 40 * Math.sin(psi), C.slate, 2);
+    ctx.fillStyle = C.slate; ctx.fillText('body facing', ox + 44 * Math.cos(psi), oy - 44 * Math.sin(psi));
+    robot(ctx, ox, oy, psi, C.ink);
+    const worldAng = Math.atan2(tgt.y, tgt.x);
+    const camAng = worldAng - psi;               // bearing in camera frame
+    // drive
+    if (prog > 0) {
+      const ang = mode === 'cam' ? camAng : worldAng;     // camera mode uses raw (wrong) bearing as if world
+      const dist = Math.hypot(tgt.x, tgt.y) * sc * prog;
+      const px = ox + dist * Math.cos(ang), py = oy - dist * Math.sin(ang);
+      inkStroke(ctx, (a, b) => { ctx.moveTo(ox + a, oy + b); ctx.lineTo(px + a, py + b); }, mode === 'cam' ? C.chalk : C.olive, 1.8);
+      robot(ctx, px, py, ang, mode === 'cam' ? C.chalk : C.olive);
+    }
+    el('bodyv').textContent = el('body').value + '°';
+    el('camBear').textContent = (camAng * R2D).toFixed(0) + '° (its left/right)';
+    el('worldBear').textContent = (worldAng * R2D).toFixed(0) + '° (true)';
+    if (prog >= 1) el('framesStatus').textContent = mode === 'cam'
+      ? 'drove on the camera bearing → missed by the body angle, ' + Math.abs(+el('body').value) + '°.'
+      : '✦ drove on the world bearing → straight to the target.';
+  }
+  function go(m) { mode = m; if (anim) cancelAnimationFrame(anim); prog = 0; const step = () => { prog = Math.min(1, prog + 0.02); draw(); if (prog < 1) anim = requestAnimationFrame(step); else anim = null; }; anim = requestAnimationFrame(step); }
+  el('body').addEventListener('input', () => { prog = 0; el('framesStatus').textContent = ''; draw(); });
+  el('driveCam').addEventListener('click', () => go('cam'));
+  el('driveWorld').addEventListener('click', () => go('world'));
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 10.2 — rotation dial */
+(function () {
+  const cv = document.getElementById('dial'), S = setupCanvas(cv);
+  let ctx = S.resize(), showMat = false;
+  const el = (id) => document.getElementById(id);
+  const shape = [[2, 1], [2, -1], [-2, -1], [-2, 1], [0, 2.4]];   // a little house
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const ox = w * 0.4, oy = h / 2, sc = 42, th = +el('theta').value * D2R;
+    inkStroke(ctx, (a, b) => { ctx.moveTo(ox - 150 + a, oy + b); ctx.lineTo(ox + 150 + a, oy + b); }, C.ink, 1.2);
+    inkStroke(ctx, (a, b) => { ctx.moveTo(ox + a, oy + 120 + b); ctx.lineTo(ox + a, oy - 120 + b); }, C.ink, 1.2);
+    // ghost original
+    ctx.save(); ctx.globalAlpha = .3;
+    inkStroke(ctx, (a, b) => { shape.forEach((p, i) => { const x = ox + p[0] * sc, y = oy - p[1] * sc; i ? ctx.lineTo(x + a, y + b) : ctx.moveTo(x + a, y + b); }); ctx.closePath(); }, C.ghost, 1.6);
+    ctx.restore();
+    // rotated
+    const R = (p) => [p[0] * Math.cos(th) - p[1] * Math.sin(th), p[0] * Math.sin(th) + p[1] * Math.cos(th)];
+    inkStroke(ctx, (a, b) => { shape.forEach((p, i) => { const r = R(p); const x = ox + r[0] * sc, y = oy - r[1] * sc; i ? ctx.lineTo(x + a, y + b) : ctx.moveTo(x + a, y + b); }); ctx.closePath(); }, C.chalk, 2.2);
+    // the tracked corner (2,1)
+    const c = R([2, 1]); const cx = ox + c[0] * sc, cy = oy - c[1] * sc;
+    ctx.save(); ctx.fillStyle = C.bg; ctx.strokeStyle = C.slate; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, 6, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    if (showMat) {
+      const mx = w - 250, my = 60;
+      ctx.fillStyle = C.ink; ctx.font = '16px ' + HAND;
+      inkStroke(ctx, (a, b) => { ctx.moveTo(mx - 8 + a, my - 16 + b); ctx.lineTo(mx - 12 + a, my - 16 + b); ctx.lineTo(mx - 12 + a, my + 34 + b); ctx.lineTo(mx - 8 + a, my + 34 + b); }, C.ink, 1.6);
+      inkStroke(ctx, (a, b) => { ctx.moveTo(mx + 150 + a, my - 16 + b); ctx.lineTo(mx + 154 + a, my - 16 + b); ctx.lineTo(mx + 154 + a, my + 34 + b); ctx.lineTo(mx + 150 + a, my + 34 + b); }, C.ink, 1.6);
+      ctx.fillText('cos θ   −sin θ', mx, my); ctx.fillText('sin θ    cos θ', mx, my + 26);
+      ctx.fillStyle = C.chalk; ctx.fillText(Math.cos(th).toFixed(2) + '   ' + (-Math.sin(th)).toFixed(2), mx, my + 60);
+      ctx.fillText(Math.sin(th).toFixed(2) + '    ' + Math.cos(th).toFixed(2), mx, my + 84);
+    }
+    el('thetav').textContent = el('theta').value + '°';
+    el('ptOut').textContent = '(' + c[0].toFixed(2) + ', ' + c[1].toFixed(2) + ')';
+    el('cosv').textContent = Math.cos(th).toFixed(3); el('sinv').textContent = Math.sin(th).toFixed(3);
+  }
+  el('theta').addEventListener('input', draw);
+  el('showMat').addEventListener('click', function () { showMat = !showMat; this.classList.toggle('on', showMat); draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 10.3 — apply the matrix */
+(function () {
+  const cv = document.getElementById('apply'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0, useMat = true, tgt = { x: 5, y: 5 };
+  const el = (id) => document.getElementById(id);
+  function newTarget() { const a = Math.random() * TAU, r = 4 + Math.random() * 3; tgt = { x: r * Math.cos(a), y: r * Math.sin(a) }; prog = 0; el('applyStatus').textContent = ''; draw(); }
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const ox = w / 2, oy = h / 2 + 30, sc = 26, psi = +el('ab').value * D2R;
+    targetMark(ctx, ox + tgt.x * sc, oy - tgt.y * sc);
+    ctx.fillStyle = C.chalk; ctx.font = '14px ' + HAND; ctx.fillText('target', ox + tgt.x * sc + 12, oy - tgt.y * sc);
+    robot(ctx, ox, oy, psi, C.ink);
+    vec(ctx, ox, oy, ox + 40 * Math.cos(psi), oy - 40 * Math.sin(psi), C.slate, 1.8);
+    // camera coords = world rotated by -psi
+    const cam = { x: tgt.x * Math.cos(-psi) - tgt.y * Math.sin(-psi), y: tgt.x * Math.sin(-psi) + tgt.y * Math.cos(-psi) };
+    // apply R(psi) to recover world (or skip -> stays in camera frame = wrong)
+    const used = useMat
+      ? { x: cam.x * Math.cos(psi) - cam.y * Math.sin(psi), y: cam.x * Math.sin(psi) + cam.y * Math.cos(psi) }
+      : { x: cam.x, y: cam.y };
+    if (prog > 0) {
+      const px = ox + used.x * sc * prog, py = oy - used.y * sc * prog;
+      inkStroke(ctx, (a, b) => { ctx.moveTo(ox + a, oy + b); ctx.lineTo(px + a, py + b); }, useMat ? C.olive : C.chalk, 1.8);
+      robot(ctx, px, py, psi, useMat ? C.olive : C.chalk);
+    }
+    el('abv').textContent = el('ab').value + '°';
+    el('camCoord').textContent = '(' + cam.x.toFixed(1) + ', ' + cam.y.toFixed(1) + ')';
+    el('worldCoord').textContent = '(' + used.x.toFixed(1) + ', ' + used.y.toFixed(1) + ')';
+    if (prog >= 1) {
+      const miss = Math.hypot(used.x - tgt.x, used.y - tgt.y);
+      el('applyStatus').textContent = miss < 0.3 ? '✦ matrix applied → dead on the target.' : 'off by ' + miss.toFixed(1) + ' — the camera frame was never rotated back.';
+    }
+  }
+  function drive() { if (anim) cancelAnimationFrame(anim); prog = 0; const step = () => { prog = Math.min(1, prog + 0.02); draw(); if (prog < 1) anim = requestAnimationFrame(step); else anim = null; }; anim = requestAnimationFrame(step); }
+  el('ab').addEventListener('input', () => { prog = 0; el('applyStatus').textContent = ''; draw(); });
+  el('useMatrix').addEventListener('click', function () { useMat = !useMat; this.classList.toggle('on', useMat); this.textContent = 'apply R(ψ): ' + (useMat ? 'on' : 'off'); prog = 0; draw(); });
+  el('applyDrive').addEventListener('click', drive);
+  el('applyNew').addEventListener('click', newTarget);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  newTarget();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

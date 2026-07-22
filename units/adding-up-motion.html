@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folio 12 — Adding Up Motion · Giants &amp; Gears</title>
+<link rel="stylesheet" href="../assets/css/golden-archive-kit.css">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+
+<nav class="chrome">
+  <a class="wordmark" href="../index.html">Giants &amp; Gears</a>
+  <span class="crumb">↳ Stage III · Describing Motion Exactly</span>
+  <span class="right">Folio 12 · integrals</span>
+</nav>
+
+<main>
+  <header style="text-align:center; margin:3.5rem 0 1rem;">
+    <div class="catalog reveal">FOLIO 12 · CODEX I · GIANTS: LEIBNIZ — RIEMANN</div>
+    <h1 class="reveal" style="margin:.6rem 0;">Adding Up Motion</h1>
+    <p class="plaque-caption reveal" style="max-width:42rem;margin:0 auto;">
+      In which a robot with no GPS must know where it is from its wheels alone,
+      by adding up a thousand tiny moments — and watching its certainty quietly
+      erode.
+    </p>
+  </header>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT I -->
+  <section class="exhibit wide">
+    <div>
+      <div class="smallcaps reveal">act i · the robot fails first</div>
+      <h2 class="reveal">Speed now tells you nothing about here</h2>
+      <p class="lede reveal">
+        Indoors, the satellites are gone. The robot knows only how fast its wheels
+        are turning at each instant — its velocity. The door is at 20&nbsp;metres.
+        Is the robot there yet? Knowing the current speed cannot answer that; only
+        the <em>accumulation</em> of every speed since the start can. Slide time and
+        watch the running total climb.
+      </p>
+      <div class="lab reveal">
+        <div class="lab-head">
+          <span class="smallcaps">lab 12.1 — the blind robot</span>
+          <span class="plaque-caption">position is the area swept out so far</span>
+        </div>
+        <canvas id="blind" height="380"></canvas>
+        <div class="controls">
+          <label>time so far <input type="range" id="bt" min="0" max="10" value="4" step="0.1"> <code id="btv">4.0</code></label>
+        </div>
+        <div class="readout">
+          <span>speed right now: <b id="vNow">—</b></span>
+          <span>distance so far (area): <b id="areaNow">—</b></span>
+          <span>door at: <b>20.0 m</b></span>
+          <span id="blindStatus" style="color:var(--chalk)"></span>
+        </div>
+      </div>
+      <p class="reveal">
+        Position is the <em>area</em> under the speed curve — every sliver of
+        "speed × a moment of time," laid side by side. To find it, the robot must
+        add up an unending stream of vanishingly thin strips. That sum has a name
+        and a long elegant symbol: the integral, ∫.
+      </p>
+    </div>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT II -->
+  <section>
+    <div class="smallcaps reveal">act ii · history is load-bearing</div>
+    <h2 class="reveal">Accumulating the slivers</h2>
+    <p class="lede reveal">
+      The integral is the derivative run backwards — Leibniz saw that first and
+      drew its sign; two centuries later Riemann made "add up infinitely many
+      infinitely thin strips" into something airtight.
+    </p>
+    <div class="gallery">
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/leibniz.jpg" alt="Gottfried Wilhelm Leibniz"></div>
+        <figcaption class="plaque">
+          <div class="name">Gottfried Wilhelm Leibniz</div>
+          <div class="dates">1646 – 1716 · LEIPZIG → HANNOVER</div>
+          <div class="role">Stretched the "S" of <em>summa</em> into ∫ in 1675, and saw the deep secret: integration and differentiation undo each other — the Fundamental Theorem that ties all of calculus into one knot.</div>
+        </figcaption>
+      </figure>
+      <figure class="portrait reveal">
+        <div class="frame"><img src="../assets/img/portraits/riemann.jpg" alt="Bernhard Riemann"></div>
+        <figcaption class="plaque">
+          <div class="name">Bernhard Riemann</div>
+          <div class="dates">1826 – 1866 · BRESELENZ → GÖTTINGEN</div>
+          <div class="role">In 1854 he defined the integral as the limit of a sum of rectangles — the "Riemann sum" — making rigorous the act of adding up slivers. It is, quite literally, how a computer integrates anything.</div>
+        </figcaption>
+      </figure>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/integral-history.svg" alt="accumulating the slivers"></div>
+      <figcaption class="plaque-caption">From an elegant symbol to a sum a machine can actually run.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT III -->
+  <section>
+    <div class="smallcaps reveal">act iii · the idea itself</div>
+    <h2 class="reveal">A sum of rectangles</h2>
+    <p class="lede reveal">
+      Cut the run into n strips, and approximate each by a rectangle: its height is
+      the speed there, its width a slice of time, its area a little distance. Add
+      them. Few strips give a crude answer; slide toward many and the staircase
+      melts onto the true curve — the integral is the limit of that sum.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 12.2 — the Riemann sum</span>
+        <span class="plaque-caption">more strips, less error</span>
+      </div>
+      <canvas id="riemann" height="380"></canvas>
+      <div class="controls">
+        <label>strips n <input type="range" id="nstrip" min="1" max="60" value="6" step="1"> <code id="nstripv">6</code></label>
+        <button class="toggle" id="refine">refine →</button>
+      </div>
+      <div class="readout">
+        <span>rectangle sum: <b id="sumV">—</b></span>
+        <span>true area (∫): <b id="trueA">—</b></span>
+        <span id="riemStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-riemann.svg" alt="area approx sum of f x i delta x" style="max-height:60px;"></div>
+      <figcaption class="plaque-caption">
+        Height times width, summed — and in the limit of infinitely thin strips,
+        the ≈ becomes an = and the sum becomes ∫.
+      </figcaption>
+    </figure>
+    <figure class="formula-artifact reveal">
+      <div class="frame"><img src="../assets/img/diagrams/f-integral.svg" alt="x of t equals x naught plus integral of v" style="max-height:58px;"></div>
+      <figcaption class="plaque-caption">Position is the running integral of velocity — the odometer's whole job.</figcaption>
+    </figure>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT IV -->
+  <section>
+    <div class="smallcaps reveal">act iv · the lab is the assessment</div>
+    <h2 class="reveal">Dead reckoning, and the drift</h2>
+    <p class="lede reveal">
+      Let the robot integrate its own wheel speed, moment by moment, to track where
+      it is — this is <em>dead reckoning</em>. With a perfect sensor it lands exactly
+      on the truth: integration inverts the velocity flawlessly. But give the wheel
+      the faintest constant bias, and every step inherits it — the small error
+      <em>accumulates</em>, and the robot slowly convinces itself it is somewhere it
+      is not.
+    </p>
+    <div class="lab reveal">
+      <div class="lab-head">
+        <span class="smallcaps">lab 12.3 — integrate to localize</span>
+        <span class="plaque-caption">perfect sensing lands true; a whisper of bias drifts</span>
+      </div>
+      <canvas id="reckon" height="360"></canvas>
+      <div class="controls">
+        <label>wheel bias <input type="range" id="bias" min="-0.3" max="0.3" value="0" step="0.01"> <code id="biasv">0.00</code></label>
+        <button class="toggle" id="runReckon">run the route</button>
+        <button class="toggle" id="reckonReset">reset</button>
+      </div>
+      <div class="readout">
+        <span>true position: <b id="truePos">—</b></span>
+        <span>dead-reckoned: <b id="drPos">—</b></span>
+        <span>drift: <b id="drift">—</b></span>
+        <span id="reckonStatus" style="color:var(--chalk)"></span>
+      </div>
+    </div>
+    <p class="reveal">
+      Zero bias and the two robots ride in lockstep — proof that position truly is
+      the integral of velocity. Nudge the bias and the estimate peels away, a
+      little more each second. This is why a wheeled robot cannot dead-reckon
+      forever, and why Folio&nbsp;18 will teach it to fold in landmarks and
+      probabilities to pull its belief back to the truth.
+    </p>
+  </section>
+
+  <div class="constellation-rule"></div>
+
+  <!-- ACT V -->
+  <section class="exhibit wide" style="margin:4rem 0;">
+    <div>
+      <div class="smallcaps reveal">act v · so the robot can…</div>
+      <h2 class="reveal">What you can now build</h2>
+      <p class="lede reveal">
+        Odometry, the accumulated heading of a gyroscope, motor charge over time,
+        the area under any sensor trace, the "I" term of a PID controller — all are
+        integrals, all are Riemann's sum of slivers. Derivative and integral
+        together (Folios&nbsp;11 and 12) are the two directions of motion: rate and
+        accumulation, tied by Leibniz's Fundamental Theorem. With them, Stage&nbsp;III
+        can describe motion exactly. Folio&nbsp;13 closes it with a twist — numbers
+        that, when multiplied, <em>rotate</em>.
+      </p>
+      <p class="reveal" style="margin-top:1rem;">
+        <em>Field exercise:</em> walk at a steady pace counting seconds, and mark
+        the floor each second. The marks are your Riemann rectangles; their total
+        is the integral of your speed — your position, reconstructed from motion
+        alone, exactly as a blind robot must.
+      </p>
+      <a class="next-exhibit reveal" href="numbers-that-rotate.html">continue to folio 13 — numbers that rotate</a>
+      <a class="next-exhibit reveal" href="../index.html" style="margin-left:1rem;">return to the codex map</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="plaque-caption">
+      Portraits &amp; artifacts: offline Wikipedia archive · diagrams: DaVinci Ink,
+      generated locally · simulations: the formulas on this page, nothing more.
+    </div>
+  </footer>
+</main>
+
+<script>
+const TAU = Math.PI * 2;
+const C = { bg:'#f2e9d2', grid:'rgba(58,44,26,.10)', ink:'#3a2c1a', chalk:'#96412e',
+            slate:'#46617a', olive:'#5b6b3a', gold:'#a8842f', ghost:'#8a795d' };
+const HAND = "'Ink Free', 'Segoe Print', cursive";
+const XMAXT = 10, VMAX = 6;
+function Vf(t) { return 3 + 2 * Math.sin(0.6 * t); }         // speed (m/s), always > 0
+function area(t) { let s = 0, dt = 0.005; for (let x = 0; x < t; x += dt) s += Vf(x) * dt; return s; }
+
+function setupCanvas(cv) {
+  const dpr = devicePixelRatio || 1;
+  function resize() {
+    const w = cv.clientWidth, h = parseInt(cv.getAttribute('height'), 10);
+    cv.width = w * dpr; cv.height = h * dpr; cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return ctx;
+  }
+  return { resize, get w() { return cv.clientWidth; }, get h() { return parseInt(cv.getAttribute('height'), 10); } };
+}
+function inkStroke(ctx, drawPath, color, width) {
+  ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round';
+  ctx.beginPath(); drawPath(0, 0); ctx.stroke();
+  ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1, width * 0.45);
+  ctx.beginPath(); drawPath(1.1, 0.8); ctx.stroke(); ctx.restore();
+}
+function paper(ctx, w, h) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, w, h);
+  ctx.strokeStyle = C.grid; ctx.lineWidth = 1;
+  for (let x = 20; x < w; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+  for (let y = 20; y < h; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+}
+function vplot(S, ctx) {
+  const w = S.w, h = S.h, pad = 50, x0 = pad + 20, y0 = h - pad, plotW = w - x0 - pad, plotH = h - 2 * pad;
+  const sx = (t) => x0 + t / XMAXT * plotW, sy = (v) => y0 - v / VMAX * plotH;
+  inkStroke(ctx, (a, b) => { ctx.moveTo(x0 + a, y0 + b); ctx.lineTo(x0 + plotW + 16 + a, y0 + b); }, C.ink, 1.8);
+  inkStroke(ctx, (a, b) => { ctx.moveTo(x0 + a, y0 + b); ctx.lineTo(x0 + a, y0 - plotH - 16 + b); }, C.ink, 1.8);
+  ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND;
+  ctx.fillText('time t (s) →', x0 + plotW - 50, y0 + 24);
+  ctx.save(); ctx.translate(x0 - 22, y0 - plotH / 2 + 28); ctx.rotate(-Math.PI / 2); ctx.fillText('speed v (m/s) →', 0, 0); ctx.restore();
+  return { sx, sy, x0, y0, plotW, plotH };
+}
+function curveV(ctx, P, tmax, color) {
+  inkStroke(ctx, (a, b) => { for (let i = 0; i <= 140; i++) { const t = i / 140 * tmax; const px = P.sx(t) + a, py = P.sy(Vf(t)) + b; i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); } }, color, 2);
+}
+
+/* LAB 12.1 — the blind robot */
+(function () {
+  const cv = document.getElementById('blind'), S = setupCanvas(cv);
+  let ctx = S.resize(); const el = (id) => document.getElementById(id);
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h); const P = vplot(S, ctx);
+    const t = +el('bt').value;
+    // shade area up to t
+    ctx.save(); ctx.globalAlpha = .2; ctx.fillStyle = C.olive; ctx.beginPath();
+    ctx.moveTo(P.sx(0), P.sy(0));
+    for (let i = 0; i <= 100; i++) { const tt = i / 100 * t; ctx.lineTo(P.sx(tt), P.sy(Vf(tt))); }
+    ctx.lineTo(P.sx(t), P.sy(0)); ctx.closePath(); ctx.fill(); ctx.restore();
+    curveV(ctx, P, XMAXT, C.ink);
+    // marker at t
+    inkStroke(ctx, (a, b) => { ctx.moveTo(P.sx(t) + a, P.sy(0) + b); ctx.lineTo(P.sx(t) + a, P.sy(Vf(t)) + b); }, C.chalk, 1.6);
+    const a = area(t);
+    el('btv').textContent = t.toFixed(1);
+    el('vNow').textContent = Vf(t).toFixed(2) + ' m/s';
+    el('areaNow').textContent = a.toFixed(1) + ' m';
+    el('blindStatus').textContent = a >= 20 ? '✦ past the door — the accumulated area reached 20 m.' : 'not yet — ' + (20 - a).toFixed(1) + ' m of area still to sweep.';
+  }
+  el('bt').addEventListener('input', draw);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 12.2 — the Riemann sum */
+(function () {
+  const cv = document.getElementById('riemann'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null; const el = (id) => document.getElementById(id);
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h); const P = vplot(S, ctx);
+    const n = +el('nstrip').value, dt = XMAXT / n; let sum = 0;
+    for (let i = 0; i < n; i++) {
+      const tm = (i + 0.5) * dt, hv = Vf(tm); sum += hv * dt;
+      ctx.save(); ctx.globalAlpha = .3; ctx.fillStyle = C.slate;
+      ctx.fillRect(P.sx(i * dt), P.sy(hv), P.sx(dt) - P.sx(0), P.sy(0) - P.sy(hv)); ctx.restore();
+      inkStroke(ctx, (a, b) => { const x1 = P.sx(i * dt), x2 = P.sx((i + 1) * dt), yy = P.sy(hv); ctx.moveTo(x1 + a, P.sy(0) + b); ctx.lineTo(x1 + a, yy + b); ctx.lineTo(x2 + a, yy + b); ctx.lineTo(x2 + a, P.sy(0) + b); }, C.slate, 1.2);
+    }
+    curveV(ctx, P, XMAXT, C.chalk);
+    const truth = area(XMAXT);
+    el('nstripv').textContent = n;
+    el('sumV').textContent = sum.toFixed(2) + ' m';
+    el('trueA').textContent = truth.toFixed(2) + ' m';
+    el('riemStatus').textContent = Math.abs(sum - truth) < 0.15 ? '✦ the staircase has melted onto the curve.' : 'off by ' + Math.abs(sum - truth).toFixed(2) + ' m — add strips.';
+  }
+  function refine() { if (anim) cancelAnimationFrame(anim); const step = () => { const v = Math.min(60, +el('nstrip').value + 1); el('nstrip').value = v; draw(); if (v < 60) anim = requestAnimationFrame(step); else anim = null; }; anim = requestAnimationFrame(step); }
+  el('nstrip').addEventListener('input', draw);
+  el('refine').addEventListener('click', refine);
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+
+/* LAB 12.3 — dead reckoning */
+(function () {
+  const cv = document.getElementById('reckon'), S = setupCanvas(cv);
+  let ctx = S.resize(), anim = null, prog = 0; const el = (id) => document.getElementById(id);
+  const ROUTE = 30;                                  // metres of corridor
+  function draw() {
+    const w = S.w, h = S.h; paper(ctx, w, h);
+    const y0 = h * 0.5, x0 = 50, sc = (w - 100) / ROUTE, bias = +el('bias').value;
+    inkStroke(ctx, (a, b) => { ctx.moveTo(x0 + a, y0 + b); ctx.lineTo(x0 + ROUTE * sc + a, y0 + b); }, C.ink, 1.6);
+    // door
+    inkStroke(ctx, (a, b) => { ctx.moveTo(x0 + ROUTE * sc + a, y0 - 26 + b); ctx.lineTo(x0 + ROUTE * sc + a, y0 + 26 + b); }, C.ghost, 1.6);
+    ctx.fillStyle = C.ghost; ctx.font = '14px ' + HAND; ctx.fillText('goal', x0 + ROUTE * sc - 6, y0 - 32);
+    const T = prog * XMAXT;
+    const realX = Math.min(ROUTE, area(T));
+    // dead-reckoned integrates (v+bias)
+    let dr = 0, dt = 0.02; for (let x = 0; x < T; x += dt) dr += (Vf(x) + bias) * dt; dr = Math.min(ROUTE + 6, dr);
+    // true robot (olive), reckoned (chalk) on parallel rails
+    ctx.save(); ctx.fillStyle = C.olive; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(x0 + realX * sc, y0 - 10, 8, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.fillStyle = C.olive; ctx.fillText('true', x0 + realX * sc - 10, y0 - 24);
+    ctx.save(); ctx.fillStyle = C.chalk; ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.arc(x0 + dr * sc, y0 + 12, 8, 0, TAU); ctx.fill(); ctx.stroke(); ctx.restore();
+    ctx.fillStyle = C.chalk; ctx.fillText('reckoned', x0 + dr * sc - 20, y0 + 34);
+    el('biasv').textContent = bias.toFixed(2);
+    el('truePos').textContent = realX.toFixed(2) + ' m';
+    el('drPos').textContent = dr.toFixed(2) + ' m';
+    el('drift').textContent = (dr - realX >= 0 ? '+' : '') + (dr - realX).toFixed(2) + ' m';
+    if (prog >= 1) el('reckonStatus').textContent = Math.abs(dr - realX) < 0.3
+      ? '✦ landed on the truth — perfect integration.'
+      : 'drifted ' + Math.abs(dr - true).toFixed(2) + ' m over one corridor. Errors accumulate.';
+  }
+  function run() { if (anim) cancelAnimationFrame(anim); prog = 0; el('reckonStatus').textContent = ''; const step = () => { prog = Math.min(1, prog + 0.01); draw(); if (prog < 1) anim = requestAnimationFrame(step); else anim = null; }; anim = requestAnimationFrame(step); }
+  el('bias').addEventListener('input', () => draw());
+  el('runReckon').addEventListener('click', run);
+  el('reckonReset').addEventListener('click', () => { prog = 0; el('reckonStatus').textContent = ''; draw(); });
+  addEventListener('resize', () => { ctx = S.resize(); draw(); });
+  draw();
+})();
+</script>
+<script src="../assets/js/site.js"></script>
+</body>
+</html>

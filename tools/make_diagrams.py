@@ -226,4 +226,87 @@ formula("f-variance", r"\sigma^2 \;=\; \frac{1}{n}\sum_{i=1}^{n}(x_i-\mu)^2")
 formula("f-gaussian",
         r"p(x) \;=\; \frac{1}{\sigma\sqrt{2\pi}}\; e^{-(x-\mu)^2 / 2\sigma^2}")
 
+# ============ FOLIO 09 — Arrows of Motion ============
+save("vectors-history", diagrams.ink_network(
+    [("ham", "Hamilton\n1843 · quaternions", "purple"),
+     ("gra", "Grassmann\n1844 · vector spaces", "blue"),
+     ("gh", "Gibbs & Heaviside\n1880s · the modern vector", "green"),
+     ("drone", "Your drone\ntoday · v = v₁ + v₂", "red")],
+    [("ham", "gra", "arrows with algebra"),
+     ("gra", "gh", "stripped to essentials"),
+     ("gh", "drone", "unchanged since")],
+    pos={"ham": (0, 0.7), "gra": (1, -0.6), "gh": (2, 0.7), "drone": (3, -0.6)},
+    directed=True,
+    title="Arrows learn arithmetic",
+    caption="A vector is a push with a direction — and pushes add."))
+
+formula("f-vector", r"\vec{v} = (v_x,\; v_y)")
+formula("f-vector-add", r"\vec{w} = \vec{u} + \vec{v} = (u_x{+}v_x,\; u_y{+}v_y)")
+formula("f-magnitude", r"|\vec{v}| = \sqrt{v_x^2 + v_y^2}")
+formula("f-dot", r"\vec{u}\cdot\vec{v} = |\vec{u}|\,|\vec{v}|\cos\theta")
+
+# ============ FOLIO 10 — The Rotation Machine ============
+save("rotation-history", diagrams.ink_network(
+    [("eul", "Euler\nrotation angles", "blue"),
+     ("cay", "Cayley\n1858 · matrix algebra", "purple"),
+     ("cam", "Camera → world\ntoday · R(θ)", "red")],
+    [("eul", "cay", "turns become tables"),
+     ("cay", "cam", "one matrix per frame")],
+    pos={"eul": (0, 0.6), "cay": (1, -0.5), "cam": (2, 0.6)},
+    directed=True,
+    title="A turn you can multiply",
+    caption="Rotation, packed into four numbers that act on any point."))
+
+formula("f-rotate",
+        r"x' = x\cos\theta - y\sin\theta \qquad y' = x\sin\theta + y\cos\theta")
+formula("f-rotcompose", r"R(\alpha)\,R(\beta) = R(\alpha + \beta)")
+
+# ============ FOLIO 11 — The Speed of Speed ============
+save("calculus-history", diagrams.ink_network(
+    [("new", "Newton\n1666 · fluxions", "orange"),
+     ("lei", "Leibniz\n1675 · dx/dt notation", "purple"),
+     ("ctrl", "Your controller\ntoday · velocity now", "red")],
+    [("new", "lei", "same idea, bitter feud"),
+     ("lei", "ctrl", "his notation won")],
+    pos={"new": (0, 0.6), "lei": (1, -0.5), "ctrl": (2, 0.6)},
+    directed=True,
+    title="The rate of change, named twice",
+    caption="Zoom into a curve far enough and it looks straight — that slope is the derivative."))
+
+formula("f-derivative",
+        r"f'(x) = \lim_{h\to 0}\frac{f(x+h) - f(x)}{h}")
+formula("f-velocity", r"v = \frac{dx}{dt}")
+
+# ============ FOLIO 12 — Adding Up Motion ============
+save("integral-history", diagrams.ink_network(
+    [("lei", "Leibniz\n1675 · the ∫ sign", "purple"),
+     ("rie", "Riemann\n1854 · sums made rigorous", "blue"),
+     ("odo", "Your odometer\ntoday · ∫v dt", "red")],
+    [("lei", "rie", "made exact"),
+     ("rie", "odo", "add up the slivers")],
+    pos={"lei": (0, 0.6), "rie": (1, -0.5), "odo": (2, 0.6)},
+    directed=True,
+    title="Accumulating the slivers",
+    caption="Slice motion into thin strips, add their areas — that sum is position."))
+
+formula("f-integral", r"x(t) = x_0 + \int_0^{t} v\,dt'")
+formula("f-riemann", r"A \;\approx\; \sum_{i} f(x_i)\,\Delta x")
+formula("f-ftc", r"\int_a^b f'(x)\,dx = f(b) - f(a)")
+
+# ============ FOLIO 13 — Numbers That Rotate ============
+save("complex-history", diagrams.ink_network(
+    [("arg", "Argand\n1806 · the complex plane", "purple"),
+     ("eul", "Euler\ne^{iθ} = cosθ + i·sinθ", "blue"),
+     ("imu", "Your drone IMU\ntoday · rotate by ×", "red")],
+    [("arg", "eul", "geometry meets algebra"),
+     ("eul", "imu", "multiply to turn")],
+    pos={"arg": (0, 0.6), "eul": (1, -0.5), "imu": (2, 0.6)},
+    directed=True,
+    title="To multiply is to rotate",
+    caption="On the complex plane, ×i is a quarter-turn — arithmetic that spins."))
+
+formula("f-i2", r"i^2 = -1")
+formula("f-complex-mult",
+        r"(a+bi)(c+di) = (ac - bd) + (ad + bc)\,i")
+
 print("\nall diagrams written ->", OUT)
